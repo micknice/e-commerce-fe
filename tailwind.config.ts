@@ -33,6 +33,8 @@ const config: Config = {
         'mira-orange': '#ff7214',
         'mira-green': '#00b67a',
         'mira-border-grey': 'f5f5f5',
+        'mira-text-red': '#e02b27',
+        'mira-footer-charcoal': '#222222',
       }
       
     },
