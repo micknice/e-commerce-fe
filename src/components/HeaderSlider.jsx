@@ -8,50 +8,50 @@ import {LiaCoinsSolid} from 'react-icons/lia'
    
 const HeaderSlider = () => {
     return (
-        <div className='h-12 bg-gray-300 '>
+        <div className='h-[41px] bg-mira-grey '>
             <Carousel slideInterval={5100} >
             {
-            <div className='h-12 w-screen flex items-center justify-center gap-x-[2px]'>
-                <div className='h-4 w-4 bg-black flex items-center justify-center'>
-                    <AiFillStar color='#E0E0E0' size='12px'/>
+            <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
                 </div>
-                <div className='h-4 w-4 bg-black flex items-center justify-center'>
-                    <AiFillStar color='#E0E0E0' size='12px'/>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
                 </div>
-                <div className='h-4 w-4 bg-black flex items-center justify-center'>
-                    <AiFillStar color='#E0E0E0' size='12px'/>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
                 </div>
-                <div className='h-4 w-4 bg-black flex items-center justify-center'>
-                    <AiFillStar color='#E0E0E0' size='12px'/>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
                 </div>
-                <div className='h-4 w-4 bg-black flex items-center justify-center'>
-                    <AiFillStar color='#E0E0E0' size='12px'/>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
                 </div>
-                <p className='text-black text-sm font-medium pl-2'>
+                <p className='text-mira-subhead-text-black text-sm  pl-2'>
                     4.85/5 ON TRUSTPILOT
                 </p>
             </div>    
             }
             {
-            <div className='h-12 w-screen flex items-center justify-center gap-x-[2px]'>
-                <TbTruckDelivery color='black' size='25px'/>
-                <p className='text-black text-sm font-medium pl-2'>
+            <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
+                <TbTruckDelivery color='#1d1d1b' size='25px'/>
+                <p className='text-mira-subhead-text-black text-sm  pl-2'>
                     £4.95 ON UK DELIVERY
                 </p>
             </div>  
             }
             {
-             <div className='h-12 w-screen flex items-center justify-center gap-x-[2px]'>
-                <FaPaypal color='black' size='25px'/>
-                <p className='text-black text-sm font-medium pl-2'>
+             <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
+                <FaPaypal color='#1d1d1b' size='25px'/>
+                <p className='text-mira-subhead-text-black text-sm  pl-2'>
                     PAY IN 3 WITH PAYPAL
                 </p>
             </div>   
             }
             {
-            <div className='h-12 w-screen flex items-center justify-center gap-x-[2px]'>
+            <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
                 <LiaCoinsSolid color='black' size='25px'/>
-                <p className='text-black text-sm font-medium pl-2'>
+                <p className='text-mira-subhead-text-black text-sm pl-2'>
                     FINANCE AVAILABLE OVER £2,000
                 </p>
             </div>
