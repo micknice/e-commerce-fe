@@ -2,6 +2,7 @@ import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
 
 
+
 const Login = () => {
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
@@ -9,7 +10,7 @@ const Login = () => {
                 <div className="h-20 flex justify-center items-center">
                     <p className="text-2xl text-mira-black font-bold tracking-tighter">CUSTOMER LOGIN</p>
                 </div>
-                <p className="text-xl text-mira-black font-medium tracking-widest">Registered Customers</p>
+                <p className="text-xl text-mira-black font-semibold tracking-widest">Registered Customers</p>
                 <div className="h-3"/>
                 <div className="h-[1px] bg-gray-200"/>
                 <form className="flex flex-col gap-y-3">
@@ -54,7 +55,7 @@ const Login = () => {
                
             </div>
             <div className='pt-9'>
-                <p className="text-xl text-mira-black font-medium tracking-widest">New Customers</p>
+                <p className="text-xl text-mira-black font-semibold tracking-widest">New Customers</p>
                 <div className="h-3"/>
                 <div className="h-[1px] bg-gray-200"/>
                 <p className="text-sm pt-4 ">Creating an account has many benefits: check out faster,
