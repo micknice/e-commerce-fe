@@ -14,9 +14,9 @@ import ForgotPassword from '../components/ForgotPassword'
 export default function Home() {
   return (
     <div className='h-full w-full bg-white flex flex-col'>
-      {/* <Login/> */}
+      <Login/>
       {/* <Register/> */}
-      <ForgotPassword/>
+      {/* <ForgotPassword/> */}
     </div>
   )
 }

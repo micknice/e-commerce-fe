@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
+import {GiCheckMark} from 'react-icons/gi'
 
 
 
@@ -9,7 +10,15 @@ const Login = () => {
             <div className="flex flex-col">
                 <div className="h-20 flex justify-center items-center">
                     <p className="text-2xl text-mira-black font-bold tracking-tighter">CUSTOMER LOGIN</p>
+
                 </div>
+                <div className='bg-mira-sage h-16 w-full flex p-3 gap-x-3 '>
+                    <GiCheckMark size='20px'/>
+                    <div className='flex items-start'>
+                        <p className='text-xs tracking-wide'>If there is an account associated with airforce2high@hotmail.co.uk you will receive an email with a link to reset your password.</p>
+                    </div>
+                </div>
+                <div className='h-4'/>
                 <p className="text-xl text-mira-black font-semibold tracking-widest">Registered Customers</p>
                 <div className="h-3"/>
                 <div className="h-[1px] bg-gray-200"/>
