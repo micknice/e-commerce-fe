@@ -8,11 +8,15 @@ import BigItemCard from '../components/BigItemCard'
 import ArticleCard from '@/components/ArticleCard'
 import {AiFillStar} from 'react-icons/ai'
 import Login from '../components/Login'
+import Register from '../components/Register'
+import ForgotPassword from '../components/ForgotPassword'
 
 export default function Home() {
   return (
     <div className='h-full w-full bg-white flex flex-col'>
       <Login/>
+      {/* <Register/> */}
+      {/* <ForgotPassword/> */}
     </div>
   )
 }
