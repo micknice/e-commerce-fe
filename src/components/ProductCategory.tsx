@@ -13,7 +13,11 @@ const ProductCategory = ({category}: ProductCategoryProps) => {
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">
                 <div className="h-20 flex justify-center items-center">
-                    <p className="text-2xl text-mira-black font-bold tracking-tighter">{getCatShort(category)}</p>
+                    {category &&
+
+                        // <p className="text-2xl text-mira-black font-bold tracking-tighter">{getCatShort(category)}</p>
+                        <p className="text-2xl text-mira-black font-bold tracking-tighter">{getCatShort(category)}</p>
+                    }
 
                 </div>
                 
