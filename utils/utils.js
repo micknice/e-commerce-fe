@@ -43,6 +43,25 @@ export const checkSubCat = (subCat) => {
 export const getSubCatShort = (subCat) => {
   return subCatShortened[subCat].toUpperCase()
 }
-export const getCatShort = (subCat) => {
-  return catShortened[subCat].toUpperCase()
+export const getCatShort = (subCat, toUpperCase=true) => {
+  if(toUpperCase) {
+    return catShortened[subCat].toUpperCase()
+  } else {
+    return catShortened[subCat]
+  }
+}
+
+function switchKeysAndValues(obj) {
+  const switchedObj = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      switchedObj[obj[key]] = key;
+    }
+  }
+  return switchedObj;
+}
+
+export const getProductFromTitle = (title) => {
+  const lookup = switchKeysAndValues(catShortened)
+  return lookup[title]
 }

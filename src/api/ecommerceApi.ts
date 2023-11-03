@@ -31,6 +31,11 @@ export const getProductsBySubCategory = async(subCategory: string) => {
     return data
 }
 
+export const getProductByProductId = async(productId: number) => {
+    const { data } = await eCommerceApi.get(`/product/id/${productId}`)
+    return data
+}
+
 export class AuthService {
     protected readonly instance: AxiosInstance;
     public constructor(url: string) {
