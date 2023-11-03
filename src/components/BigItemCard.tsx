@@ -6,6 +6,7 @@ import {reverseReplacement, replaceSpacesAndAmpersands, extractTextBetweenSuffix
 import { useAmp } from "next/amp"
 import subCatLookUp from '../../utils/subCatLookup'
 import subCatShortened from '../../utils/subCatShortened'
+import Link from 'next/link'
 
 
 interface BigItemProps {
@@ -16,6 +17,7 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
   const [subCat, setSubCat] = useState('')
   const [title, setTitle] = useState('')
   const [imgPath, setImgPath] = useState('https://images.pexels.com/photos/7534178/pexels-photo-7534178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+  const [category, setCategory] = useState('')
 
   useEffect(() => {
     console.log('effect')
@@ -27,6 +29,7 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
           setSubCat(reverseReplacement(subCatActual[0].sub_category.toUpperCase()))
           setImgPath(`/mirafit-images/${subCatActual[0].id -1}-${imgUrlToFilePath(subCatActual[0].img)}`)
           setTitle(getSubCatShort(subCategory))
+          setCategory(subCatActual[0].category)
         } else {
           const subCatActual = await getProductsByCategory(subCategory);
           setSubCat(reverseReplacement(subCatActual[0].category.toUpperCase()))
@@ -39,8 +42,9 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
     }
   }, [])
 
-
+  if (checkSubCat(subCategory)) {
     return (
+      <Link href={`/products/category/${category}/subCategory/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52'>
             {/* img div */}
             <div className=' h-44 w-full'>
@@ -52,7 +56,28 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
                 <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{title}</p>
             </div>
           </div>
+      </Link>
     )
+  } else {
+    return (
+      <Link href={`/products/category/${subCategory}`}>
+        <div className='col-span-1  flex flex-col gap-y-2 h-52'>
+            {/* img div */}
+            <div className=' h-44 w-full'>
+                <img className=' h-full w-full object-cover' src={imgPath}/>
+            </div>
+            {/* TITLE DIV */}
+            <div>
+                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{title}</p>
+            </div>
+          </div>
+      </Link>
+    )
+    
+
+  }
+
+
 }
 
 export default BigItemCard
