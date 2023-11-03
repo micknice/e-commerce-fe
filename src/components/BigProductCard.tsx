@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import {getAllProducts, getProductsByCategory, getProductsBySubCategory,} from '../api/ecommerceApi'
+import {getAllProducts, getProductsByCategory, getProductsBySubCategory, getProductByProductId} from '../api/ecommerceApi'
 import {allSubCatArr, categories} from '../../categories'
 import {reverseReplacement, replaceSpacesAndAmpersands, extractTextBetweenSuffixAndLastSlash, imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
 import { useAmp } from "next/amp"
@@ -8,8 +8,9 @@ import subCatLookUp from '../../utils/subCatLookup'
 import subCatShortened from '../../utils/subCatShortened'
 
 
+
 interface BigProductProps {
-  product: string
+  product: any
 }
 const BigProductCard = ({product}: BigProductProps) => {
 
@@ -19,37 +20,42 @@ const BigProductCard = ({product}: BigProductProps) => {
 
   useEffect(() => {
     console.log('effect')
-    if (product) {
-
-      const fetchSubCat = async() => {
-        if (checkSubCat(product)) {
-          const prodActual = await getProductsBySubCategory(product);
-         setProd(reverseReplacement(prodActual[0].sub_category.toUpperCase()))
-          setImgPath(`/mirafit-images/${prodActual[0].id -1}-${imgUrlToFilePath(prodActual[0].img)}`)
-          setTitle(getSubCatShort(product))
-        } else {
-          const prodActual = await getProductsByCategory(product);
-         setProd(reverseReplacement(prodActual[0].category.toUpperCase()))
-          setImgPath(`/mirafit-images/${prodActual[0].id -1}-${imgUrlToFilePath(prodActual[0].img)}`)
-          setTitle(getCatShort(product))
-
-        }
-      }
-      fetchSubCat()
+    if (product.id) {
+      setImgPath(`/mirafit-images/${product.id -1}-${imgUrlToFilePath(product.img)}`)
+      // setProd(reverseReplacement(prodActual[0].sub_category.toUpperCase()))
+      setTitle(product.name)
+      
+      
     }
   }, [])
 
 
     return (
-        <div className='col-span-1  flex flex-col gap-y-2 h-52'>
+        <div className='col-span-1  grid grid-rows-5 gap-y-2 h-full p-1'>
             {/* img div */}
-            <div className=' h-44 w-full'>
+            <div className=' h-44 w-full row-span-3'>
                 <img className=' h-full w-full object-cover' src={imgPath}/>
             </div>
             {/* TITLE DIV */}
-            <div>
-              
-                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{title}</p>
+            <div className="row-span-2 grid grid-rows-5">
+              <div className="flex flex-col row-span-2">
+                  <p className='text-mira-headtext text-sm  tracking-tighter text-center'>{product.name}</p>
+              </div>
+              <div className="flex flex-col row-span-1 justify-end ">
+                  <p className='text-sm  tracking-tighter text-center text-mira-orange'>{`£${product.price}`}</p>
+              </div>
+              <div className="flex items-end justify-center w-full row-span-2">
+                {product.inventory.quantity > 0 &&
+                  <div className="flex items-center justify-center bg-mira-orange h-10 w-2/3 ">
+                      <p className="text-white text-sm font-bold">ADD TO CART</p>
+                  </div>
+                }
+                {product.inventory.quantity === 0 &&
+                  <div className="flex items-center justify-center h-10 w-2/3 ">
+                      <p className="text-mira-grey text-sm font-medium">Out of stock</p>
+                  </div>
+                }
+              </div>
             </div>
           </div>
     )

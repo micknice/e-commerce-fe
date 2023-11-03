@@ -44,7 +44,7 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
 
   if (checkSubCat(subCategory)) {
     return (
-      <Link href={`/products/category/${category}/subCategory/${subCategory}`}>
+      <Link href={`/category/${category}/subCategory/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52'>
             {/* img div */}
             <div className=' h-44 w-full'>
@@ -60,7 +60,7 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
     )
   } else {
     return (
-      <Link href={`/products/category/${subCategory}`}>
+      <Link href={`/category/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52'>
             {/* img div */}
             <div className=' h-44 w-full'>
