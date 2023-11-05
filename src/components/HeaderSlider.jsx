@@ -8,8 +8,8 @@ import {LiaCoinsSolid} from 'react-icons/lia'
    
 const HeaderSlider = () => {
     return (
-        <div className='h-[41px] bg-mira-grey '>
-            <Carousel slideInterval={5100} >
+        <div className='h-[41px] bg-mira-grey pointer-events-none'>
+            <Carousel  slideInterval={5100} >
             {
             <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
                 <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>

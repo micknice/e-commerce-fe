@@ -37,6 +37,10 @@ const config: Config = {
         'mira-footer-charcoal': '#222222',
         'mira-socialbg-grey': '#555555',
         'mira-sage': '#e5efe5',
+        'mira-darkgrey': '#888888',
+        'page-button-grey': '#f5f5f5',
+        'page-button-darkgrey': '#e9e9e9',
+        'sort-selection-blue': '#ade1f5',
       }
       
     },
