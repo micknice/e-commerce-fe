@@ -24,14 +24,19 @@ export const getProductsByCategory = async(category: string) => {
     console.log(data)
     return data
 }
-export const getProductsByCategoryPaginated = async(category: string, pageIndex: number, itemsPer: number = 12) => {
-    const {data} = await eCommerceApi.get(`/product/category/${category}?page=${pageIndex}&items=${itemsPer}`)
+export const getProductsBySubCategory = async(category: string) => {
+    const {data} = await eCommerceApi.get(`/product/category/${category}`)
     console.log(data)
     return data
 }
+export const getProductsByCategoryPaginated = async(category: string, pageIndex: number = 0, itemsPer: number = 12, sortBy:string, orderBy: string) => {
+    const {data} = await eCommerceApi.get(`/product/category/${category}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
+    console.log('query', `/product/category/${category}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
+    return data
+}
 
-export const getProductsBySubCategory = async(subCategory: string) => {
-    const {data} = await eCommerceApi.get(`/product/subCategory/${subCategory}`)
+export const getProductsBySubCategoryPaginated = async(subCategory: string, pageIndex: number = 0, itemsPer: number = 12, sortBy:string = 'id', orderBy: string = 'asc') => {
+    const {data} = await eCommerceApi.get(`/product/category/*/subCategory/${subCategory}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
     console.log(data)
     return data
 }

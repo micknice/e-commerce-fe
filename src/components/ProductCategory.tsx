@@ -1,7 +1,7 @@
 'use client'
-import {getCatShort, sortByName, sortByPrice, sortByPopularity} from '../../utils/utils'
+import {getCatShort, getSubCatShort} from '../../utils/utils'
 import {BiChevronRight, BiChevronDown, BiChevronLeft} from 'react-icons/bi'
-import {getProductsByCategoryPaginated} from '../api/ecommerceApi'
+import {getProductsByCategoryPaginated, getProductsBySubCategoryPaginated} from '../api/ecommerceApi'
 import { useEffect, useState } from 'react'
 import BigProductCard from './BigProductCard'
 import Link from 'next/link'
@@ -9,7 +9,7 @@ import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 
 interface ProductCategoryProps {
     category: string
-    subCategory: string
+    subCategory?: string
 }
 
 
@@ -19,46 +19,30 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
     const [itemsPerPage, setItemsPerPage] = useState(12)
     const [paginationIndex, setPaginationIndex] = useState(0)
     const [sortBy, setSortBy] = useState('POPULAR')
+    const [sortByQuery, setSortByQuery] = useState('id')
     const [openSort, setOpenSort] = useState(false)
     const [orderAsc, setOrderAsc] = useState(true)
+    const [order, setOrder] = useState('asc')
     const [pages, setPages] = useState([1, 2, 3, 4, 5])
     
 
     useEffect(() => {
+        console.log('!!!!!')
         const fetchProducts = async() => {
-            console.log(paginationIndex)
-            const productArrActual = await getProductsByCategoryPaginated(category, paginationIndex, itemsPerPage)
-            setProductArr(productArrActual.slice(0, 12))
-            // console.log(productArr, 'pArray!!!')
+            if (!subCategory) {
+                const productArrActual = await getProductsByCategoryPaginated(category, paginationIndex, itemsPerPage, sortByQuery, order)
+                setProductArr(productArrActual)
+            } else {
+                const productArrActual = await getProductsBySubCategoryPaginated(subCategory, paginationIndex, itemsPerPage, sortByQuery, order)
+                setProductArr(productArrActual)
+
+            }
         }
         fetchProducts()
 
-    }, [category, paginationIndex])
+    }, [category, paginationIndex, order, sortByQuery])
 
-    useEffect(() => {
-        if (sortBy === 'NAME') {
-            const sorted = [...productArr]
-            sortByName(sorted)
-            setProductArr(sorted)
-        }
-        if (sortBy === 'PRICE') {
-            const sorted = [...productArr]
-            sortByPrice(sorted)
-            setProductArr(sorted)
-        }
-        if (sortBy === 'POPULAR') {
-            const sorted = [...productArr]
-            sortByPopularity(sorted)
-            setProductArr(sorted)
-        }
-    }, [sortBy])
-
-    useEffect(() => {
-        const ordered = [...productArr]
-        ordered.reverse()
-        setProductArr(ordered)
-
-    }, [orderAsc])
+    
 
     
 
@@ -69,6 +53,11 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
         setPaginationIndex(paginationIndex + increment)
     }
     const handleSwitchOrderAsc = () => {
+        if(orderAsc){
+            setOrder('desc')
+        } else {
+            setOrder('asc')
+        }
         setOrderAsc(!orderAsc)
     }
     const handleOpenSort = () => {
@@ -77,6 +66,11 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
     const handleSortSelection = (sortStr: string) => {
         setSortBy(sortStr)
         setOpenSort(!openSort)
+        if (sortStr === 'POPULAR') {
+            setSortByQuery('id')
+        } else {
+            setSortByQuery(sortStr.toLowerCase())
+        }
     }
     return (
         <div>
@@ -103,7 +97,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                 {subCategory &&
                     <Link href={'/'}>
                         <div className='group'>
-                            <p className='text-xs text-mira-grey group-hover:text-mira-orange'>{getCatShort(category, false)}</p>
+                            <p className='text-xs text-mira-grey group-hover:text-mira-orange'>{getSubCatShort(subCategory, false)}</p>
                         </div>
                     </Link>
                 }
@@ -111,13 +105,22 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
             <div className="grid grid-cols-1  px-4">
                 <div className="flex flex-col">
                     <div className="h-16 flex justify-center items-center">
-                        {category &&
+                        {category && !subCategory &&
                             <p className="text-2xl text-mira-black font-bold tracking-tighter">{getCatShort(category)}</p>
+                        }
+                        {subCategory &&
+                            <p className="text-2xl text-mira-black font-bold tracking-tighter">{getSubCatShort(subCategory)}</p>
                         }
                     </div>
                     <div className='h-4'/>
                     <div className='w-full flex flex-row items-center'>
-                        <p className="text-xs text-mira-black font-bold tracking-widest">{`CATEGORIES: ${getCatShort(category)}`}</p>
+                        {category && !subCategory &&
+                            <p className="text-xs text-mira-black font-bold tracking-widest">{`CATEGORIES: ${getCatShort(category)}`}</p>
+                        }
+                        {subCategory &&
+                            <p className="text-xs text-mira-black font-bold tracking-widest">{`CATEGORIES: ${getSubCatShort(subCategory)}`}</p>
+
+                        }
                         <div className='w-auto items-center justify-end'>
                             <BiChevronDown />
                         </div>
@@ -156,7 +159,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                 </div>
                                 }
                             </div>
-                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center' onClick={handleSwitchOrderAsc}>
+                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange' onClick={handleSwitchOrderAsc}>
                                 {orderAsc &&
                                 <ImArrowUp color='#555555'/>
                                 }
@@ -169,7 +172,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                     <div className='w-full flex justify-center '>
                         <div className='flex flex-row  w-full justify-center items-center gap-x-[3px]'>
                             <p className='text-[12px] font-light tracking-widest pr-2'>PAGE</p>
-                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center' onClick={()=>{handlePaginationIncrement(-1)}}>
+                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(-1)}}>
                                 <BiChevronLeft />
                             </div>
                             {pages.map(page => {
@@ -179,12 +182,12 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                     :
-                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange' key={`pag${page}`}>
+                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                 })
                             }
-                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center' onClick={()=>{handlePaginationIncrement(1)}}>
+                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
                                 <BiChevronRight />
                             </div>
                         </div>

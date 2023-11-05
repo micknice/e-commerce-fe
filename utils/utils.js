@@ -40,8 +40,12 @@ export const checkSubCat = (subCat) => {
   return subCatLookup[subCat]
 }
 
-export const getSubCatShort = (subCat) => {
-  return subCatShortened[subCat].toUpperCase()
+export const getSubCatShort = (subCat, toUpperCase=true) => {
+  if(toUpperCase) {
+    return subCatShortened[subCat].toUpperCase()
+  } else {
+    return subCatShortened[subCat]
+  }
 }
 export const getCatShort = (subCat, toUpperCase=true) => {
   if(toUpperCase) {

@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import {getAllProducts, getProductsByCategory, getProductsBySubCategory,} from '../api/ecommerceApi'
+import {getAllProducts, getProductsByCategory, getProductsBySubCategoryPaginated,} from '../api/ecommerceApi'
 import {allSubCatArr, categories} from '../../categories'
 import {reverseReplacement, replaceSpacesAndAmpersands, extractTextBetweenSuffixAndLastSlash, imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
 import { useAmp } from "next/amp"
@@ -25,7 +25,7 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
 
       const fetchSubCat = async() => {
         if (checkSubCat(subCategory)) {
-          const subCatActual = await getProductsBySubCategory(subCategory);
+          const subCatActual = await getProductsBySubCategoryPaginated(subCategory, 0, 1, 'id', 'asc');
           setSubCat(reverseReplacement(subCatActual[0].sub_category.toUpperCase()))
           setImgPath(`/mirafit-images/${subCatActual[0].id -1}-${imgUrlToFilePath(subCatActual[0].img)}`)
           setTitle(getSubCatShort(subCategory))
