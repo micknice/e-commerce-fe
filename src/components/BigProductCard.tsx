@@ -1,13 +1,6 @@
 'use client'
 import { useEffect, useState } from "react"
-import {getAllProducts, getProductsByCategory, getProductsBySubCategory, getProductByProductId} from '../api/ecommerceApi'
-import {allSubCatArr, categories} from '../../categories'
-import {reverseReplacement, replaceSpacesAndAmpersands, extractTextBetweenSuffixAndLastSlash, imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
-import { useAmp } from "next/amp"
-import subCatLookUp from '../../utils/subCatLookup'
-import subCatShortened from '../../utils/subCatShortened'
-
-
+import {imgUrlToFilePath, } from '../../utils/utils'
 
 interface BigProductProps {
   product: any
@@ -22,7 +15,6 @@ const BigProductCard = ({product}: BigProductProps) => {
     console.log('effect')
     if (product.id) {
       setImgPath(`/mirafit-images/${product.id -1}-${imgUrlToFilePath(product.img)}`)
-      // setProd(reverseReplacement(prodActual[0].sub_category.toUpperCase()))
       setTitle(product.name)
       
       
