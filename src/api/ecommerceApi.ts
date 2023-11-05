@@ -24,6 +24,11 @@ export const getProductsByCategory = async(category: string) => {
     console.log(data)
     return data
 }
+export const getProductsByCategoryPaginated = async(category: string, pageIndex: number, itemsPer: number = 12) => {
+    const {data} = await eCommerceApi.get(`/product/category/${category}?page=${pageIndex}&items=${itemsPer}`)
+    console.log(data)
+    return data
+}
 
 export const getProductsBySubCategory = async(subCategory: string) => {
     const {data} = await eCommerceApi.get(`/product/subCategory/${subCategory}`)

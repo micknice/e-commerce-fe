@@ -65,3 +65,54 @@ export const getProductFromTitle = (title) => {
   const lookup = switchKeysAndValues(catShortened)
   return lookup[title]
 }
+
+export const sortByName = (arr) => {
+  arr.sort((a, b) => {
+    const nameA = a.name.toLowerCase();
+    const nameB = b.name.toLowerCase();
+
+    if (nameA < nameB) {
+      return -1; 
+    } else if (nameA > nameB) {
+      return 1; 
+    } else {
+      return 0;
+    }
+  });
+}
+export const sortByPrice = (arr) => {
+  arr.sort((a, b) => {
+    const priceA = a.price
+    const priceB = b.price
+
+    if (priceA < priceB) {
+      return -1; 
+    } else if (priceA > priceB) {
+      return 1; 
+    } else {
+      return 0;
+    }
+  });
+}
+export const sortByPopularity = (arr) => {
+  arr.sort((a, b) => {
+    const idA = a.id
+    const idB = b.id
+
+    if (idA < idB) {
+      return -1; 
+    } else if (idA > idB) {
+      return 1; 
+    } else {
+      return 0;
+    }
+  });
+}
+
+
+
+
+
+
+
+
