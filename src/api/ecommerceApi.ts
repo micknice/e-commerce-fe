@@ -46,6 +46,25 @@ export const getProductByProductId = async(productId: number) => {
     return data
 }
 
+export const registerUser = async(firstName: string, lastName: string, email: string, password: string) => {
+    const userObj = {
+        username: email,
+        password: password,
+        email: email,
+        firstName: firstName,
+        lastName: lastName
+    }
+    const reqObj = JSON.stringify(userObj)
+
+    const response = await eCommerceApi.post(`/auth/register`, reqObj)
+    return response
+}
+
+export const verifyUser = async(token: string) => {
+    const response = await eCommerceApi.post(`/auth/verify?token=${token}`)
+    return response
+}
+
 export class AuthService {
     protected readonly instance: AxiosInstance;
     public constructor(url: string) {

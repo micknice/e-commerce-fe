@@ -1,7 +1,3 @@
-import Image from 'next/image'
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-
-
 
 const ForgotPassword = () => {
     return (

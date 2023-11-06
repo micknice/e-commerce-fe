@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import {BiChevronRight} from 'react-icons/bi'
-import {useState, useEffect} from 'react'
 import SocialCluster from './SocialCluster'
 import AcceptedPaymentCluster from './AcceptedPaymentCluster'
 

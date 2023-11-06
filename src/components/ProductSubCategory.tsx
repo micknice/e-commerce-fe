@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import {GiCheckMark} from 'react-icons/gi'
 import {getSubCatShort} from '../../utils/utils'
 
 interface ProductSubCategoryProps {

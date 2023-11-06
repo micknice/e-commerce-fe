@@ -1,11 +1,7 @@
 'use client'
 import { useEffect, useState } from "react"
-import {getAllProducts, getProductsByCategory, getProductsBySubCategoryPaginated,} from '../api/ecommerceApi'
-import {allSubCatArr, categories} from '../../categories'
-import {reverseReplacement, replaceSpacesAndAmpersands, extractTextBetweenSuffixAndLastSlash, imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
-import { useAmp } from "next/amp"
-import subCatLookUp from '../../utils/subCatLookup'
-import subCatShortened from '../../utils/subCatShortened'
+import {getProductsByCategory, getProductsBySubCategoryPaginated,} from '../api/ecommerceApi'
+import {reverseReplacement,  imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
 import Link from 'next/link'
 
 
@@ -25,13 +21,17 @@ const BigItemCard = ({subCategory}: BigItemProps) => {
 
       const fetchSubCat = async() => {
         if (checkSubCat(subCategory)) {
-          const subCatActual = await getProductsBySubCategoryPaginated(subCategory, 0, 1, 'id', 'asc');
+          const {products} = await getProductsBySubCategoryPaginated(subCategory, 0, 1, 'id', 'asc');
+          // const subCatActual = await getProductsBySubCategoryPaginated(subCategory, 0, 1, 'id', 'asc');
+          const subCatActual = products
           setSubCat(reverseReplacement(subCatActual[0].sub_category.toUpperCase()))
           setImgPath(`/mirafit-images/${subCatActual[0].id -1}-${imgUrlToFilePath(subCatActual[0].img)}`)
           setTitle(getSubCatShort(subCategory))
           setCategory(subCatActual[0].category)
         } else {
-          const subCatActual = await getProductsByCategory(subCategory);
+          const {products} = await getProductsByCategory(subCategory);
+          // const subCatActual = await getProductsByCategory(subCategory);
+          const subCatActual = products;
           setSubCat(reverseReplacement(subCatActual[0].category.toUpperCase()))
           setImgPath(`/mirafit-images/${subCatActual[0].id -1}-${imgUrlToFilePath(subCatActual[0].img)}`)
           setTitle(getCatShort(subCategory))

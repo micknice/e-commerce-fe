@@ -1,5 +1,5 @@
-import {BiSearch, BiCartAlt, BiPlus, BiMinus} from 'react-icons/bi'
-import {useState, useEffect} from 'react'
+import {BiPlus, BiMinus} from 'react-icons/bi'
+import {useState} from 'react'
 
 interface MenuCategoryProps {
     category: string
