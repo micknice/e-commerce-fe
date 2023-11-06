@@ -1,10 +1,11 @@
 'use client'
 import Image from 'next/image'
-import {BiSearch, BiCartAlt, BiPlus} from 'react-icons/bi'
+import {BiSearch, BiCartAlt} from 'react-icons/bi'
 import {RiMenu2Fill, RiUser3Fill} from 'react-icons/ri'
 import SpaceTimeLogo from '../../public/assets/spacetime-logo.png'
 import HeaderSlider from '@/components/HeaderSlider'
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
+import Link from 'next/link'
 
 import MenuCategory from './MenuCategory'
 
@@ -57,8 +58,12 @@ const Header = () => {
             </div>
             <div className=' col-span-2 flex items-center justify-center relative pt-4'>
               <div className='flex flex-row gap-x-2 items-end'>
-                <RiUser3Fill color='white' size='22px'/>
-                <BiCartAlt color='white' size='20px'/>
+                <Link href={'/user/login'}>
+                  <RiUser3Fill color='white' size='22px' />
+                </Link>
+                <Link href={'user/cart'}>
+                  <BiCartAlt color='white' size='20px'/>
+                </Link>
               </div>
               <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
                 <p className='text-white text-sm'>0</p>

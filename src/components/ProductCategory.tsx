@@ -24,33 +24,52 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
     const [orderAsc, setOrderAsc] = useState(true)
     const [order, setOrder] = useState('asc')
     const [pages, setPages] = useState([1, 2, 3, 4, 5])
+    const [productCount, setProductCount] = useState(0)
     
 
     useEffect(() => {
         console.log('!!!!!')
         const fetchProducts = async() => {
             if (!subCategory) {
-                const productArrActual = await getProductsByCategoryPaginated(category, paginationIndex, itemsPerPage, sortByQuery, order)
-                setProductArr(productArrActual)
+                const {products, productCount} = await getProductsByCategoryPaginated(category, paginationIndex, itemsPerPage, sortByQuery, order)
+                const calculatedPageCount = Math.ceil(productCount / itemsPerPage)
+                // setPageCount(calculatedPageCount)
+                const newPages = []
+                
+                for(let i = 1; i < calculatedPageCount+1 ; i++) {
+                    console.log(i, 'i')
+                    newPages.push(i)
+                }
+                setPages(newPages)
+                setProductArr(products)
+                console.log(newPages, 'newPages')
+                
             } else {
-                const productArrActual = await getProductsBySubCategoryPaginated(subCategory, paginationIndex, itemsPerPage, sortByQuery, order)
-                setProductArr(productArrActual)
-
+                const {products, productCount} = await getProductsBySubCategoryPaginated(subCategory, paginationIndex, itemsPerPage, sortByQuery, order)
+                const calculatedPageCount = Math.ceil(productCount / itemsPerPage)
+                setProductArr(products)
+                // setPageCount(calculatedPageCount)
+                const newPages = []
+                for(let i = 1; i < calculatedPageCount+1; i++) {
+                    console.log(i, 'i')
+                    newPages.push(i)
+                }
+                setPages(newPages)
+                setProductArr(products)
+                console.log(newPages, 'newPages')
             }
         }
         fetchProducts()
 
     }, [category, paginationIndex, order, sortByQuery])
 
-    
-
-    
 
     const handlePaginationSelect = (index: number) => {
         setPaginationIndex(index-1)
     }
     const handlePaginationIncrement = (increment: number) => {
         setPaginationIndex(paginationIndex + increment)
+        
     }
     const handleSwitchOrderAsc = () => {
         if(orderAsc){
@@ -104,7 +123,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
             </div>
             <div className="grid grid-cols-1  px-4">
                 <div className="flex flex-col">
-                    <div className="h-16 flex justify-center items-center">
+                    <div className="h-10 flex justify-center items-center">
                         {category && !subCategory &&
                             <p className="text-2xl text-mira-black font-bold tracking-tighter">{getCatShort(category)}</p>
                         }
@@ -127,6 +146,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                     </div>
                     <div className="h-3"/>
                 </div>
+
                 <div className='flex flex-col gap-y-4 py-4'>
                     <div className='w-full flex justify-center '>
                         <div className='flex flex-row  w-full justify-center items-center gap-x-2'>
@@ -172,9 +192,11 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                     <div className='w-full flex justify-center '>
                         <div className='flex flex-row  w-full justify-center items-center gap-x-[3px]'>
                             <p className='text-[12px] font-light tracking-widest pr-2'>PAGE</p>
-                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(-1)}}>
-                                <BiChevronLeft />
-                            </div>
+                            {paginationIndex > 0 &&
+                                <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(-1)}}>
+                                    <BiChevronLeft />
+                                </div>
+                            }
                             {pages.map(page => {
                                 
                                 return page === paginationIndex +1 ?
@@ -182,14 +204,17 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                     :
-                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`}>
+                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`} onClick={()=> {handlePaginationSelect(page)}}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                 })
                             }
-                            <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
-                                <BiChevronRight />
-                            </div>
+                            {paginationIndex < pages.length &&
+
+                                <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
+                                    <BiChevronRight />
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -197,14 +222,46 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                     <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
                         {productArr.map((product, index) => {
                                 return(
-                                    <div className='h-[50vh] flex flex-col gap-y-4 ' key={`/prod${index}`}>
+                                    <div className='h-[45vh] flex flex-col gap-y-4 ' key={`/prod${index}`}>
                                         <div className='h-[1px] bg-mira-grey '/>
-                                        <BigProductCard product={product} />
+                                        <div className='h-full '><BigProductCard product={product} /></div>
                                     </div>
                                 )
                             })
                         }
                     </div>
+
+                    <div className='flex flex-col gap-y-4 py-4'>
+                    
+                    <div className='w-full flex justify-center '>
+                        <div className='flex flex-row  w-full justify-center items-center gap-x-[3px]'>
+                            <p className='text-[12px] font-light tracking-widest pr-2'>PAGE</p>
+                            {paginationIndex > 0 &&
+                                <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(-1)}}>
+                                    <BiChevronLeft />
+                                </div>
+                            }
+                            {pages.map(page => {
+                                
+                                return page === paginationIndex +1 ?
+                                    <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${page}`}>
+                                        <p className='text-[12px] font-light'>{page}</p>
+                                    </div>
+                                    :
+                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`} onClick={()=> {handlePaginationSelect(page)}}>
+                                        <p className='text-[12px] font-light'>{page}</p>
+                                    </div>
+                                })
+                            }
+                            {paginationIndex < pages.length &&
+
+                                <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
+                                    <BiChevronRight />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     )

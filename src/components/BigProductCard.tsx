@@ -23,14 +23,14 @@ const BigProductCard = ({product}: BigProductProps) => {
 
 
     return (
-        <div className='col-span-1  grid grid-rows-5 gap-y-2 h-full py-4 hover:shadow-lg group '>
+        <div className='col-span-1  grid grid-rows-5 gap-y-2 h-[45vh] py-4 hover:shadow-lg group'>
             {/* img div */}
-            <div className=' h-44 w-full row-span-3 group-hover:scale-105'>
+            <div className=' h-44 w-full row-span-3 group-hover:scale-105 '>
                 <img className=' h-full w-full object-cover' src={imgPath}/>
             </div>
             {/* TITLE DIV */}
             <div className="row-span-2 grid grid-rows-5">
-              <div className="flex flex-col row-span-2">
+              <div className="flex flex-col row-span-2 ">
                   <p className='text-mira-headtext text-sm  tracking-tighter text-center group-hover:scale-105 group-hover:tracking-tight group-hover:font-semibold hover:text-mira-orange'>{product.name}</p>
               </div>
               <div className="flex flex-col row-span-1 justify-end ">

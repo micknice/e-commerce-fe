@@ -1,9 +1,54 @@
+'use client'
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
+import {useState, useEffect, ChangeEvent} from 'react'
+import {registerUser} from '../api/ecommerceApi'
+import {useRouter} from 'next/navigation'
 
 
 
 const Register = () => {
+
+    const router = useRouter()
+
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setFirstName(e.target.value)
+    }
+    const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setLastName(e.target.value)
+    }
+    const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setEmail(e.target.value)
+    }
+    const handlePasswordNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setPassword(e.target.value)
+    }
+    const handleSubmit = async() => {
+        console.log(' submit')
+        if (firstName && lastName && email && password) {
+            console.log('condition passed')
+            const response = await registerUser(firstName, lastName, email, password)
+            if (response.status === 409) {
+                console.log('CONFLICT - USER ALREADY EXISTS WITH THIS EMAIL')
+            } else if (response.status === 500) {
+                console.log('INTERNAL SERVER ERROR')
+            } else if (response.status === 200) {
+                console.log('OK- VERIFICATION EMAIL SENT')
+                router.push('/auth/verify')
+            }
+        }
+    }
+
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">
@@ -18,13 +63,13 @@ const Register = () => {
                         <div className="flex gap-x-2">
                             <p className="text-sm font-semibold">First Name</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="text" className="h-9 w-3/4 border-gray-200" onChange={(e)=> {handleFirstNameChange(e)}}></input>
                     </div>
                     <div>
                         <div className="flex gap-x-2">
                             <p className="text-sm font-semibold">Last Name</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="text" className="h-9 w-3/4 border-gray-200" onChange={(e)=> {handleLastNameChange(e)}} ></input>
                     </div>
                     <div className="flex flex-row gap-x-2 items-center">
                         <input type="checkbox" className="h-3 w-3"></input>
@@ -38,13 +83,13 @@ const Register = () => {
                         <div className="flex gap-x-2">
                             <p className="text-sm font-semibold">Email</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="text" className="h-9 w-3/4 border-gray-200" onChange={(e)=> {handleEmailNameChange(e)}}></input>
                     </div>
                     <div>
                         <div className="flex gap-x-2">
                             <p className="text-sm font-semibold">Password</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="password" className="h-9 w-3/4 border-gray-200" onChange={(e)=> {handlePasswordNameChange(e)}}></input>
                     </div>
                     <div className="flex flex-row gap-x-2 items-center">
                         <input type="checkbox" className="h-3 w-3"></input>
@@ -67,7 +112,7 @@ const Register = () => {
                         <Image src={RecaptchaImg} alt='/'/>
                     </div>
                     <div className=''/>
-                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center'>
+                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleSubmit}>
                         <p className='text-white text-xs font-medium'>SIGN UP</p>
                     </div>
                     <div className='h-5'/>                    
