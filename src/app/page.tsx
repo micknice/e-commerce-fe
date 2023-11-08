@@ -14,8 +14,8 @@ export default function Home() {
   return (
     <div className=' w-full bg-white flex flex-col'>
       {/* top image */}
-      <div className=' h-[180px] relative z-10 '>
-        <img className=' h-full w-full object-cover' src='https://images.pexels.com/photos/7534178/pexels-photo-7534178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+      <div className=' h-[180px] w-full relative z-10 '>
+        <img className='h-full w-full object-cover' src='/mirafit-images/additional/MF-Website-New-Offers-Banner-Desktop-November.jpg'/>
       </div>
       <div className=' h-56 w-full px-4 pt-6 pb-3 bg-white'>
         <div className=' h-full w-full flex flex-col gap-2'>
@@ -68,7 +68,7 @@ export default function Home() {
       <div className='h-10'></div>
       <div className='grid grid-cols-1 md:grid-cols-4 px-4 pt-2 gap-x-2 gap-y-5 '>
         <div className='h'>
-          <p className='text-4xl font-bold'>LATEST UPDATES</p>
+          <p className='text-4xl text-mira-subhead-text-black font-bold'>LATEST UPDATES</p>
         </div>
         <ArticleCard/>
         <ArticleCard/>

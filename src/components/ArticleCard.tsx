@@ -9,7 +9,7 @@ const ArticleCard = () => {
             <div className="flex flex-col gap-y-2 items-start justi">
             <div className='h-[3px] w-full bg-mira-black'></div>
                 <div className="h-16 flex items-start justify-start">
-                    <p className="text-xl font-bold">HOW TO TRAIN DURING A CUT</p>
+                    <p className="text-xl font-bold text-mira-subhead-text-black">HOW TO TRAIN DURING A CUT</p>
                 </div>
                
                 <Image src={OfficeImg} alt="/"/>

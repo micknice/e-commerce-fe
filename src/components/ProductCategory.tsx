@@ -198,7 +198,6 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                 </div>
                             }
                             {pages.map(page => {
-                                
                                 return page === paginationIndex +1 ?
                                     <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${page}`}>
                                         <p className='text-[12px] font-light'>{page}</p>
@@ -210,7 +209,6 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                 })
                             }
                             {paginationIndex < pages.length &&
-
                                 <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
                                     <BiChevronRight />
                                 </div>
@@ -242,7 +240,6 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                 </div>
                             }
                             {pages.map(page => {
-                                
                                 return page === paginationIndex +1 ?
                                     <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${page}`}>
                                         <p className='text-[12px] font-light'>{page}</p>
@@ -254,7 +251,6 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                 })
                             }
                             {paginationIndex < pages.length &&
-
                                 <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:animate-pulse hover:text-white' onClick={()=>{handlePaginationIncrement(1)}}>
                                     <BiChevronRight />
                                 </div>

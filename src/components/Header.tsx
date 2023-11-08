@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import {BiSearch, BiCartAlt} from 'react-icons/bi'
 import {RiMenu2Fill, RiUser3Fill} from 'react-icons/ri'
-import SpaceTimeLogo from '../../public/assets/spacetime-logo.png'
+import MikiFitLogo from '../../public/assets/MIKFIT.png'
 import HeaderSlider from '@/components/HeaderSlider'
 import {useState} from 'react'
 import Link from 'next/link'
@@ -52,8 +52,8 @@ const Header = () => {
                 <RiMenu2Fill color='white' size='24px'/>
                 <p className='text-sm text-white'>Menu</p>
               </div>
-            <div className=' col-span-3 flex items-end justify-start pr'>
-              <Image className='h-5/6 object-scale-down' alt='/spacetime' src={SpaceTimeLogo} width={150} height={30}/>
+            <div className=' col-span-3 flex items-end justify-center pr'>
+              <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
   
             </div>
             <div className=' col-span-2 flex items-center justify-center relative pt-4'>
@@ -61,7 +61,7 @@ const Header = () => {
                 <Link href={'/user/login'}>
                   <RiUser3Fill color='white' size='22px' />
                 </Link>
-                <Link href={'user/cart'}>
+                <Link href={'/checkout/cart'}>
                   <BiCartAlt color='white' size='20px'/>
                 </Link>
               </div>
