@@ -61,7 +61,7 @@ const Header = () => {
                 <Link href={'/user/login'}>
                   <RiUser3Fill color='white' size='22px' />
                 </Link>
-                <Link href={'user/cart'}>
+                <Link href={'/checkout/cart'}>
                   <BiCartAlt color='white' size='20px'/>
                 </Link>
               </div>

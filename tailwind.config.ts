@@ -32,7 +32,6 @@ const config: Config = {
         'mira-cart-red': '#ff0000',
         'mira-orange': '#ff7214',
         'mira-green': '#00b67a',
-        'mira-border-grey': 'f5f5f5',
         'mira-text-red': '#e02b27',
         'mira-footer-charcoal': '#222222',
         'mira-socialbg-grey': '#555555',
@@ -41,6 +40,8 @@ const config: Config = {
         'page-button-grey': '#f5f5f5',
         'page-button-darkgrey': '#e9e9e9',
         'sort-selection-blue': '#ade1f5',
+        'mira-border-grey': 'f5f5f5',
+        'paypal-blue': '#0070ba'
       }
       
     },

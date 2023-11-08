@@ -16,6 +16,9 @@ const ProductCategory = ({product}: ProductProps) => {
 
     const [imgPath, setImgPath] = useState('')
     const [name, setName] = useState('')
+    const [overview, setOverview] = useState('')
+    const [price, setPrice] = useState(0)
+    const [description, setDescription] = useState('')
 
     useEffect(() => {
         const fetchProduct = async() => {
@@ -26,6 +29,10 @@ const ProductCategory = ({product}: ProductProps) => {
             const imgStr = `${productActual.id -1}-${imgUrlToFilePath(productActual.img)}`
             setImgPath(`/mirafit-images/${imgStr}`)
             setName(productActual.name)
+            setOverview(productActual.shortDescription)
+            setPrice(productActual.price)
+            const descriptionTrimmed = productActual.longDescription.slice(9, productActual.longDescription.length -1)
+            setDescription(descriptionTrimmed) 
         }
 
         fetchProduct()
@@ -60,8 +67,24 @@ const ProductCategory = ({product}: ProductProps) => {
             </div>
             <div className='px-4 flex flex-col justify-center'>
                 <p className='text-mira-headtext text-2xl font-bold  tracking-tighter text-start'>{name}</p>
-                <div className='outline'>
+                <div className='outline h-10'>
 
+                </div>
+                <div>
+                    {overview &&
+                        <p>{overview}</p>
+                    }
+                </div>
+                <div>
+                    {price &&
+                        <p>{price}</p>
+                    }
+                </div>
+                <div>
+                    {description &&
+                        <p>{description}</p>
+
+                    }
                 </div>
             </div>
         </div>
