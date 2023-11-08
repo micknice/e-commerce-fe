@@ -42,10 +42,12 @@ const Register = () => {
     }
 
     useEffect(() => {
+        console.log('!!!useeffect')
         if(token) {
             const verifyToken = async() => {
-                console.log('useEffect')
+                console.log('await verify')
                 const response = await verifyUser(token)
+                console.log('response', response.status)
                 if(response.status === 200) {
                     console.log('OK - email verified')
                     setVerified(true)

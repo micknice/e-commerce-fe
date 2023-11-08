@@ -1,14 +1,44 @@
+'use client'
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
 import {GiCheckMark} from 'react-icons/gi'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
+import {useRouter} from 'next/navigation'
+import {useLogin} from '../api/auth/useLogin'
+import {useCurrentUser} from '../api/auth/useCurrentUser'
 
 
 
 const Login = () => {
+    const currentUser = useCurrentUser()
+    const router = useRouter()
+    const {login} = useLogin()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setEmail(e.target.value)
+    }
+    const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
+        setPassword(e.target.value)
+    }
+    const handleGoToRegister = async() => {
+        router.push('/user/register')
+    }
+    const handleSubmit = async() => {
+        const user = await login(email, password)
+        console.log('useLogin response', user)
+        if (user.success) {
+            router.push('/user/account/dashboard')
+        }
+    }
+    useEffect(()=> {
+        console.log(currentUser, 'currentUser')
+
+    },[])
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">
@@ -32,13 +62,13 @@ const Login = () => {
                         <div className="flex gap-x-2">
                             <p className="text-sm">Email</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="text" className="h-9 w-3/4 border-gray-200" onChange={(e)=>{handleEmailNameChange(e)}}></input>
                     </div>
                     <div>
                         <div className="flex gap-x-2">
                             <p className="text-sm">Password</p><p className="text-mira-text-red">*</p>
                         </div>
-                        <input type="text" className="h-9 w-3/4 border-gray-200"></input>
+                        <input type="password" className="h-9 w-3/4 border-gray-200" onChange={(e)=>{handlePasswordChange(e)}}></input>
                     </div>
                     <div className="flex flex-row gap-x-2 items-center">
                         <input type="checkbox" className="h-3 w-3"></input>
@@ -56,7 +86,7 @@ const Login = () => {
                         <Image src={RecaptchaImg} alt='/'/>
                     </div>
                     <div className=''/>
-                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center'>
+                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleSubmit}>
                         <p className='text-white text-xs font-medium'>SIGN IN</p>
                     </div>
                     <p className="text-sm pt-3">Forgot Your Password?</p>
@@ -75,7 +105,7 @@ const Login = () => {
                 keep more than one address, track orders and more.
                 </p>
                 <div className='h-4'/>
-                <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center'>
+                <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleGoToRegister}>
                         <p className='text-white text-xs font-medium'>SIGN UP</p>
                 </div>
                 <div className='h-6'/>

@@ -2,8 +2,9 @@ import axios, {AxiosInstance} from 'axios';
 import FormData from 'form-data';
 
 
+
+
 const eCommerceApi = axios.create({
-    // baseURL: process.env.NEXT_PUBLIC_NCNEWS_API_URL,
     baseURL: 'http://localhost:8080',
     headers: {
                   'Access-Control-Allow-Origin': '*',
@@ -53,6 +54,7 @@ export const registerUser = async(firstName: string, lastName: string, email: st
         email: email,
         firstName: firstName,
         lastName: lastName
+
     }
     const reqObj = JSON.stringify(userObj)
 
@@ -65,31 +67,15 @@ export const verifyUser = async(token: string) => {
     return response
 }
 
-export class AuthService {
-    protected readonly instance: AxiosInstance;
-    public constructor(url: string) {
-        this.instance = axios.create({
-            baseURL: url,
-            timeout: 30000,
-            timeoutErrorMessage: 'Timed out!'
-        });
-    }
-
-    login = (username: string, password: string) => {
-        return this.instance
-        .post("/login", {
-            username,
-            password,
-        })
-        .then((res) =>  {
-            return {
-                username: res.data.username,
-                accessToken: res.data.access_token,
-                expiredAt: res.data.expiredAt
-            }
-        })
-    }
+export const getUser = async(token: string) => {
+    const response = await eCommerceApi.get(`/auth/me`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
 }
+
+
 
 
 

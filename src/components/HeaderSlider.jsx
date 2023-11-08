@@ -9,7 +9,27 @@ import {LiaCoinsSolid} from 'react-icons/lia'
 const HeaderSlider = () => {
     return (
         <div className='h-[41px] bg-mira-grey pointer-events-none'>
-            <Carousel  slideInterval={5100} >
+            <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
+                </div>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
+                </div>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
+                </div>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
+                </div>
+                <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
+                    <AiFillStar color='#c3c3c4' size='12px'/>
+                </div>
+                <p className='text-mira-subhead-text-black text-sm  pl-2'>
+                    4.85/5 ON TRUSTPILOT
+                </p>
+            </div>  
+            {/* <Carousel  slideInterval={5100} >
             {
             <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
                 <div className='h-4 w-4 bg-mira-black flex items-center justify-center'>
@@ -56,7 +76,7 @@ const HeaderSlider = () => {
                 </p>
             </div>
             }
-            </Carousel>
+            </Carousel> */}
         </div>
     )
 }
