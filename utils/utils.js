@@ -55,6 +55,23 @@ export const getCatShort = (subCat, toUpperCase=true) => {
   }
 }
 
+export const reverseCatLookup = (searchValue) => {
+  for (const key in catShortened) {
+    if (catShortened.hasOwnProperty(key) && catShortened[key] === searchValue) {
+      return key; 
+    }
+  }
+  return null; 
+}
+export const reverseSubCatLookup = (searchValue) => {
+  for (const key in subCatShortened) {
+    if (subCatShortened.hasOwnProperty(key) && subCatShortened[key] === searchValue) {
+      return key; 
+    }
+  }
+  return null; 
+}
+
 function switchKeysAndValues(obj) {
   const switchedObj = {};
   for (const key in obj) {

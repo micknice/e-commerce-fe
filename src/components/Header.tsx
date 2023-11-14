@@ -52,10 +52,12 @@ const Header = () => {
                 <RiMenu2Fill color='white' size='24px'/>
                 <p className='text-sm text-white'>Menu</p>
               </div>
-            <div className=' col-span-3 flex items-end justify-center pr'>
-              <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
-  
-            </div>
+              <div className=' col-span-3 flex items-end justify-center pr' >
+            <Link href={"/"}>
+                <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
+    
+            </Link>
+              </div>
             <div className=' col-span-2 flex items-center justify-center relative pt-4'>
               <div className='flex flex-row gap-x-2 items-end'>
                 <Link href={'/user/login'}>

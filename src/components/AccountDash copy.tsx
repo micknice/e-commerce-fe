@@ -112,9 +112,11 @@ const AccountDash = () => {
     }, [currentUser, ])
 
     const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
         setEmail(e.target.value)
     }
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
+        console.log(e.target.value, '!!!')
         setPassword(e.target.value)
     }
     const handleGoToRegister = async() => {
@@ -126,6 +128,9 @@ const AccountDash = () => {
         router.push('/user/login')
         
     }
+    
+    
+     
 
     return (
         <div className="grid grid-cols-1  px-4 justify-center items-center">
@@ -133,9 +138,9 @@ const AccountDash = () => {
                 <p className='text-ellipsis'>{}</p>
                 <div className="h-20 flex justify-center items-center">
                     <p className="text-2xl text-mira-black font-bold tracking-tighter">ACCOUNT</p>
-                    {/* {currentUser &&
+                    {currentUser &&
                         <p className="text-2xl text-mira-black font-bold tracking-tighter">{currentUser.user.id}</p>
-                    } */}
+                    }
 
                 </div>
                 {currentUser &&
@@ -143,16 +148,19 @@ const AccountDash = () => {
                 }
                 <div className='h-[1px] bg-mira-grey'></div>
                 <div className='grid grid-cols-2 xl:grid-cols-3 justify-center items-center gap-y-4 py-4'>
-                    <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {router.push('/user/account/orders')}}>
+                    <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {}}>
                         <TbTruckDelivery size='50px'/>
                         <p className='font-semibold'>MY ORDERS</p>
                     </div>
                     <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {router.push('/user/account/wishlist')}}>
+                    {/* <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={sendMessage}> */}
                         <AiOutlineHeart size='50px'/>
+                        {/* <p className='font-semibold'>SEND STOMP</p> */}
                         <p className='font-semibold'>WISH LIST</p>
                     </div>
-                    <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {router.push('/user/account/address')}}>
+                    <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {router.push('/user/account/addressBook')}}>
                         <FaRegAddressBook size='50px'/>
+                        {/* <p className='font-semibold'>SUBSCRIBE</p> */}
                         <p className='font-semibold'>ADDRESS BOOK</p>
                     </div>
                     <div className='flex flex-col items-center justify-center py-2 gap-y-2 group hover:text-mira-orange hover:scale-105' onClick={()=> {router.push('/user/account/info')}}>
