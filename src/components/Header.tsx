@@ -15,8 +15,8 @@ const categories = ['Strength Equipment', 'Weights & Bars', 'Conditioning', 'Gym
 const strengthEquipmentCategories = ['Gym Machines & Attachments', 'Landmine Posts & Handles', 'Parallel Bars', 
 'Power Cages & Racks', 'Power Rack Attachments', 'Pull Up Bars', 'Sit Up Benches & Bars', 'Squat Racks & Stands', 'Weight Benches', 'Weightlifting Equipment']
 
-const weightsAndBarsCategories = ['Bars', 'Bumper Plates', 'Dumbells', 'Kettlebells', 'Medicin Balls', 'Sandbags', 
-'Slam Balls', 'Weight Plates', 'Weight Sets & Kits', 'Wearable Weights']
+const weightsAndBarsCategories = ['Bars', 'Bumper Plates', 'Dumbbells', 'Kettlebells', 'Medicine Balls', 'Sandbags', 
+'Slam Balls', 'Weight Plates', 'Wearable Weights']
 
 const conditioningCategories = ['Battle Ropes', 'Boxing Equipment', 'Cardio Equipment', 'Core Sliders', 'Exercise Mats', 
 'Exercise Steps', 'Hula Hoops', 'Pilates & Yoga', 'Plyo Jump Boxes', 'Push Up Handles', 'Resistance Bands', 'Rollers', 'Skipping Ropes']
@@ -52,10 +52,12 @@ const Header = () => {
                 <RiMenu2Fill color='white' size='24px'/>
                 <p className='text-sm text-white'>Menu</p>
               </div>
-            <div className=' col-span-3 flex items-end justify-center pr'>
-              <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
-  
-            </div>
+              <div className=' col-span-3 flex items-end justify-center pr' >
+            <Link href={"/"}>
+                <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
+    
+            </Link>
+              </div>
             <div className=' col-span-2 flex items-center justify-center relative pt-4'>
               <div className='flex flex-row gap-x-2 items-end'>
                 <Link href={'/user/login'}>

@@ -7,10 +7,7 @@ import FormData from 'form-data';
 const eCommerceApi = axios.create({
     baseURL: 'http://localhost:8080',
     headers: {
-                  'Access-Control-Allow-Origin': '*',
-                  'Access-Control-Allow-Headers': '*',
-                  'Access-Control-Allow-Credentials': 'true',
-                  'Content-Type': 'application/json; charset=UTF-8'
+                  
                 }
 });
 
@@ -44,6 +41,11 @@ export const getProductsBySubCategoryPaginated = async(subCategory: string, page
 
 export const getProductByProductId = async(productId: number) => {
     const { data } = await eCommerceApi.get(`/product/id/${productId}`)
+    return data
+}
+
+export const getReviewsByProductId = async(productId: number) => {
+    const {data} = await eCommerceApi.get(`/review/${productId}`)
     return data
 }
 

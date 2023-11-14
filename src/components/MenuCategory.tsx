@@ -1,6 +1,8 @@
 import {BiPlus, BiMinus} from 'react-icons/bi'
 import {useState} from 'react'
 import MenuSubCategory from './MenuSubCategory'
+import Link from 'next/link'
+import {getCatShort, reverseCatLookup} from '../../utils/utils'
 
 interface MenuCategoryProps {
     category: string
@@ -20,7 +22,9 @@ const MenuCategory = ({category, subCategoriesArray}: MenuCategoryProps) => {
     return (
         <div className='h-auto w-full'>
             <div className=' h-11 items-center pl-2 grid grid-cols-3 border-t-2 '>
-                <p className='text-mira-offwhite col-span-2'>{category}</p>
+                <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center' >
+                    <p className='text-mira-offwhite col-span-2'>{category}</p>
+                </Link>
                 <div className='flex col-span-1 justify-end items-center  px-5'>
     
                 {subCategoriesArray && subCategoriesArray.length > 0 && !categoryMenuOpen &&
@@ -34,7 +38,7 @@ const MenuCategory = ({category, subCategoriesArray}: MenuCategoryProps) => {
             {subCategoriesArray && subCategoriesArray.length > 0 && categoryMenuOpen &&
                 subCategoriesArray.map((subCategory, index) => {
                     return (
-                        <MenuSubCategory category={subCategory} subCategoriesArray={[]} key={index.toString()}/>
+                        <MenuSubCategory category={category} subCategory={subCategory} subCategoriesArray={[]} key={index.toString()}/>
 
                     )
                 })

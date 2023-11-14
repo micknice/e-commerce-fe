@@ -10,7 +10,7 @@ const BigProductCard = ({product}: BigProductProps) => {
 
   const [prod, setProd] = useState('')
   const [title, setTitle] = useState('')
-  const [imgPath, setImgPath] = useState('https://images.pexels.com/photos/7534178/pexels-photo-7534178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')
+  const [imgPath, setImgPath] = useState('public/assets/MIKFIT.png')
   const [productLinkPath, setProductLinkPath] = useState('/category')
   useEffect(() => {
     console.log('effect')
