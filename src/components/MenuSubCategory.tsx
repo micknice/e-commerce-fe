@@ -1,5 +1,5 @@
 import {BiPlus, BiMinus} from 'react-icons/bi'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {getCatShort, reverseCatLookup, reverseSubCatLookup} from '../../utils/utils'
 import Link from 'next/link'
 
@@ -17,11 +17,13 @@ const MenuSubCategory = ({subCategory, subCategoriesArray, category}: MenuSubCat
         setMenuOpen(!menuOpen)
     }
 
+    
+
 
         return  (
             <div className='h-auto w-full'>
                 <div className=' h-11 items-center pl-2 grid grid-cols-3 bg-mira-socialbg-grey border-t-2 '>
-                <Link href={`/category/${reverseCatLookup(category)}/subCategory/${reverseSubCatLookup(subCategory)}`} className='col-span-2 flex flex-row items-center'>
+                <Link href={`/category/${reverseCatLookup(category)}/subCategory/${reverseSubCatLookup(subCategory)}`} className='col-span-2 flex flex-row items-center' >
                     <p className='text-mira-offwhite col-span-2'>{subCategory}</p>
                 </Link>
                     <div className='flex col-span-1 justify-end items-center  px-5'>

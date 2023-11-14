@@ -15,8 +15,8 @@ const categories = ['Strength Equipment', 'Weights & Bars', 'Conditioning', 'Gym
 const strengthEquipmentCategories = ['Gym Machines & Attachments', 'Landmine Posts & Handles', 'Parallel Bars', 
 'Power Cages & Racks', 'Power Rack Attachments', 'Pull Up Bars', 'Sit Up Benches & Bars', 'Squat Racks & Stands', 'Weight Benches', 'Weightlifting Equipment']
 
-const weightsAndBarsCategories = ['Bars', 'Bumper Plates', 'Dumbells', 'Kettlebells', 'Medicin Balls', 'Sandbags', 
-'Slam Balls', 'Weight Plates', 'Weight Sets & Kits', 'Wearable Weights']
+const weightsAndBarsCategories = ['Bars', 'Bumper Plates', 'Dumbbells', 'Kettlebells', 'Medicine Balls', 'Sandbags', 
+'Slam Balls', 'Weight Plates', 'Wearable Weights']
 
 const conditioningCategories = ['Battle Ropes', 'Boxing Equipment', 'Cardio Equipment', 'Core Sliders', 'Exercise Mats', 
 'Exercise Steps', 'Hula Hoops', 'Pilates & Yoga', 'Plyo Jump Boxes', 'Push Up Handles', 'Resistance Bands', 'Rollers', 'Skipping Ropes']

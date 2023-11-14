@@ -22,7 +22,7 @@ const MenuCategory = ({category, subCategoriesArray}: MenuCategoryProps) => {
     return (
         <div className='h-auto w-full'>
             <div className=' h-11 items-center pl-2 grid grid-cols-3 border-t-2 '>
-                <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center'>
+                <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center' >
                     <p className='text-mira-offwhite col-span-2'>{category}</p>
                 </Link>
                 <div className='flex col-span-1 justify-end items-center  px-5'>

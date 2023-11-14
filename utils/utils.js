@@ -64,8 +64,8 @@ export const reverseCatLookup = (searchValue) => {
   return null; 
 }
 export const reverseSubCatLookup = (searchValue) => {
-  for (const key in subCatShortened) {
-    if (subCatShortened.hasOwnProperty(key) && subCatShortened[key] === searchValue) {
+  for (const key in subCatLookup) {
+    if (subCatLookup.hasOwnProperty(key) && subCatLookup[key] === searchValue) {
       return key; 
     }
   }
