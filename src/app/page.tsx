@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <div className=' w-full bg-white flex flex-col'>
       {/* top image */}
-      <div className=' h-[180px] w-full relative z-10 '>
+      <div className=' h-[180px] w-full md:h-[300px] relative z-10 '>
         <img className='h-full w-full object-cover' src='/mirafit-images/additional/MF-Website-New-Offers-Banner-Desktop-November.jpg'/>
       </div>
       {/* product carousel */}
@@ -47,9 +47,9 @@ export default function Home() {
       </div> */}
       <div className=' flex flex-col px-4 pt-2 bg-white'>
         <div>
-          <p className='text-mira-headtext text-2xl font-bold tracking-tighter'>ESSENTIAL GYM EQUIPMENT</p>
+          <p className='text-mira-headtext text-2xl md:text-3xl font-bold tracking-tighter'>ESSENTIAL GYM EQUIPMENT</p>
         </div>
-        <div className=' grid grid-cols-2 gap-x-2 gap-y-5 pt-6 md:grid-cols-4'>
+        <div className=' grid grid-cols-2 gap-x-2 gap-y-5 pt-6 md:grid-cols-4 md:gap-x-4 md:gap-y-1'>
           {/* big item card */}
           <BigItemCard subCategory={'weight-benches'} coverImgPath={'/mirafit-images/61-Mirafit-M20-Flat-Weight-Bench-Orange.jpg'} coverTitle={"Weight Benches"}/>
           <BigItemCard subCategory={'weights-and-bars'} coverImgPath={"/mirafit-images/81-black-and-orange-Mirafit-M3-20kg-Olympic-Barbell.jpg"} coverTitle={"Weights & Bars"}/>
@@ -63,16 +63,16 @@ export default function Home() {
 
       </div>
       <div className='h-10'></div>
-      <div className='grid grid-cols-1 md:grid-cols-4 px-4 pt-2 gap-x-2 gap-y-5 '>
-        <div className='h'>
-          <p className='text-4xl text-mira-subhead-text-black font-bold'>LATEST UPDATES</p>
+        <div className='px-4'>
+          <p className='text-4xl text-mira-subhead-text-black md:text-3xl font-bold tracking-tight pb-6'>LATEST UPDATES</p>
         </div>
+      <div className='grid grid-cols-1 md:grid-cols-4 px-4 pt-2 gap-x-2 gap-y-5 justify-center md:gap-x-4'>
         <ArticleCard/>
         <ArticleCard/>
         <ArticleCard/>
         <ArticleCard/>
-        <div className='w-full h-20 border-[5px] border-mira-border-grey flex items-center justify-center '>
-        <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
+        <div className='w-full h-20 md:h-24 border-[5px] border-mira-border-grey flex items-center justify-center md:col-span-4'>
+        <div className='h-11  w-screen flex items-center justify-center gap-x-[2px]'>
                 <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
                     <AiFillStar color='#ffffff' size='16px'/>
                 </div>
@@ -99,6 +99,15 @@ export default function Home() {
             </div>   
 
         </div>
+      </div>
+      <div className='px-4 pt-8 flex flex-col gap-y-4'>
+        <p className='text-4xl md:text-3xl font-bold tracking-tighter'>MIKIFIT - LEADING THE UK HOME GYM REVOLUTION</p>
+        <p className='text-2xl md:text-sm md:font-medium md:tracking-wide pb-6'>
+        At Mirafit we are passionate about strength training and fitness. This is why we have made it our mission to promote the benefits of exercise and to offer a range of high-quality gym equipment to enable you to make gains and feel good at home.
+        <br></br>
+        <br></br>
+        From people just starting their fitness journey, all the way up to professional athletes we are committed to providing the best for our customers, in terms of service, quality and expertise. Our range is expanding fast so check back often to see the latest products on offer.
+        </p>
       </div>
     </div>
   )
