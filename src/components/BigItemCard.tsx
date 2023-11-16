@@ -38,15 +38,15 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
   if (checkSubCat(subCategory)) {
     return (
       <Link href={`/category/${category}/subCategory/${subCategory}`}>
-        <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-80'>
+        <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
             {/* img div */}
             <div className=' h-44 md:h-60 w-full'>
-                <img className=' h-full w-full object-cover' src={coverImgPath}/>
+                <img className=' h-full w-full object-cover md:object-contain' src={coverImgPath}/>
             </div>
             {/* TITLE DIV */}
             <div>
               
-                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{coverTitle}</p>
+                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{coverTitle.toUpperCase()}</p>
             </div>
           </div>
       </Link>
@@ -54,14 +54,14 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
   } else {
     return (
       <Link href={`/category/${subCategory}`}>
-        <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-80'>
+        <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
             {/* img div */}
             <div className=' h-44 md:h-60 w-full'>
-                <img className=' h-full w-full object-cover' src={coverImgPath}/>
+                <img className=' h-full w-full object-cover md:object-contain' src={coverImgPath}/>
             </div>
             {/* TITLE DIV */}
             <div>
-                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{coverTitle}</p>
+                <p className='text-mira-headtext text-xl font-bold tracking-tighter'>{coverTitle.toUpperCase()}</p>
             </div>
           </div>
       </Link>

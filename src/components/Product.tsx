@@ -266,6 +266,37 @@ const ProductCategory = ({product}: ProductProps) => {
                             </div>
                         )})
                     }
+                    <div className='flex flex-col justify-start items-start w-full gap-y-8'></div>
+                    <div className='w-full bg-gray-200 flex flex-col p-4 gap-y-8'>
+                        <div className='flex flex-col'>
+                            <p className='text-sm font-lighttracking-wide'>YOU'RE REVIEWING:</p>
+                            <p className='text-xl font-semibold tracking-tight'>{name}</p>
+                        </div>
+                        <div className='flex flex-row items-center justify-start gap-x-8 '>
+                            <p className='font-semibold'>Review</p>
+                            <div className='h-auto w-auto flex items-center justify-start gap-x-[6px] '>
+                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
+                                    <AiFillStar className='star-icon' size='18px' />
+                                </div>
+                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
+                                    <AiFillStar className='star-icon' size='18px' />
+                                </div>
+                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
+                                    <AiFillStar className='star-icon' size='18px' />
+                                </div>
+                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
+                                    <AiFillStar className='star-icon' size='18px' />
+                                </div>
+                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
+                                    <AiFillStar className='star-icon' size='18px' />
+                                </div>
+                            </div>
+                            <div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
