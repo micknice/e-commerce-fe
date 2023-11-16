@@ -42,9 +42,10 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: '#ff7214'; /* Replace with your background color */
+  background-color: '#ff7214'; 
   clip-path: url(#star-clip-path);
 }
+
 
 /* Define the clipPath */
 .svg-clip-path {

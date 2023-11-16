@@ -5,9 +5,7 @@ import catShortened from './catShortened'
 
 export const replaceSpacesAndAmpersands = (inputString) => {
     const stringWithDashes = inputString.replace(/ /g, '-');
-    
     const finalString = stringWithDashes.replace(/&/g, 'and');
-  
     return finalString;
   }
 
@@ -19,14 +17,11 @@ export const reverseReplacement = (inputString) => {
 }
 
 export const extractTextBetweenSuffixAndLastSlash = (inputString) => {
-  // Use a regular expression to match the desired pattern
   const lastIndex = inputString.lastIndexOf('/');
 
   if (lastIndex !== -1) {
-    // Use substring to extract the text after the last '/'
     return inputString.substring(lastIndex + 1);
   } else {
-    // Return the original string if no '/' is found
     return inputString;
   }
 }
@@ -129,6 +124,42 @@ export const sortByPopularity = (arr) => {
     }
   });
 }
+export const formatDescription = (inputString) => {
+  const resultArray = [];
+  let currentSubArray = [];
+  const commaSplit = inputString.split(',');
+
+  commaSplit.forEach(item => {
+    const colonSplit = item.split(':');
+    if (/^[a-z]/i.test(colonSplit[0].trim())) {
+      resultArray.push(colonSplit[0].trim());
+      if (colonSplit.length > 1) {
+        currentSubArray = currentSubArray.concat(colonSplit.slice(1).map(str => str.trim()));
+      }
+    } else {
+      if (currentSubArray.length > 0) {
+        resultArray.push(currentSubArray);
+        currentSubArray = [];
+      }
+      resultArray.push(item.trim());
+    }
+  });
+  if (currentSubArray.length > 0) {
+    resultArray.push(currentSubArray);
+  }
+  return resultArray;
+}
+
+export const convertDateFormat = (inputDate) => {
+  const parsedDate = new Date(inputDate);
+  if (isNaN(parsedDate.getTime())) {
+    return 'Invalid Date';
+  }
+  const options = { year: 'numeric', month: 'short', day: '2-digit' };
+  const formattedDate = parsedDate.toLocaleDateString('en-US', options);
+  return formattedDate;
+}
+
 
 
 
