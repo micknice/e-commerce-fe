@@ -40,7 +40,8 @@ const config: Config = {
         'page-button-darkgrey': '#e9e9e9',
         'sort-selection-blue': '#ade1f5',
         'mira-border-grey': 'f5f5f5',
-        'paypal-blue': '#0070ba'
+        'paypal-blue': '#0070ba',
+        'star-gold': '#ed9d00'
       }
     },
   },

@@ -197,13 +197,13 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                     <BiChevronLeft />
                                 </div>
                             }
-                            {pages.map(page => {
+                            {pages.map((page, index) => {
                                 return page === paginationIndex +1 ?
-                                    <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${page}`}>
+                                    <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${index}`}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                     :
-                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`} onClick={()=> {handlePaginationSelect(page)}}>
+                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${index}`} onClick={()=> {handlePaginationSelect(page)}}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                 })
@@ -239,13 +239,13 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                                     <BiChevronLeft />
                                 </div>
                             }
-                            {pages.map(page => {
+                            {pages.map((page, index) => {
                                 return page === paginationIndex +1 ?
-                                    <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`pag${page}`}>
+                                    <div className='h-8 w-8 bg-page-button-darkgrey flex items-center justify-center scale-105' key={`page${index}`}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                     :
-                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`pag${page}`} onClick={()=> {handlePaginationSelect(page)}}>
+                                    <div className='h-8 w-8 bg-page-button-grey flex items-center justify-center hover:bg-mira-orange hover:text-white' key={`page${index}`} onClick={()=> {handlePaginationSelect(page)}}>
                                         <p className='text-[12px] font-light'>{page}</p>
                                     </div>
                                 })
