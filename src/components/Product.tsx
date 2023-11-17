@@ -7,6 +7,7 @@ import BigProductCard from './BigProductCard'
 import Link from 'next/link'
 import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {AiFillStar} from 'react-icons/ai'
+import {Progress, Avatar} from 'flowbite-react' 
 
 interface ProductProps {
     product: string
@@ -24,6 +25,11 @@ const ProductCategory = ({product}: ProductProps) => {
     const [reviews, setReviews] = useState<any[]>([])
     const [stock, setStock] = useState(0)
     const [aveRating, setAveRating] = useState(0)
+    const [star1, setStar1] = useState(0)
+    const [star2, setStar2] = useState(0)
+    const [star3, setStar3] = useState(0)
+    const [star4, setStar4] = useState(0)
+    const [star5, setStar5] = useState(0)
 
     useEffect(() => {
         const fetchProduct = async() => {
@@ -40,6 +46,7 @@ const ProductCategory = ({product}: ProductProps) => {
             const descriptionTrimmed = productActual.longDescription.slice(9, productActual.longDescription.length -1)
             const formattedArray = formatDescription(descriptionTrimmed)
             setDescription(formattedArray) 
+
         }
         const fetchReviews = async() => {
             const id = parseInt(product.split('-')[0])
@@ -48,6 +55,11 @@ const ProductCategory = ({product}: ProductProps) => {
             const ratings = reviewsArr.map((x:any) => x = Math.round(x.rating * 5) / 5)
             const ave = ratings.reduce((acc:number, curr:number) =>  { return acc + curr}, 0) / 5
             setAveRating(ave)
+            setStar1(reviewsArr.filter((x: { rating: number }) => x.rating === 0.2).length)
+            setStar2(reviewsArr.filter((x: { rating: number }) => x.rating === 0.4).length)
+            setStar3(reviewsArr.filter((x: { rating: number }) => x.rating === 0.6).length)
+            setStar4(reviewsArr.filter((x: { rating: number }) => x.rating === 0.8).length)
+            setStar5(reviewsArr.filter((x: { rating: number }) => x.rating === 1.0).length)
             // console.log(ave)
             
         }
@@ -203,8 +215,74 @@ const ProductCategory = ({product}: ProductProps) => {
                             <p className='text-sm text-mira-subhead-text-grey tracking-wide'> Share your thoughts with other customers</p>
                         </div>
                     </div>
-                    <div className='outline h-32 w-full'>
-                                    ratings widget here
+                    {/* ratings widget */}
+                    <div className='h-32 w-full flex flex-col gap-y-1'>
+                        <div className='grid grid-cols-8 items-center gap-x-5'>
+                            <div className='col-span-2 flex flex-row justify-end items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>5 stars</p>
+                            </div>
+                            <div className='col-span-4'>
+                                <div className="w-full bg-gray-200  h-1.5 dark:bg-gray-700">
+                                    <div className="bg-mira-orange h-1.5 " style={{width: `${Math.round(( 100 / reviews.length ) * star5)}%`}}></div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 flex flex-row justify-start items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>{`${Math.round(( 100 / reviews.length ) * star5)}% (${star5})`}</p>
+                            </div>
+                        </div>
+                        <div className='grid grid-cols-8 items-center gap-x-5'>
+                            <div className='col-span-2 flex flex-row justify-end items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>4 stars</p>
+                            </div>
+                            <div className='col-span-4'>
+                                <div className="w-full bg-gray-200  h-1.5 dark:bg-gray-700">
+                                    <div className="bg-mira-orange h-1.5 " style={{width: `${Math.round(( 100 / reviews.length ) * star4)}%`}}></div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 flex flex-row justify-start items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>{`${Math.round(( 100 / reviews.length ) * star4)}% (${star4})`}</p>
+                            </div>
+                        </div>
+                        <div className='grid grid-cols-8 items-center gap-x-5'>
+                            <div className='col-span-2 flex flex-row justify-end items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>3 stars</p>
+                            </div>
+                            <div className='col-span-4'>
+                                <div className="w-full bg-gray-200  h-1.5 dark:bg-gray-700">
+                                    <div className="bg-mira-orange h-1.5 " style={{width: `${Math.round(( 100 / reviews.length ) * star3)}%`}}></div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 flex flex-row justify-start items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>{`${Math.round(( 100 / reviews.length ) * star3)}% (${star3})`}</p>
+                            </div>
+                        </div>
+                        <div className='grid grid-cols-8 items-center gap-x-5'>
+                            <div className='col-span-2 flex flex-row justify-end items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>2 stars</p>
+                            </div>
+                            <div className='col-span-4'>
+                                <div className="w-full bg-gray-200  h-1.5 dark:bg-gray-700">
+                                    <div className="bg-mira-orange h-1.5 " style={{width: `${Math.round(( 100 / reviews.length ) * star2)}%`}}></div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 flex flex-row justify-start items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>{`${Math.round(( 100 / reviews.length ) * star2)}% (${star2})`}</p>
+                            </div>
+                        </div>
+                        <div className='grid grid-cols-8 items-center gap-x-5'>
+                            <div className='col-span-2 flex flex-row justify-end items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>1 star</p>
+                            </div>
+                            <div className='col-span-4'>
+                                <div className="w-full bg-gray-200  h-1.5 dark:bg-gray-700">
+                                    <div className="bg-mira-orange h-1.5 " style={{width: `${Math.round(( 100 / reviews.length ) * star1)}%`}}></div>
+                                </div>
+                            </div>
+                            <div className='col-span-2 flex flex-row justify-start items-center '>
+                                <p className=' text-sm text-mira-subhead-text-grey'>{`${Math.round(( 100 / reviews.length ) * star1)}% (${star1})`}</p>
+                            </div>
+                        </div>
+                                    
                     </div>
                     <p className='text-2xl font-bold tracking-wide'>Top customer reviews</p>
                     <div className='w-full'>
