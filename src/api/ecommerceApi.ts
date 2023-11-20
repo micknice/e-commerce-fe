@@ -91,17 +91,21 @@ export const getBasket = async(token: string, userId: number) => {
 }
 
 export const addItemsToBasket = async(token: string, userId: number, productId: number) => {
-    // const user = getCurrentUser()
-    // const token = user.jwt
-    // console.log(token)
-    // const userId = user.user.id
-    console.log(token, "tokenadditems")
     const {data} = await eCommerceApi.patch(`/basket/${userId}/itemAdd/${productId}`, null,{
         headers: {
             Authorization: `Bearer ${token}`
         }
     })
-    console.log(data, "data")
+    return data
+}
+
+export const removeItemFromBasket = async(token: string, userId: number, productId: number) => {
+    const {data} = await eCommerceApi.patch(`/basket/${userId}/itemRemove/${productId}`, null, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    return data
 }
 
 

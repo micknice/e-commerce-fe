@@ -4,8 +4,10 @@ import {BiSearch, BiCartAlt} from 'react-icons/bi'
 import {RiMenu2Fill, RiUser3Fill} from 'react-icons/ri'
 import MikiFitLogo from '../../public/assets/MIKFIT.png'
 import HeaderSlider from '@/components/HeaderSlider'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import Link from 'next/link'
+import { useCurrentUser } from '@/api/auth/useCurrentUser'
+import {getBasket} from "../api/ecommerceApi"
 
 import MenuCategory from './MenuCategory'
 
@@ -35,13 +37,24 @@ const subCategoriesArray = [strengthEquipmentCategories, weightsAndBarsCategorie
 
 const Header = () => {
 
+    const currentUser = useCurrentUser()
     const [mainMenuOpen, setMainMenuOpen] = useState(false)
+    const [cart, setCart] = useState([])
 
     const handleMainMenuClick = () => {
       setMainMenuOpen(!mainMenuOpen);
       console.log(mainMenuOpen)
     }
 
+    useEffect(() => {
+      const fetchBasket = async() => {
+        if (currentUser){
+          const basket = await getBasket(currentUser.jwt, currentUser.user.id)
+          setCart(basket)
+        }
+      }
+      fetchBasket()
+    }, [])
 
     return (
         <div className='h-full w-full bg-mira-black'>
@@ -68,7 +81,7 @@ const Header = () => {
                 </Link>
               </div>
               <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
-                <p className='text-white text-sm'>0</p>
+                <p className='text-white text-sm'>{cart.length}</p>
               </div>
   
             </div>
