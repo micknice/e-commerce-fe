@@ -15,7 +15,7 @@ export default function Home() {
     <div className=' w-full bg-white flex flex-col'>
       {/* top image */}
       <div className=' h-[180px] w-full md:h-[300px] relative z-10 '>
-        <img className='h-full w-full object-cover' src='/mirafit-images/additional/MF-Website-New-Offers-Banner-Desktop-November.jpg'/>
+        <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Mobile-November-2.jpg'/>
       </div>
       {/* product carousel */}
       {/* <div className=' h-56 w-full px-4 pt-6 pb-3 bg-white'>
@@ -66,40 +66,42 @@ export default function Home() {
         <div className='px-4'>
           <p className='text-4xl text-mira-subhead-text-black md:text-3xl font-bold tracking-tight pb-6'>LATEST UPDATES</p>
         </div>
-      <div className='grid grid-cols-1 md:grid-cols-4 px-4 pt-2 gap-x-2 gap-y-5 justify-center md:gap-x-4'>
-        <ArticleCard/>
-        <ArticleCard/>
-        <ArticleCard/>
-        <ArticleCard/>
-        <div className='w-full h-20 md:h-24 border-[5px] border-mira-border-grey flex items-center justify-center md:col-span-4'>
-        <div className='h-11  w-screen flex items-center justify-center gap-x-[2px]'>
-                <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                    <AiFillStar color='#ffffff' size='16px'/>
-                </div>
-                <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                    <AiFillStar color='#ffffff' size='16px'/>
-                </div>
-                <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                    <AiFillStar color='#ffffff' size='16px'/>
-                </div>
-                <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                    <AiFillStar color='#ffffff' size='16px'/>
-                </div>
-                <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                    <AiFillStar color='#ffffff' size='16px'/>
-                </div>
+      <div className='grid grid-cols-1 md:grid-cols-4  px-4 pt-2 gap-x-2 gap-y-5 justify-center md:gap-x-4'>
+        <ArticleCard imgUrl='/blog-images/Muscle-Up-on-Mirafit-M4-Half-Rack-1024x683.jpg' title='25 CRAZY FITNESS WORLD RECORDS'/>
+        <ArticleCard imgUrl='/blog-images/Sled-Push-using-Mirafit-M3-Weight-Sled-1024x683.jpg' title='HOW STRENGTH TRAINING IMPROVES YOUR RUNNING SPEED'/>
+        <ArticleCard imgUrl='/blog-images/Mirafit-Powerlifting-Bench-vs-Flat-Bench-1024x683.jpg' title='POWERLIFTING BENCH VS FLAT WEIGHT BENCH'/>
+        <ArticleCard imgUrl='/blog-images/Mirafit-kettlebell-ballistics-vs-grinds-1024x683.jpg' title='KETTLEBELL BALLISTICS VS KETTLEBELL GRINDS'/>
+        
+      </div>
+      <div className='h-10'/>
+      <div className='w-full h-20 md:h-24 border-[5px] border-mira-border-grey flex items-center justify-center md:col-span-4'>
+          <div className='h-11  w-screen flex items-center justify-center gap-x-[2px]'>
+            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                <AiFillStar color='#ffffff' size='16px'/>
+            </div>
+            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                <AiFillStar color='#ffffff' size='16px'/>
+            </div>
+            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                <AiFillStar color='#ffffff' size='16px'/>
+            </div>
+            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                <AiFillStar color='#ffffff' size='16px'/>
+            </div>
+            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                <AiFillStar color='#ffffff' size='16px'/>
+            </div>
 
-                <div className='flex items-center justify-start pl-2'>
-                  <AiFillStar color='#00b67a' size='22px'/>
-                  
-                  <p className='text-mira-subhead-text-black text-sm  font-bold '>
-                      Trustpilot
-                  </p>
-                </div>
-            </div>   
+            <div className='flex items-center justify-start pl-2'>
+              <AiFillStar color='#00b67a' size='22px'/>
+              
+              <p className='text-mira-subhead-text-black text-sm  font-bold '>
+                  Trustpilot
+              </p>
+            </div>
+          </div>   
 
         </div>
-      </div>
       <div className='px-4 pt-8 flex flex-col gap-y-4'>
         <p className='text-4xl md:text-3xl font-bold tracking-tighter'>MIKIFIT - LEADING THE UK HOME GYM REVOLUTION</p>
         <p className='text-2xl md:text-sm md:font-medium md:tracking-wide pb-6'>
