@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
 import {useState, useEffect, ChangeEvent} from 'react'
-import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId} from '../api/ecommerceApi'
+import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId, removeItemFromBasket} from '../api/ecommerceApi'
 import {useRouter, useSearchParams} from 'next/navigation'
 import {HiRefresh} from 'react-icons/hi'
 import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
@@ -20,6 +20,7 @@ const Cart = () => {
 
     const [cart, setCart] = useState([])
     const [cartProducts, setCartProducts] = useState<any[]>([])
+
     useEffect(() => {
         const user = getCurrentUser();
     
@@ -62,6 +63,13 @@ const Cart = () => {
         const user = getCurrentUser()
         addItemsToBasket(user.jwt, user.user.id, 3)
     }
+
+    const removeItemCallback = (index: number) => {
+        const arr = [...cart]
+        arr.splice(index, 1)
+        setCart(arr)
+    }
+
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
@@ -126,9 +134,9 @@ const Cart = () => {
                             <p className='text-xs tracking-wide font-light'>Item</p>
                             <div className='h-[1px] bg-mira-grey'></div>
                             {/* checkout item */}
-                            {cartProducts.map((product) => {
+                            {cartProducts.map((product, index) => {
                                 return (
-                                    <CartItem product={product}/>
+                                    <CartItem product={product} qty={1} removeItemCallback={(index:number) => removeItemCallback(index)}key={`Cart${index}`}/>
                                 )
                             })
 
