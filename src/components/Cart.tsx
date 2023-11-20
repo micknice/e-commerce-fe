@@ -2,25 +2,66 @@
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
 import {useState, useEffect, ChangeEvent} from 'react'
-import {registerUser, verifyUser} from '../api/ecommerceApi'
+import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId} from '../api/ecommerceApi'
 import {useRouter, useSearchParams} from 'next/navigation'
 import {HiRefresh} from 'react-icons/hi'
+import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
+import {UserType} from '../api/auth/UserType'
+import CartItem from './CartItem'
 
 
 
 
-const Register = () => {
-
+const Cart = () => {
     const router = useRouter()
 
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
 
-    const [cart, setCart] = useState([1])
-
-
+    const [cart, setCart] = useState([])
+    const [cartProducts, setCartProducts] = useState<any[]>([])
+    useEffect(() => {
+        const user = getCurrentUser();
     
+        const fetchBasket = async () => {
+            const basket = await getBasket(user.jwt, user.user.id);
+            console.log(basket, 'basket aa');
+            setCart(basket);
+        };
+    
+        if (user) {
+            fetchBasket();
+        }
+    
+    }, []);
+    
+    useEffect(() => {
+        const user = getCurrentUser();
+    
+        const fetchProducts = async () => {
+            console.log('fetching products');
+            console.log('cart @ productsfetch', cart);
+    
+            // Use Promise.all to wait for all promises to resolve
+            const products = await Promise.all(cart.map(async (x: number) => await getProductByProductId(x)));
+            console.log(products, 'products > fetch');
+    
+            setCartProducts(products);
+    
+            // Move console.log after setCartProducts to see the updated state
+            console.log(cartProducts, "cartProducts > set");
+        };
+    
+        if (user && cart.length > 0) {
+            fetchProducts();
+        }
+    
+    }, [cart]);
 
+    const handleAddToBasket = () => {
+        const user = getCurrentUser()
+        addItemsToBasket(user.jwt, user.user.id, 3)
+    }
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
@@ -71,7 +112,7 @@ const Register = () => {
                                 <div className='h-[1px] bg-mira-grey p'/>
                                 <div className='h-10'/>
                                 <div className='flex flex-col gap-y-4 pb-4'>
-                                    <div className='h-12 w-full bg-mira-orange flex justify-center items-center'>
+                                    <div className='h-12 w-full bg-mira-orange flex justify-center items-center' onClick={handleAddToBasket}>
                                         <p className='text-white text-md font-semibold'>GO TO CHECKOUT</p>
                                     </div>
                                     <div className='h-12 w-full bg-paypal-blue flex justify-center items-center'>
@@ -85,43 +126,13 @@ const Register = () => {
                             <p className='text-xs tracking-wide font-light'>Item</p>
                             <div className='h-[1px] bg-mira-grey'></div>
                             {/* checkout item */}
-                            <div className='grid grid-rows-5 h-[30vh] '>
-                                <div className='h-full row-span-2 flex flex-row justify-start items-center gap-x-4'>
-                                    <img src='/mirafit-images/6-Mirafit-Dual-Handle-Cable-Attachment.jpg' className='h-5/6'/>
-                                    <div className='flex h-2/6 items-start'>
-                                        <p className='text-xs tracking-wide'>Mirafit M1 Preacher Curl Bench</p>
-                                    </div>
-                                   
+                            {cartProducts.map((product) => {
+                                return (
+                                    <CartItem product={product}/>
+                                )
+                            })
 
-                                </div>
-                                <div className='row-span-2 grid grid-cols-3'>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Price:</p>
-                                        <p className='text-sm font- tracking-wide'>£129.95</p>
-                                    </div>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Qty:</p>
-                                        <div className='border h-8 w-12 flex justify-center items-center'>
-                                            <p className='text-sm font- tracking-wide'>1</p>
-                                        </div>
-                                    </div>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Subtotal:</p>
-                                        <p className='text-sm font- tracking-wide'>£129.95</p>
-                                    </div>
-                                </div>
-                                <div className='row-span-1 flex flex-row items-center justify-center gap-x-4 pb-4'>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Edit</p>
-                                    </div>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Remove Item</p>
-                                    </div>
-                                </div>
-                                <div className='h-[1px] bg-mira-grey '/>
-                                
-
-                            </div>
+                            }
                             <div className='w-full flex flex-col items-center justify-center gap-y-2 '>
                                     <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
                                         <p className='text-white text-sm font-light tracking-wide'>Continue Shopping</p>
@@ -154,4 +165,4 @@ const Register = () => {
 }
 
 
-export default Register
+export default Cart

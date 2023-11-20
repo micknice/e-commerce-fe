@@ -1,5 +1,7 @@
 import axios, {AxiosInstance} from 'axios';
 import FormData from 'form-data';
+import { Economica } from 'next/font/google';
+import { getCurrentUser } from './auth/useCurrentUser';
 
 
 
@@ -75,6 +77,31 @@ export const getUser = async(token: string) => {
             Authorization: `Bearer ${token}`
         }
     })
+    return response
+}
+
+export const getBasket = async(token: string, userId: number) => {
+    const {data} = await eCommerceApi.get(`/basket/${userId}`, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    
+    return data
+}
+
+export const addItemsToBasket = async(token: string, userId: number, productId: number) => {
+    // const user = getCurrentUser()
+    // const token = user.jwt
+    // console.log(token)
+    // const userId = user.user.id
+    console.log(token, "tokenadditems")
+    const {data} = await eCommerceApi.patch(`/basket/${userId}/itemAdd/${productId}`, null,{
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    console.log(data, "data")
 }
 
 

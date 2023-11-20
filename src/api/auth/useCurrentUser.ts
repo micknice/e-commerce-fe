@@ -5,12 +5,12 @@ import {UserType} from '../auth/UserType'
 
 
 export const useCurrentUser = () => {
+    console.log("useCurrentUserInvoked")
     const [user, setUser] = useState<UserType | null>(null);
 
     useEffect(() => {
         const currentUser = Cookies.get("currentUser")
         if(currentUser) {
-
             setUser(JSON.parse(currentUser))
         }
     }, [])
@@ -22,7 +22,7 @@ export const getCurrentUser = () => {
     let user = Cookies.get("currentUser")
 
     if (user) {
-        return user
+        return JSON.parse(user)
     }
 
 }

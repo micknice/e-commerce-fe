@@ -60,13 +60,19 @@ const Login = () => {
                     <p className="text-sm pt-4">Enter your email and password to login.</p>
                     <div className="pt-2">
                         <div className="flex gap-x-2">
-                            <p className="text-sm">Email</p><p className="text-mira-text-red">*</p>
+                                <p className="text-sm">Email</p>
+                                {!email &&
+                                    <p className="text-mira-text-red">*</p>
+                                }
                         </div>
                         <input type="text" className="h-9 w-3/4 border-gray-200" onChange={(e)=>{handleEmailNameChange(e)}}></input>
                     </div>
                     <div>
                         <div className="flex gap-x-2">
-                            <p className="text-sm">Password</p><p className="text-mira-text-red">*</p>
+                            <p className="text-sm">Password</p>
+                            {!password &&
+                                <p className="text-mira-text-red">*</p>
+                            }
                         </div>
                         <input type="password" className="h-9 w-3/4 border-gray-200" onChange={(e)=>{handlePasswordChange(e)}}></input>
                     </div>

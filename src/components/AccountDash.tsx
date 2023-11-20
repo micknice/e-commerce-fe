@@ -93,6 +93,7 @@ const AccountDash = () => {
 
     useEffect(()=> {
         if (currentUser) {
+            console.log(currentUser, "currentUserdash")
             try {
                 setHeaders({
                     Authorization: `Bearer ${currentUser?.jwt}`,
