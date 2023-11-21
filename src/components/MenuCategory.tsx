@@ -7,22 +7,24 @@ import {getCatShort, reverseCatLookup} from '../../utils/utils'
 interface MenuCategoryProps {
     category: string
     subCategoriesArray: string[]
+    handleMenuClickCallback: Function
 }
 
-const MenuCategory = ({category, subCategoriesArray}: MenuCategoryProps) => {
+const MenuCategory = ({category, subCategoriesArray, handleMenuClickCallback}: MenuCategoryProps) => {
 
     const [categoryMenuOpen, setCategoryMenuOpen] = useState(false)
 
     const openCategoryHandler = () => {
         setCategoryMenuOpen(!categoryMenuOpen)
+        
         console.log(subCategoriesArray)
     }
 
     
     return (
-        <div className='h-auto w-full'>
+        <div className='h-auto w-full '>
             <div className=' h-11 items-center pl-2 grid grid-cols-3 border-t-2 '>
-                <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center' >
+                <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center' onClick={() => {handleMenuClickCallback()}} >
                     <p className='text-mira-offwhite col-span-2'>{category}</p>
                 </Link>
                 <div className='flex col-span-1 justify-end items-center  px-5'>
@@ -38,7 +40,7 @@ const MenuCategory = ({category, subCategoriesArray}: MenuCategoryProps) => {
             {subCategoriesArray && subCategoriesArray.length > 0 && categoryMenuOpen &&
                 subCategoriesArray.map((subCategory, index) => {
                     return (
-                        <MenuSubCategory category={category} subCategory={subCategory} subCategoriesArray={[]} key={index.toString()}/>
+                        <MenuSubCategory category={category} subCategory={subCategory} subCategoriesArray={[]} handleMenuClickCallback={handleMenuClickCallback} key={index.toString()}/>
 
                     )
                 })

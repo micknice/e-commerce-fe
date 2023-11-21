@@ -7,9 +7,10 @@ interface MenuSubCategoryProps {
     subCategory: string
     subCategoriesArray: string[]
     category: string
+    handleMenuClickCallback: Function
 }
 
-const MenuSubCategory = ({subCategory, subCategoriesArray, category}: MenuSubCategoryProps) => {
+const MenuSubCategory = ({subCategory, subCategoriesArray, category, handleMenuClickCallback}: MenuSubCategoryProps) => {
 
     const [menuOpen, setMenuOpen] = useState(false)
 
@@ -21,9 +22,9 @@ const MenuSubCategory = ({subCategory, subCategoriesArray, category}: MenuSubCat
 
 
         return  (
-            <div className='h-auto w-full'>
+            <div className='h-auto w-full '>
                 <div className=' h-11 items-center pl-2 grid grid-cols-3 bg-mira-socialbg-grey border-t-2 '>
-                <Link href={`/category/${reverseCatLookup(category)}/subCategory/${reverseSubCatLookup(subCategory)}`} className='col-span-2 flex flex-row items-center' >
+                <Link href={`/category/${reverseCatLookup(category)}/subCategory/${reverseSubCatLookup(subCategory)}`} className='col-span-2 flex flex-row items-center' onClick={() => {handleMenuClickCallback()}}>
                     <p className='text-mira-offwhite col-span-2'>{subCategory}</p>
                 </Link>
                     <div className='flex col-span-1 justify-end items-center  px-5'>

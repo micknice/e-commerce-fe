@@ -8,8 +8,13 @@ import {HiRefresh} from 'react-icons/hi'
 import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
 import {UserType} from '../api/auth/UserType'
 import CartItem from './CartItem'
+import {countOccurrences} from '../../utils/utils'
+import Link from 'next/link'
 
-
+interface ItemObj {
+    productId: number
+    qty: number
+}
 
 
 const Cart = () => {
@@ -18,16 +23,20 @@ const Cart = () => {
     const searchParams = useSearchParams()
     const token = searchParams.get('token')
 
-    const [cart, setCart] = useState([])
+    const [cart, setCart] = useState<ItemObj[]>([])
     const [cartProducts, setCartProducts] = useState<any[]>([])
+    const [subTotal, setSubtotal] = useState(0)
+    const [orderTotal, setOrderTotal] = useState(0)
+    const [shipping, setShipping] = useState(9.95)
 
     useEffect(() => {
         const user = getCurrentUser();
     
         const fetchBasket = async () => {
             const basket = await getBasket(user.jwt, user.user.id);
-            console.log(basket, 'basket aa');
-            setCart(basket);
+            console.log(basket, 'basket')
+            const basketObjArr = countOccurrences(basket)
+            setCart(basketObjArr);
         };
     
         if (user) {
@@ -40,34 +49,40 @@ const Cart = () => {
         const user = getCurrentUser();
     
         const fetchProducts = async () => {
-            console.log('fetching products');
-            console.log('cart @ productsfetch', cart);
-    
-            // Use Promise.all to wait for all promises to resolve
-            const products = await Promise.all(cart.map(async (x: number) => await getProductByProductId(x)));
-            console.log(products, 'products > fetch');
-    
+            const products = await Promise.all(cart.map(async (x: ItemObj) => {
+                const prod = await getProductByProductId(x.productId)
+                const prodWithQty = {qty: x.qty, ...prod}
+                return prodWithQty
+                
+            }));
             setCartProducts(products);
-    
-            // Move console.log after setCartProducts to see the updated state
-            console.log(cartProducts, "cartProducts > set");
+            let sum = 0
+            for (const x of products) {
+                sum = sum + (x.price * x.qty)
+            }
+            setSubtotal(sum)
+            setOrderTotal(sum + shipping)
+            
         };
     
         if (user && cart.length > 0) {
             fetchProducts();
+            console.log('111')
         }
     
     }, [cart]);
+
+    
 
     const handleAddToBasket = () => {
         const user = getCurrentUser()
         addItemsToBasket(user.jwt, user.user.id, 3)
     }
 
-    const removeItemCallback = (index: number) => {
-        const arr = [...cart]
-        arr.splice(index, 1)
-        setCart(arr)
+    const decrementSubTotalCallback = (decrement: number) => {
+        const sum = subTotal - decrement
+        setSubtotal(sum)
+        setOrderTotal(sum + shipping)
     }
 
 
@@ -96,7 +111,7 @@ const Cart = () => {
                                         <p className='text-sm tracking-wide'>Subtotal</p>
                                     </div>
                                     <div className='col-span-1'>
-                                        <p className='text-sm tracking-wide'>£129.95</p>
+                                        <p className='text-sm tracking-wide'>{`£${subTotal.toFixed(2)}`}</p>
                                     </div>
                                 </div>
                                 {/* shipping */}
@@ -114,7 +129,7 @@ const Cart = () => {
                                         <p className='text-sm tracking-wide'>Order Total</p>
                                     </div>
                                     <div className='col-span-1'>
-                                        <p className='text-sm tracking-wide'>£134.90</p>
+                                        <p className='text-sm tracking-wide'>{`£${orderTotal.toFixed(2)}`}</p>
                                     </div>
                                 </div>
                                 <div className='h-[1px] bg-mira-grey p'/>
@@ -136,15 +151,17 @@ const Cart = () => {
                             {/* checkout item */}
                             {cartProducts.map((product, index) => {
                                 return (
-                                    <CartItem product={product} qty={1} removeItemCallback={(index:number) => removeItemCallback(index)}key={`Cart${index}`}/>
+                                    <CartItem product={product} qty={cart[index].qty} decrementSubTotalCallback={decrementSubTotalCallback}key={`Cart${index}`}/>
                                 )
                             })
 
                             }
                             <div className='w-full flex flex-col items-center justify-center gap-y-2 '>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Continue Shopping</p>
-                                    </div>
+                                    <Link href={"/"}>
+                                        <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
+                                            <p className='text-white text-sm font-light tracking-wide'>Continue Shopping</p>
+                                        </div>
+                                    </Link>
                                     <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
                                         <p className='text-white text-sm font-light tracking-wide'>Clear Shopping Cart</p>
                                     </div>
@@ -158,13 +175,8 @@ const Cart = () => {
                         </div>
                     </div>
                     {/* }  */}
-                
-                
-                
                
             </div>
-            
-
         </div>
     )
 

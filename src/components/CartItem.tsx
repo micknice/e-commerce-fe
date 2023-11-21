@@ -7,23 +7,31 @@ import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
 interface CartItemProps {
     product: any
     qty: number
-    removeItemCallback: Function
+    decrementSubTotalCallback: Function
 }
 
-const CartItem = ({product, qty, removeItemCallback}: CartItemProps) => {
+const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
     const currentUser = useCurrentUser()
 
     const [imgPath, setImgPath] = useState('')
+    const [qtyActual, setQtyActual] = useState(0)
+    const [subTotal, setSubtotal] = useState(0)
 
     useEffect(() => {
         const imgStr = `${product.id -1}-${imgUrlToFilePath(product.img)}`
             setImgPath(`/mirafit-images/${imgStr}`)
+            
     }, [product])
+
+    useEffect(() => {
+        setQtyActual(qty)
+    }, [qty])
 
     const handleRemoveItem = async() => {
         if (currentUser) {
            await removeItemFromBasket(currentUser.jwt, currentUser.user.id, product.id)
-           removeItemCallback()
+           setQtyActual(qtyActual -1)
+           decrementSubTotalCallback(product.price)
         }
     }
 
@@ -48,12 +56,12 @@ const CartItem = ({product, qty, removeItemCallback}: CartItemProps) => {
                 <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
                     <p className='text-sm font-semibold tracking-wide'>Qty:</p>
                     <div className='border h-8 w-12 flex justify-center items-center'>
-                        <p className='text-sm font- tracking-wide'>1</p>
+                            <p className='text-sm font- tracking-wide'>{qtyActual}</p>
                     </div>
                 </div>
                 <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
                     <p className='text-sm font-semibold tracking-wide'>Subtotal:</p>
-                    <p className='text-sm font- tracking-wide'>£129.95</p>
+                    <p className='text-sm font- tracking-wide'>{`£${(product.price * qtyActual).toFixed(2)}`}</p>
                 </div>
             </div>
             <div className='row-span-1 flex flex-row items-center justify-center gap-x-4 pb-4'>
