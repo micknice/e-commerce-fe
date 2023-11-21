@@ -2,11 +2,15 @@
 import { useEffect, useState } from "react"
 import {imgUrlToFilePath, extractTextBetweenSuffixAndLastSlash} from '../../utils/utils'
 import Link from 'next/link'
+import {addItemsToBasket} from '../api/ecommerceApi'
+import { useCurrentUser } from "@/api/auth/useCurrentUser"
 
 interface BigProductProps {
   product: any
 }
 const BigProductCard = ({product}: BigProductProps) => {
+
+  const currentUser = useCurrentUser()
 
   const [prod, setProd] = useState('')
   const [title, setTitle] = useState('')
@@ -22,6 +26,12 @@ const BigProductCard = ({product}: BigProductProps) => {
       setProductLinkPath(`/product/${product.id}${productStr}`)
     }
   }, [product])
+
+  const handleAddToCart = async() => {
+    if (currentUser) {
+      const basket = addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
+    }
+  }
 
     return (
         <div className='col-span-1  grid grid-rows-5 gap-y-2 h-[45vh] py-4 hover:shadow-lg group' >
@@ -46,7 +56,7 @@ const BigProductCard = ({product}: BigProductProps) => {
 
               <div className="flex items-end justify-center w-full row-span-2">
                 {product.inventory.quantity > 0 &&
-                  <div className="flex items-center justify-center bg-mira-orange hover:bg-mira-black h-10 w-2/3 group-hover:scale-105">
+                  <div className="flex items-center justify-center bg-mira-orange hover:bg-mira-black h-10 w-2/3 group-hover:scale-105" onClick={handleAddToCart}>
                       <p className="text-white text-sm font-bold ">ADD TO CART</p>
                   </div>
                 }

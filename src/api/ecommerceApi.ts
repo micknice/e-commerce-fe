@@ -1,10 +1,4 @@
 import axios, {AxiosInstance} from 'axios';
-import FormData from 'form-data';
-import { Economica } from 'next/font/google';
-import { getCurrentUser } from './auth/useCurrentUser';
-
-
-
 
 const eCommerceApi = axios.create({
     baseURL: 'http://localhost:8080',
@@ -15,29 +9,24 @@ const eCommerceApi = axios.create({
 
 export const  getAllProducts = async () => {
     const {data} = await eCommerceApi.get('/product');
-    console.log(data)
     return data
 }
 
 export const getProductsByCategory = async(category: string) => {
     const {data} = await eCommerceApi.get(`/product/category/${category}`)
-    console.log(data)
     return data
 }
 export const getProductsBySubCategory = async(category: string) => {
     const {data} = await eCommerceApi.get(`/product/category/${category}`)
-    console.log(data)
     return data
 }
 export const getProductsByCategoryPaginated = async(category: string, pageIndex: number = 0, itemsPer: number = 12, sortBy:string, orderBy: string) => {
     const {data} = await eCommerceApi.get(`/product/category/${category}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
-    console.log('query', `/product/category/${category}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
     return data
 }
 
 export const getProductsBySubCategoryPaginated = async(subCategory: string, pageIndex: number = 0, itemsPer: number = 12, sortBy:string = 'id', orderBy: string = 'asc') => {
     const {data} = await eCommerceApi.get(`/product/category/*/subCategory/${subCategory}?page=${pageIndex}&items=${itemsPer}&sortBy=${sortBy}&orderBy=${orderBy}`)
-    console.log(data)
     return data
 }
 

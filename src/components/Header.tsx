@@ -4,10 +4,11 @@ import {BiSearch, BiCartAlt} from 'react-icons/bi'
 import {RiMenu2Fill, RiUser3Fill} from 'react-icons/ri'
 import MikiFitLogo from '../../public/assets/MIKFIT.png'
 import HeaderSlider from '@/components/HeaderSlider'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Link from 'next/link'
 import { useCurrentUser } from '@/api/auth/useCurrentUser'
 import {getBasket} from "../api/ecommerceApi"
+
 
 import MenuCategory from './MenuCategory'
 
@@ -107,10 +108,10 @@ const Header = () => {
         </div>
 
         {mainMenuOpen &&
-          <div className='h-full w-full grid  px-3'>
+          <div className='h-full w-full grid  px-3 '>
             {categories.map((category, index) => {
               return (
-                <MenuCategory category={category} subCategoriesArray={subCategoriesArray[index]} key={index.toString()}/>
+                <MenuCategory category={category} subCategoriesArray={subCategoriesArray[index]} handleMenuClickCallback={handleMainMenuClick} key={index.toString()}/>
                 
             )}
           )}

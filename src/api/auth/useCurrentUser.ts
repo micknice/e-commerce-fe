@@ -5,7 +5,6 @@ import {UserType} from '../auth/UserType'
 
 
 export const useCurrentUser = () => {
-    console.log("useCurrentUserInvoked")
     const [user, setUser] = useState<UserType | null>(null);
 
     useEffect(() => {

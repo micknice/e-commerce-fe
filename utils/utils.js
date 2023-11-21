@@ -160,6 +160,21 @@ export const convertDateFormat = (inputDate) => {
   return formattedDate;
 }
 
+export const countOccurrences = (arr) => {
+  const occurrences = {};
+
+  arr.forEach((number) => {
+    occurrences[number] = (occurrences[number] || 0) + 1;
+  });
+
+  const result = Object.keys(occurrences).map((productId) => ({
+    productId: parseInt(productId),
+    qty: occurrences[productId],
+  }));
+
+  return result;
+}
+
 
 
 
