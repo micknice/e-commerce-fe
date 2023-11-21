@@ -4,11 +4,13 @@ import {imgUrlToFilePath, extractTextBetweenSuffixAndLastSlash} from '../../util
 import Link from 'next/link'
 import {addItemsToBasket} from '../api/ecommerceApi'
 import { useCurrentUser } from "@/api/auth/useCurrentUser"
+import { useCartContext } from "@/context/cartContext"
 
 interface BigProductProps {
   product: any
 }
 const BigProductCard = ({product}: BigProductProps) => {
+  const {cartContext, updateCartContext} = useCartContext()
 
   const currentUser = useCurrentUser()
 
@@ -29,7 +31,9 @@ const BigProductCard = ({product}: BigProductProps) => {
 
   const handleAddToCart = async() => {
     if (currentUser) {
-      const basket = addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
+      const basket = await addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
+      updateCartContext()
+
     }
   }
 

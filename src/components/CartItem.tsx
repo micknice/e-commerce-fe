@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import {imgUrlToFilePath} from '../../utils/utils'
 import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId, removeItemFromBasket} from '../api/ecommerceApi'
 import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
+import { useCartContext } from '@/context/cartContext'
 
 interface CartItemProps {
     product: any
@@ -11,6 +12,7 @@ interface CartItemProps {
 }
 
 const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
+    const {cartContext, updateCartContext} = useCartContext()
     const currentUser = useCurrentUser()
 
     const [imgPath, setImgPath] = useState('')
@@ -32,6 +34,7 @@ const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
            await removeItemFromBasket(currentUser.jwt, currentUser.user.id, product.id)
            setQtyActual(qtyActual -1)
            decrementSubTotalCallback(product.price)
+           updateCartContext()
         }
     }
 

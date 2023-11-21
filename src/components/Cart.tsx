@@ -10,6 +10,7 @@ import {UserType} from '../api/auth/UserType'
 import CartItem from './CartItem'
 import {countOccurrences} from '../../utils/utils'
 import Link from 'next/link'
+import { useCartContext } from '@/context/cartContext'
 
 interface ItemObj {
     productId: number
@@ -18,6 +19,7 @@ interface ItemObj {
 
 
 const Cart = () => {
+    const {cartContext, updateCartContext} = useCartContext()
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -37,6 +39,7 @@ const Cart = () => {
             console.log(basket, 'basket')
             const basketObjArr = countOccurrences(basket)
             setCart(basketObjArr);
+            updateCartContext()
         };
     
         if (user) {
