@@ -28,35 +28,27 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
     
 
     useEffect(() => {
-        console.log('!!!!!')
         const fetchProducts = async() => {
             if (!subCategory) {
                 const {products, productCount} = await getProductsByCategoryPaginated(category, paginationIndex, itemsPerPage, sortByQuery, order)
                 const calculatedPageCount = Math.ceil(productCount / itemsPerPage)
-                // setPageCount(calculatedPageCount)
                 const newPages = []
-                
                 for(let i = 1; i < calculatedPageCount+1 ; i++) {
-                    console.log(i, 'i')
                     newPages.push(i)
                 }
                 setPages(newPages)
                 setProductArr(products)
-                console.log(newPages, 'newPages')
                 
             } else {
                 const {products, productCount} = await getProductsBySubCategoryPaginated(subCategory, paginationIndex, itemsPerPage, sortByQuery, order)
                 const calculatedPageCount = Math.ceil(productCount / itemsPerPage)
                 setProductArr(products)
-                // setPageCount(calculatedPageCount)
                 const newPages = []
                 for(let i = 1; i < calculatedPageCount+1; i++) {
-                    console.log(i, 'i')
                     newPages.push(i)
                 }
                 setPages(newPages)
                 setProductArr(products)
-                console.log(newPages, 'newPages')
             }
         }
         fetchProducts()
@@ -67,10 +59,12 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
     const handlePaginationSelect = (index: number) => {
         setPaginationIndex(index-1)
     }
+
     const handlePaginationIncrement = (increment: number) => {
         setPaginationIndex(paginationIndex + increment)
         
     }
+
     const handleSwitchOrderAsc = () => {
         if(orderAsc){
             setOrder('desc')
@@ -79,9 +73,11 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
         }
         setOrderAsc(!orderAsc)
     }
+
     const handleOpenSort = () => {
         setOpenSort(!openSort)
     }
+
     const handleSortSelection = (sortStr: string) => {
         setSortBy(sortStr)
         setOpenSort(!openSort)
@@ -91,6 +87,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
             setSortByQuery(sortStr.toLowerCase())
         }
     }
+    
     return (
         <div>
             {/* nav tab */}

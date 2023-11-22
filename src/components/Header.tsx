@@ -46,19 +46,17 @@ const Header = () => {
 
     const handleMainMenuClick = () => {
       setMainMenuOpen(!mainMenuOpen);
-      console.log(mainMenuOpen)
     }
 
-    // useEffect(() => {
-    //   const fetchBasket = async() => {
-    //     if (currentUser){
-    //       const basket = await getBasket(currentUser.jwt, currentUser.user.id)
-    //       setCart(basket)
-    //     }
-    //   }
-    //   fetchBasket()
-    //   console.log("cart context", cartContext)
-    // }, [cartContext])
+    useEffect(() => {
+      const fetchBasket = async() => {
+        if (currentUser){
+          const basket = await getBasket(currentUser.jwt, currentUser.user.id)
+          setCart(basket)
+        }
+      }
+      fetchBasket()
+    }, [cartContext])
 
     return (
         <div className='h-full w-full bg-mira-black'>
@@ -85,7 +83,7 @@ const Header = () => {
                 </Link>
               </div>
               <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
-                <p className='text-white text-sm'>{cartContext.length}</p>
+                <p className='text-white text-sm'>{cart.length}</p>
               </div>
   
             </div>

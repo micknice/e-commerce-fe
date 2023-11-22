@@ -105,10 +105,10 @@ export default function Home() {
       <div className='px-4 pt-8 flex flex-col gap-y-4'>
         <p className='text-4xl md:text-3xl font-bold tracking-tighter'>MIKIFIT - LEADING THE UK HOME GYM REVOLUTION</p>
         <p className='text-2xl md:text-sm md:font-medium md:tracking-wide pb-6'>
-        At Mirafit we are passionate about strength training and fitness. This is why we have made it our mission to promote the benefits of exercise and to offer a range of high-quality gym equipment to enable you to make gains and feel good at home.
+        At Mikifit we are passionate about strength training and software development. This is why we have made it our mission to promote the benefits of exercise and clone the Mirafit site using TypeScript, Next.js and React for the front end and Tailwind, SpringBoot and PostgreSQL on the back end.
         <br></br>
         <br></br>
-        From people just starting their fitness journey, all the way up to professional athletes we are committed to providing the best for our customers, in terms of service, quality and expertise. Our range is expanding fast so check back often to see the latest products on offer.
+        From people just starting their fitness journey, all the way up to senior engineers looking for a full stack dev to join their team we are committed to grinding relentlessly, improving continuously and googling everything in the pursuit of becoming the best software engineer ever in the eyes of my mum. Our stack is expanding fast so check back often to see the latest skills on offer.
         </p>
       </div>
     </div>

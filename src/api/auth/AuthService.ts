@@ -49,13 +49,7 @@ export class AuthService {
         })
     }
 
-    // me = (user: UserType) => {
-    //     return this.instance
-    //     .get("./auth/me", {
-    //         username:,
-
-    //     })
-    // }
+    
 }
 
 const authService = new AuthService('http://localhost:8080')

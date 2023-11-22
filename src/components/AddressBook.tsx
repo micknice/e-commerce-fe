@@ -7,10 +7,7 @@ import {useRouter, useSearchParams} from 'next/navigation'
 import {HiRefresh} from 'react-icons/hi'
 
 
-
-
 const Register = () => {
-
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -18,17 +15,12 @@ const Register = () => {
 
     const [cart, setCart] = useState([1])
 
-
-    
-
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col pb-4">
                 <div className="h-20 flex justify-center items-center">
                     <p className="text-xl text-mira-black font-bold tracking-tighter">Address Book</p>
                 </div>
-                
                     {cart.length === 0 &&
                     <div className='flex flex-col'>
                         <p className='text-mira-subhead-text-black'>You have no items in your shopping cart</p>

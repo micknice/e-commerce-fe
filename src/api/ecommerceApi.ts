@@ -75,7 +75,7 @@ export const getBasket = async(token: string, userId: number) => {
             Authorization: `Bearer ${token}`
         }
     })
-    
+    console.log(data, "getBasket")
     return data
 }
 
@@ -90,6 +90,15 @@ export const addItemsToBasket = async(token: string, userId: number, productId: 
 
 export const removeItemFromBasket = async(token: string, userId: number, productId: number) => {
     const {data} = await eCommerceApi.patch(`/basket/${userId}/itemRemove/${productId}`, null, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+    return data
+}
+
+export const clearBasket = async(token: string, userId: number) => {
+    const {data} = await eCommerceApi.patch(`/basket/${userId}/emptyBasket`, null, {
         headers: {
             Authorization: `Bearer ${token}`
         }
