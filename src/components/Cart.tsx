@@ -1,8 +1,6 @@
 'use client'
-import Image from 'next/image'
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
 import {useState, useEffect, ChangeEvent} from 'react'
-import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId, removeItemFromBasket} from '../api/ecommerceApi'
+import { getBasket, addItemsToBasket, getProductByProductId,  clearBasket} from '../api/ecommerceApi'
 import {useRouter, useSearchParams} from 'next/navigation'
 import {HiRefresh} from 'react-icons/hi'
 import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
@@ -10,6 +8,7 @@ import {UserType} from '../api/auth/UserType'
 import CartItem from './CartItem'
 import {countOccurrences} from '../../utils/utils'
 import Link from 'next/link'
+import { useCartContext } from '@/context/cartContext'
 
 interface ItemObj {
     productId: number
@@ -18,6 +17,7 @@ interface ItemObj {
 
 
 const Cart = () => {
+    const {cartContext, updateCartContext} = useCartContext()
     const router = useRouter()
 
     const searchParams = useSearchParams()
@@ -28,8 +28,10 @@ const Cart = () => {
     const [subTotal, setSubtotal] = useState(0)
     const [orderTotal, setOrderTotal] = useState(0)
     const [shipping, setShipping] = useState(9.95)
+    const [cartItemChange, setCartItemChange] = useState(false)
 
     useEffect(() => {
+        console.log("!!!!!!!!!!")
         const user = getCurrentUser();
     
         const fetchBasket = async () => {
@@ -37,15 +39,17 @@ const Cart = () => {
             console.log(basket, 'basket')
             const basketObjArr = countOccurrences(basket)
             setCart(basketObjArr);
+            updateCartContext()
         };
     
         if (user) {
             fetchBasket();
         }
     
-    }, []);
+    }, [subTotal]);
     
     useEffect(() => {
+        console.log("!!!!!!!!!!")
         const user = getCurrentUser();
     
         const fetchProducts = async () => {
@@ -53,7 +57,6 @@ const Cart = () => {
                 const prod = await getProductByProductId(x.productId)
                 const prodWithQty = {qty: x.qty, ...prod}
                 return prodWithQty
-                
             }));
             setCartProducts(products);
             let sum = 0
@@ -62,21 +65,24 @@ const Cart = () => {
             }
             setSubtotal(sum)
             setOrderTotal(sum + shipping)
-            
         };
     
         if (user && cart.length > 0) {
             fetchProducts();
             console.log('111')
         }
-    
     }, [cart]);
 
-    
-
-    const handleAddToBasket = () => {
+    const handleAddToBasket = async() => {
         const user = getCurrentUser()
-        addItemsToBasket(user.jwt, user.user.id, 3)
+        await addItemsToBasket(user.jwt, user.user.id, 3)
+        updateCartContext()
+    }
+
+    const handleClearBasket = async() => {
+        const user = getCurrentUser()
+        await clearBasket(user.jwt, user.user.id)
+        updateCartContext()
     }
 
     const decrementSubTotalCallback = (decrement: number) => {
@@ -150,6 +156,7 @@ const Cart = () => {
                             <div className='h-[1px] bg-mira-grey'></div>
                             {/* checkout item */}
                             {cartProducts.map((product, index) => {
+                                if (cart[index])
                                 return (
                                     <CartItem product={product} qty={cart[index].qty} decrementSubTotalCallback={decrementSubTotalCallback}key={`Cart${index}`}/>
                                 )
@@ -162,7 +169,7 @@ const Cart = () => {
                                             <p className='text-white text-sm font-light tracking-wide'>Continue Shopping</p>
                                         </div>
                                     </Link>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
+                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3' onClick={handleClearBasket}>
                                         <p className='text-white text-sm font-light tracking-wide'>Clear Shopping Cart</p>
                                     </div>
                                     <div className='bg-mira-headtext flex flex-row items-center justify-center h-8 px-3 text-white gap-x-4'>

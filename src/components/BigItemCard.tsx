@@ -40,8 +40,17 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
       <Link href={`/category/${category}/subCategory/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
             {/* img div */}
-            <div className=' h-44 md:h-60 w-full'>
-                <img className=' h-full w-full object-cover md:object-contain' src={coverImgPath}/>
+            <div className='h-44 md:h-60 w-full relative'>
+              <img
+                className="h-full w-full absolute inset-0 object-fill opacity-10 z-10 "
+                src={"/assets/Vignette-Transparent.png"}
+                alt="Vignette"
+              />
+              <img
+                className='h-full w-full absolute inset-0 object-cover md:object-contain z-0 '
+                src={coverImgPath}
+                alt="Cover Image"
+              />
             </div>
             {/* TITLE DIV */}
             <div>
@@ -56,8 +65,17 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
       <Link href={`/category/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
             {/* img div */}
-            <div className=' h-44 md:h-60 w-full'>
-                <img className=' h-full w-full object-cover md:object-contain' src={coverImgPath}/>
+            <div className='h-44 md:h-60 w-full relative'>
+              <img
+                className="h-full w-full absolute inset-0 object-fill opacity-10 z-10"
+                src={"/assets/Vignette-Transparent.png"}
+                alt="Vignette"
+              />
+              <img
+                className='h-full w-full absolute inset-0 object-cover md:object-contain z-0'
+                src={coverImgPath}
+                alt="Cover Image"
+              />
             </div>
             {/* TITLE DIV */}
             <div>

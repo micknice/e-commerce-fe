@@ -8,6 +8,7 @@ import {useState, useEffect, useContext} from 'react'
 import Link from 'next/link'
 import { useCurrentUser } from '@/api/auth/useCurrentUser'
 import {getBasket} from "../api/ecommerceApi"
+import { useCartContext } from '@/context/cartContext'
 
 
 import MenuCategory from './MenuCategory'
@@ -37,6 +38,7 @@ const offersCategories = ['Offers - Strength Equipment', 'Offers - Weights & Bar
 const subCategoriesArray = [strengthEquipmentCategories, weightsAndBarsCategories, conditioningCategories, gymStorageCategories, accessoriesCategories, [], shopByRangeCategory, offersCategories, []]
 
 const Header = () => {
+    const {cartContext, updateCartContext} = useCartContext()
 
     const currentUser = useCurrentUser()
     const [mainMenuOpen, setMainMenuOpen] = useState(false)
@@ -44,7 +46,6 @@ const Header = () => {
 
     const handleMainMenuClick = () => {
       setMainMenuOpen(!mainMenuOpen);
-      console.log(mainMenuOpen)
     }
 
     useEffect(() => {
@@ -55,7 +56,7 @@ const Header = () => {
         }
       }
       fetchBasket()
-    }, [])
+    }, [cartContext])
 
     return (
         <div className='h-full w-full bg-mira-black'>

@@ -7,12 +7,10 @@ import BigProductCard from './BigProductCard'
 import Link from 'next/link'
 import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {AiFillStar} from 'react-icons/ai'
-import {Progress, Avatar} from 'flowbite-react' 
 
 interface ProductProps {
     product: string
 }
-
 
 const ProductCategory = ({product}: ProductProps) => {
     const starArrayForMap = [0.1, 0.3, 0.5, 0.7, 0.9]
@@ -34,9 +32,7 @@ const ProductCategory = ({product}: ProductProps) => {
     useEffect(() => {
         const fetchProduct = async() => {
             const id = parseInt(product.split('-')[0])
-            console.log(id, 'id')
             const productActual = await getProductByProductId(id)
-            console.log(productActual, 'productActual')
             const imgStr = `${productActual.id -1}-${imgUrlToFilePath(productActual.img)}`
             setImgPath(`/mirafit-images/${imgStr}`)
             setName(productActual.name)
@@ -60,8 +56,6 @@ const ProductCategory = ({product}: ProductProps) => {
             setStar3(reviewsArr.filter((x: { rating: number }) => x.rating === 0.6).length)
             setStar4(reviewsArr.filter((x: { rating: number }) => x.rating === 0.8).length)
             setStar5(reviewsArr.filter((x: { rating: number }) => x.rating === 1.0).length)
-            // console.log(ave)
-            
         }
         fetchProduct()
         fetchReviews()

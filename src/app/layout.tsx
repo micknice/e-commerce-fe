@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import Header from '@/components/Header'
 import Footer from '../components/Footer'
+import {CartProvider} from '../context/cartContext'
 
 const roboto = Roboto({ subsets: ['latin'], weight:['100', '300', '400', '500', '700', '900'] })
 
@@ -19,11 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body >
+    <CartProvider>
 
       <Header/>
       {/* <body className={inter.className}>{children}</body> */}
         {children}
       <Footer/>
+    </CartProvider>
       </body>
     </html>
   )

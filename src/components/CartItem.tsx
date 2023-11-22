@@ -3,18 +3,21 @@ import {useState, useEffect} from 'react'
 import {imgUrlToFilePath} from '../../utils/utils'
 import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId, removeItemFromBasket} from '../api/ecommerceApi'
 import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
+import { useCartContext } from '@/context/cartContext'
 
 interface CartItemProps {
     product: any
     qty: number
     decrementSubTotalCallback: Function
+
 }
 
 const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
+    const {cartContext, updateCartContext} = useCartContext()
     const currentUser = useCurrentUser()
 
     const [imgPath, setImgPath] = useState('')
-    const [qtyActual, setQtyActual] = useState(0)
+    const [qtyActual, setQtyActual] = useState(qty)
     const [subTotal, setSubtotal] = useState(0)
 
     useEffect(() => {
@@ -29,9 +32,12 @@ const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
 
     const handleRemoveItem = async() => {
         if (currentUser) {
-           await removeItemFromBasket(currentUser.jwt, currentUser.user.id, product.id)
-           setQtyActual(qtyActual -1)
-           decrementSubTotalCallback(product.price)
+            if (qtyActual > 0) {
+                await removeItemFromBasket(currentUser.jwt, currentUser.user.id, product.id)
+                setQtyActual(((prevQty) => prevQty -1))
+                decrementSubTotalCallback(product.price)
+                updateCartContext()
+            }
         }
     }
 
@@ -42,7 +48,6 @@ const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
                 <div className='flex h-2/6 items-start'>
                     {product &&
                         <p className='text-xs tracking-wide'>{product.name}</p>
-
                     }
                 </div>
             </div>

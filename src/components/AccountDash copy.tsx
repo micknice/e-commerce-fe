@@ -18,8 +18,6 @@ import SockJS from 'sockjs-client';
 const AccountDash = () => {
     const {logout} = useLogout()
     
-
-    
     const router = useRouter()
     const currentUser: UserType | null = useCurrentUser()
 

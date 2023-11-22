@@ -4,11 +4,13 @@ import {imgUrlToFilePath, extractTextBetweenSuffixAndLastSlash} from '../../util
 import Link from 'next/link'
 import {addItemsToBasket} from '../api/ecommerceApi'
 import { useCurrentUser } from "@/api/auth/useCurrentUser"
+import { useCartContext } from "@/context/cartContext"
 
 interface BigProductProps {
   product: any
 }
 const BigProductCard = ({product}: BigProductProps) => {
+  const {cartContext, updateCartContext} = useCartContext()
 
   const currentUser = useCurrentUser()
 
@@ -17,7 +19,6 @@ const BigProductCard = ({product}: BigProductProps) => {
   const [imgPath, setImgPath] = useState('public/assets/MIKFIT.png')
   const [productLinkPath, setProductLinkPath] = useState('/category')
   useEffect(() => {
-    console.log('effect')
     if (product.id) {
       const imgStr = `${product.id -1}-${imgUrlToFilePath(product.img)}`
       setImgPath(`/mirafit-images/${imgStr}`)
@@ -29,7 +30,9 @@ const BigProductCard = ({product}: BigProductProps) => {
 
   const handleAddToCart = async() => {
     if (currentUser) {
-      const basket = addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
+      const basket = await addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
+      updateCartContext()
+
     }
   }
 
@@ -38,7 +41,8 @@ const BigProductCard = ({product}: BigProductProps) => {
             {/* img div */}
             <Link href={productLinkPath} className=' h-44 w-full row-span-3 group-hover:scale-105 ' >
               <div className=' h-44 w-full row-span-3 group-hover:scale-105 '>
-                <img className=' h-full w-full object-cover' src={imgPath} />
+                <img className=' h-full w-full object-cover relative' src={imgPath} />
+                
               </div>
             </Link>
             {/* TITLE DIV */}
