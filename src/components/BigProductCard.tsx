@@ -37,11 +37,11 @@ const BigProductCard = ({product}: BigProductProps) => {
   }
 
     return (
-        <div className='col-span-1  grid grid-rows-5 gap-y-2 h-[45vh] py-4 hover:shadow-lg group' >
+        <div className='col-span-1  grid grid-rows-5 gap-y-2 h-[45vh]  w-full py-4 hover:shadow-lg group' >
             {/* img div */}
-            <Link href={productLinkPath} className=' h-44 w-full row-span-3 group-hover:scale-105 ' >
-              <div className=' h-44 w-full row-span-3 group-hover:scale-105 '>
-                <img className=' h-full w-full object-cover relative' src={imgPath} />
+            <Link href={productLinkPath} className=' h-44  w-full row-span-3 group-hover:scale-105 ' >
+              <div className=' h-44  w-full row-span-3 group-hover:scale-105 '>
+                <img className=' h-full w-full object-contain md:object-contain relative' src={imgPath} />
                 
               </div>
             </Link>

@@ -8,14 +8,21 @@ import ProductSliderCard from '../components/ProductSliderCard'
 import BigItemCard from '../components/BigItemCard'
 import ArticleCard from '@/components/ArticleCard'
 import {AiFillStar} from 'react-icons/ai'
+import { useMediaQuery } from '@mui/material'
 
 
 export default function Home() {
+  const isMobile = useMediaQuery('(max-width: 1028px)');
   return (
-    <div className=' w-full bg-white flex flex-col'>
+    <div className=' w-full bg-white flex flex-col '>
       {/* top image */}
       <div className=' h-[180px] w-full md:h-[300px] relative z-10 '>
-        <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Mobile-November-2.jpg'/>
+        {isMobile &&
+          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Mobile-November-2.jpg'/>
+        }
+        {!isMobile &&
+          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Desktop-November-2.jpg'/>
+        }
       </div>
       {/* product carousel */}
       {/* <div className=' h-56 w-full px-4 pt-6 pb-3 bg-white'>
@@ -74,34 +81,36 @@ export default function Home() {
         
       </div>
       <div className='h-10'/>
-      <div className='w-full h-20 md:h-24 border-[5px] border-mira-border-grey flex items-center justify-center md:col-span-4'>
-          <div className='h-11  w-screen flex items-center justify-center gap-x-[2px]'>
-            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                <AiFillStar color='#ffffff' size='16px'/>
-            </div>
-            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                <AiFillStar color='#ffffff' size='16px'/>
-            </div>
-            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                <AiFillStar color='#ffffff' size='16px'/>
-            </div>
-            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                <AiFillStar color='#ffffff' size='16px'/>
-            </div>
-            <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
-                <AiFillStar color='#ffffff' size='16px'/>
-            </div>
-
-            <div className='flex items-center justify-start pl-2'>
-              <AiFillStar color='#00b67a' size='22px'/>
-              
-              <p className='text-mira-subhead-text-black text-sm  font-bold '>
-                  Trustpilot
-              </p>
-            </div>
-          </div>   
-
+      <div className='px-4'>
+        <div className='w-full h-20 md:h-24 border-[5px] border-mira-border-grey flex items-center justify-center md:col-span-4'>
+            <div className='h-11  w-full flex items-center justify-center gap-x-[2px] '>
+              <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                  <AiFillStar color='#ffffff' size='16px'/>
+              </div>
+              <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                  <AiFillStar color='#ffffff' size='16px'/>
+              </div>
+              <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                  <AiFillStar color='#ffffff' size='16px'/>
+              </div>
+              <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                  <AiFillStar color='#ffffff' size='16px'/>
+              </div>
+              <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>
+                  <AiFillStar color='#ffffff' size='16px'/>
+              </div>
+  
+              <div className='flex items-center justify-start pl-2'>
+                <AiFillStar color='#00b67a' size='22px'/>
+                
+                <p className='text-mira-subhead-text-black text-sm  font-bold '>
+                    Trustpilot
+                </p>
+              </div>
+            </div>   
+  
         </div>
+      </div>
       <div className='px-4 pt-8 flex flex-col gap-y-4'>
         <p className='text-4xl md:text-3xl font-bold tracking-tighter'>MIKIFIT - LEADING THE UK HOME GYM REVOLUTION</p>
         <p className='text-2xl md:text-sm md:font-medium md:tracking-wide pb-6'>

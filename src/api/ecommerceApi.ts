@@ -40,6 +40,20 @@ export const getReviewsByProductId = async(productId: number) => {
     return data
 }
 
+export const postReview = async (token: string, productId: number, userId: number, title: string, body: string, rating: number) => {
+    const reviewObj = {
+        title: title,
+        rating: rating,
+        body: body
+    }
+    const {data} = await eCommerceApi.post(`/review/${productId}/user/${userId}`, reviewObj, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    })
+
+}
+
 export const registerUser = async(firstName: string, lastName: string, email: string, password: string) => {
     const userObj = {
         username: email,

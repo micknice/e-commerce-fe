@@ -94,13 +94,13 @@ const Cart = () => {
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
-            <div className="flex flex-col pb-4">
+            <div className="flex flex-col pb-4 gap-y-4">
                 <div className="h-20 flex justify-center items-center">
                     <p className="text-xl text-mira-black font-bold tracking-tighter">SHOPPING CART</p>
                 </div>
                 
                     {cart.length === 0 &&
-                    <div className='flex flex-col'>
+                    <div className='flex flex-col justify-center items-center'>
                         <p className='text-mira-subhead-text-black'>You have no items in your shopping cart</p>
                         <p className='text-mira-subhead-text-black'>Click here to continue shopping.</p>
                     </div>
@@ -151,7 +151,9 @@ const Cart = () => {
                             </div>
 
                         </div>
-                        <div className='h-auto flex flex-col gap-y-4'>
+                        
+                    </div>
+                    <div className='h-auto flex flex-col gap-y-4'>
                             <p className='text-xs tracking-wide font-light'>Item</p>
                             <div className='h-[1px] bg-mira-grey'></div>
                             {/* checkout item */}
@@ -174,13 +176,12 @@ const Cart = () => {
                                     </div>
                                     <div className='bg-mira-headtext flex flex-row items-center justify-center h-8 px-3 text-white gap-x-4'>
                                         <HiRefresh/>
-                                        <p className='text-white text-sm font-light tracking-wide'>Update Cart</p>
+                                        <p className='text-white text-sm font-light tracking-wide '>Update Cart</p>
                                     </div>
 
                             </div>
 
                         </div>
-                    </div>
                     {/* }  */}
                
             </div>

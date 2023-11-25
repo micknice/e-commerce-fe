@@ -18,7 +18,7 @@ const ArticleCard = ({imgUrl, title}: ArticleProps) => {
                 </div>
                
                 <div className="flex flex-col justify-end  h-full gap-y-2">
-                    <img src={imgUrl} alt="/" className="md:h-48 object-cover pb-1" />
+                    <img src={imgUrl} alt="/" className="md:h-48 xl:h-auto object-cover pb-1" />
                     <div className="border-[2px] border-mira-orange h-9 w-1/3 md:w-1/2 flex justify-center items-center text-mira-orange ">
                         <p className="text-mira-orange tracking-tighter font-semibold text-sm">READ MORE</p>
                         <BiChevronRight height="20px"/>

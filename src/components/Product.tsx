@@ -7,12 +7,21 @@ import BigProductCard from './BigProductCard'
 import Link from 'next/link'
 import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {AiFillStar} from 'react-icons/ai'
+import {addItemsToBasket} from '../api/ecommerceApi'
+import { useCurrentUser } from "@/api/auth/useCurrentUser"
+import { useCartContext } from "@/context/cartContext"
+import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
+import Image from 'next/image'
+import NewReviewWidget from '../components/NewReviewWidget'
+
 
 interface ProductProps {
     product: string
 }
 
 const ProductCategory = ({product}: ProductProps) => {
+    const currentUser = useCurrentUser()
+    const {cartContext, updateCartContext} = useCartContext()
     const starArrayForMap = [0.1, 0.3, 0.5, 0.7, 0.9]
 
     const [imgPath, setImgPath] = useState('')
@@ -28,10 +37,13 @@ const ProductCategory = ({product}: ProductProps) => {
     const [star3, setStar3] = useState(0)
     const [star4, setStar4] = useState(0)
     const [star5, setStar5] = useState(0)
+    const [id, setId] = useState(1)
+    
 
     useEffect(() => {
         const fetchProduct = async() => {
             const id = parseInt(product.split('-')[0])
+            setId(id)
             const productActual = await getProductByProductId(id)
             const imgStr = `${productActual.id -1}-${imgUrlToFilePath(productActual.img)}`
             setImgPath(`/mirafit-images/${imgStr}`)
@@ -60,6 +72,17 @@ const ProductCategory = ({product}: ProductProps) => {
         fetchProduct()
         fetchReviews()
     }, [product])
+
+    const handleAddToCart = async() => {
+        if (currentUser) {
+          const basket = await addItemsToBasket(currentUser.jwt, currentUser.user.id, id)
+          updateCartContext()
+    
+        }
+      }
+      const handleSubmit = async() => {
+        
+    }
     
     return (
         <div className='flex flex-col '>
@@ -76,7 +99,6 @@ const ProductCategory = ({product}: ProductProps) => {
                     <div className='group'>
                         <p className='text-xs text-mira-grey group-hover:text-mira-orange'>{name}</p>
                     </div>
-                
             </div>
             <div>
             {imgPath &&
@@ -140,7 +162,7 @@ const ProductCategory = ({product}: ProductProps) => {
                             <BiChevronDown/>
                         </div>
                     </div>
-                    <div className='h-12 w-52 bg-mira-orange flex items-center justify-center'>
+                    <div className='h-12 w-52 bg-mira-orange flex items-center justify-center' onClick={handleAddToCart}>
                         <p className='text-white text-sm font-bold '> ADD TO CART</p>
                     </div>
 
@@ -188,8 +210,8 @@ const ProductCategory = ({product}: ProductProps) => {
                                             )
                                         } else {
                                             return (
-                                                <div className='h-full w-auto   flex items-center justify-center relative'>
-                                                    <AiFillStar  size='30px' color='#ed9d00' opacity={`${20}%`} key={`st${index}`}/>
+                                                <div className='h-full w-auto   flex items-center justify-center relative' key={`st${index}`}>
+                                                    <AiFillStar  size='30px' color='#ed9d00' opacity={`${20}%`} />
                                                 </div>
                                             )
                                         }
@@ -295,9 +317,9 @@ const ProductCategory = ({product}: ProductProps) => {
                     </div>
                     </div>
                     
-                    {reviews.map((review) => {
+                    {reviews.map((review, index) => {
                         return (
-                            <div className='flex flex-col justify-start items-start w-full gap-y-1'>
+                            <div className='flex flex-col justify-start items-start w-full gap-y-1' key={`rev${index}`}>
                                 <div className='h-[1px] w-full bg-mira-grey'/>
                                 <div className='flex flex-col gap-y-4 w-full'>
                                     <div className='w-full grid grid-cols-3 justify-start items-center'>
@@ -325,8 +347,8 @@ const ProductCategory = ({product}: ProductProps) => {
                                                     )
                                                 } else {
                                                     return (
-                                                        <div className='h-full w-auto   flex items-center justify-center relative'>
-                                                            <AiFillStar  size='20px' color='#ed9d00' opacity={`${20}%`} key={`st${index}`}/>
+                                                        <div className='h-full w-auto   flex items-center justify-center relative' key={`st${index}`}>
+                                                            <AiFillStar  size='20px' color='#ed9d00' opacity={`${20}%`} />
                                                         </div>
                                                     )
                                                 }
@@ -339,36 +361,12 @@ const ProductCategory = ({product}: ProductProps) => {
                         )})
                     }
                     <div className='flex flex-col justify-start items-start w-full gap-y-8'></div>
-                    <div className='w-full bg-gray-200 flex flex-col p-4 gap-y-8'>
-                        <div className='flex flex-col'>
-                            <p className='text-sm font-lighttracking-wide'>YOU'RE REVIEWING:</p>
-                            <p className='text-xl font-semibold tracking-tight'>{name}</p>
-                        </div>
-                        <div className='flex flex-row items-center justify-start gap-x-8 '>
-                            <p className='font-semibold'>Review</p>
-                            <div className='h-auto w-auto flex items-center justify-start gap-x-[6px] '>
-                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
-                                    <AiFillStar className='star-icon' size='18px' />
-                                </div>
-                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
-                                    <AiFillStar className='star-icon' size='18px' />
-                                </div>
-                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
-                                    <AiFillStar className='star-icon' size='18px' />
-                                </div>
-                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
-                                    <AiFillStar className='star-icon' size='18px' />
-                                </div>
-                                <div className='h-auto w-5 text-mira-grey flex items-center justify-center relative'>
-                                    <AiFillStar className='star-icon' size='18px' />
-                                </div>
-                            </div>
-                            <div>
-                                
-                            </div>
-                        </div>
 
-                    </div>
+
+
+                    <NewReviewWidget productName={name} productId={id}/>
+
+                   
                 </div>
             </div>
         </div>
