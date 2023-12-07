@@ -6,6 +6,7 @@ import { useState, useEffect, ChangeEvent } from 'react'
 import {useRouter} from 'next/navigation'
 import {useLogin} from '../api/auth/useLogin'
 import {useCurrentUser} from '../api/auth/useCurrentUser'
+import Link from 'next/link'
 
 
 
@@ -95,7 +96,7 @@ const Login = () => {
                     <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleSubmit}>
                         <p className='text-white text-xs font-medium'>SIGN IN</p>
                     </div>
-                    <p className="text-sm pt-3">Forgot Your Password?</p>
+                    <Link href={`/user/forgotPassword`}><p className="text-sm pt-3">Forgot Your Password?</p></Link>
                     <div className='flex items-center justify-center pt-2'>
                         <p className="text-mira-text-red text-xs">* Required Fields</p>
                     </div>

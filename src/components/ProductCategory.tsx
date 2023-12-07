@@ -217,9 +217,9 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
                     <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
                         {productArr.map((product, index) => {
                                 return(
-                                    <div className='h-[45vh] flex flex-col gap-y-4 ' key={`/prod${index}`}>
+                                    <div className='h-[45vh] w-full flex flex-col gap-y-4  ' key={`/prod${index}`}>
                                         <div className='h-[1px] bg-mira-grey '/>
-                                        <div className='h-full '><BigProductCard product={product} /></div>
+                                        <div className='h-full w-full '><BigProductCard product={product} /></div>
                                     </div>
                                 )
                             })

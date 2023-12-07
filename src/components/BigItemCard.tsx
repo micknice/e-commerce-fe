@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import {getProductsByCategory, getProductsBySubCategoryPaginated,} from '../api/ecommerceApi'
 import {reverseReplacement,  imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
 import Link from 'next/link'
+import { CircularProgress } from '@mui/material';
 
 
 interface BigItemProps {
@@ -11,6 +12,7 @@ interface BigItemProps {
   coverTitle: string
 }
 const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
+  // console.log(subCategory, 'subcat')
 
   const [subCat, setSubCat] = useState('')
   const [category, setCategory] = useState('')
@@ -35,7 +37,8 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
     }
   }, [])
 
-  if (checkSubCat(subCategory)) {
+  if (checkSubCat(subCategory) && category) {
+    // console.log(subCategory, 'subcat')
     return (
       <Link href={`/category/${category}/subCategory/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
@@ -60,8 +63,11 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
           </div>
       </Link>
     )
-  } else {
+  } else if (subCat){
+    
+    console.log(subCategory, 'cat')
     return (
+      
       <Link href={`/category/${subCategory}`}>
         <div className='col-span-1  flex flex-col gap-y-2 h-52 md:h-72'>
             {/* img div */}
@@ -86,6 +92,10 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
     )
     
 
+  } else {
+    return (
+      <div className="flex flex-col justify-center items-center"><CircularProgress /></div>
+    )
   }
 
 

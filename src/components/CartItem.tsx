@@ -70,10 +70,10 @@ const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
                 </div>
             </div>
             <div className='row-span-1 flex flex-row items-center justify-center gap-x-4 pb-4'>
-                <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
+                <div className='bg-mira-headtext flex items-center justify-center h-8 px-3 select-none hover:bg-mira-orange'>
                     <p className='text-white text-sm font-light tracking-wide'>Edit</p>
                 </div>
-                <div className='bg-mira-headtext flex items-center justify-center h-8 px-3' onClick={handleRemoveItem}>
+                <div className='bg-mira-headtext flex items-center justify-center h-8 px-3 select-none hover:bg-mira-orange' onClick={handleRemoveItem}>
                     <p className='text-white text-sm font-light tracking-wide'>Remove Item</p>
                 </div>
             </div>

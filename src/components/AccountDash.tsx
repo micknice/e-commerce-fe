@@ -13,6 +13,7 @@ import {useLogout} from '../api/auth/useLogout'
 import {UserType} from '../api/auth/UserType'
 import { Client, IMessage, StompHeaders } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
+import { activeUrl } from '../../url'
 
 
 const AccountDash = () => {
@@ -28,7 +29,7 @@ const AccountDash = () => {
     const [headers, setHeaders] = useState({})
 
     const connect = () => {
-        const socket = new SockJS('http://localhost:8080/websocket'); // Adjust the URL as needed
+        const socket = new SockJS(`http://${activeUrl}/websocket`); // Adjust the URL as needed
         const headers = {
           Authorization: `Bearer ${currentUser?.jwt}`, // Add your JWT token logic
         };

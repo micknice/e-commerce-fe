@@ -4,7 +4,7 @@ import AcceptedPaymentCluster from './AcceptedPaymentCluster'
 
 const Footer = () => {
     return (
-        <div className='h-full w-full bg-mira-black'>
+        <div className='h-full  bg-mira-black'>
             {/* footer menu */}
             <div className='h-[570px] bg-mira-footer-charcoal flex flex-col items-center'>
                 <div className='py-14 items-center flex flex-col gap-y-5 justify-center'>

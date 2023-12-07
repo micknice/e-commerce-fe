@@ -30,7 +30,7 @@ const Register = () => {
                     {/* {cart.length !== 0 && */}
                     <div className='flex flex-col gap-y-10'>
                         <div className='flex flex-col bg-gray-100 p-4 gap-y-2'>
-                            <p className='text-2xl text-mira-subhead-text-black tracking-wide'>Summary</p>
+                            <p className='text-2xl text-mira-subhead-text-black tracking-wide'>Default Addresses</p>
                             <div className='h-[1px] bg-mira-grey'/>
                             <div className='flex flex-col '>
                                 {/* subtotal */}
@@ -73,64 +73,8 @@ const Register = () => {
                             </div>
 
                         </div>
-                        <div className='h-auto flex flex-col gap-y-4'>
-                            <p className='text-xs tracking-wide font-light'>Item</p>
-                            <div className='h-[1px] bg-mira-grey'></div>
-                            {/* checkout item */}
-                            <div className='grid grid-rows-5 h-[30vh] '>
-                                <div className='h-full row-span-2 flex flex-row justify-start items-center gap-x-4'>
-                                    <img src='/mirafit-images/6-Mirafit-Dual-Handle-Cable-Attachment.jpg' className='h-5/6'/>
-                                    <div className='flex h-2/6 items-start'>
-                                        <p className='text-xs tracking-wide'>Mirafit M1 Preacher Curl Bench</p>
-                                    </div>
-                                   
-
-                                </div>
-                                <div className='row-span-2 grid grid-cols-3'>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Price:</p>
-                                        <p className='text-sm font- tracking-wide'>£129.95</p>
-                                    </div>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Qty:</p>
-                                        <div className='border h-8 w-12 flex justify-center items-center'>
-                                            <p className='text-sm font- tracking-wide'>1</p>
-                                        </div>
-                                    </div>
-                                    <div className='col-span-1 h-full flex flex-col items-center justify-center gap-y-2'>
-                                        <p className='text-sm font-semibold tracking-wide'>Subtotal:</p>
-                                        <p className='text-sm font- tracking-wide'>£129.95</p>
-                                    </div>
-                                </div>
-                                <div className='row-span-1 flex flex-row items-center justify-center gap-x-4 pb-4'>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Edit</p>
-                                    </div>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Remove Item</p>
-                                    </div>
-                                </div>
-                                <div className='h-[1px] bg-mira-grey '/>
-                                
-
-                            </div>
-                            <div className='w-full flex flex-col items-center justify-center gap-y-2 '>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Continue Shopping</p>
-                                    </div>
-                                    <div className='bg-mira-headtext flex items-center justify-center h-8 px-3'>
-                                        <p className='text-white text-sm font-light tracking-wide'>Clear Shopping Cart</p>
-                                    </div>
-                                    <div className='bg-mira-headtext flex flex-row items-center justify-center h-8 px-3 text-white gap-x-4'>
-                                        <HiRefresh/>
-                                        <p className='text-white text-sm font-light tracking-wide'>Update Cart</p>
-                                    </div>
-
-                            </div>
-
-                        </div>
+                       
                     </div>
-                    {/* }  */}
                 
                 
                 
