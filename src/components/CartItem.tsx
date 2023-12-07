@@ -44,7 +44,7 @@ const CartItem = ({product, qty, decrementSubTotalCallback}: CartItemProps) => {
     return (
         <div className='grid grid-rows-5 h-[30vh] '>
             <div className='h-full row-span-2 flex flex-row justify-start items-center gap-x-4'>
-                <img src={imgPath} className='h-5/6'/>
+                <img src={imgPath} className='h-5/6' alt={`${product.name}`}/>
                 <div className='flex h-2/6 items-start'>
                     {product &&
                         <p className='text-xs tracking-wide'>{product.name}</p>

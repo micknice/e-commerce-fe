@@ -42,7 +42,6 @@ const Register = () => {
     }
 
     useEffect(() => {
-        console.log('!!!useeffect')
         if(token) {
             const verifyToken = async() => {
                 console.log('await verify')
@@ -61,7 +60,7 @@ const Register = () => {
             verifyToken()
         }
 
-    }, [])
+    }, [token])
 
 
     return (

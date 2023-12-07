@@ -109,7 +109,7 @@ const AccountDash = () => {
             }
 
         }
-    }, [currentUser, ])
+    }, [currentUser])
 
     const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)

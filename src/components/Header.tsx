@@ -66,7 +66,7 @@ const Header = () => {
         }
       }
       fetchBasket()
-    }, [cartContext])
+    }, [cartContext, currentUser])
 
     return (
 

@@ -53,7 +53,7 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
     return (
         <div className='w-full bg-gray-200 flex flex-col p-4 gap-y-8'>
                         <div className='flex flex-col'>
-                            <p className='text-sm font-lighttracking-wide'>YOU'RE REVIEWING:</p>
+                            <p className='text-sm font-lighttracking-wide'>YOU&aposRE REVIEWING:</p>
                             <p className='text-xl font-semibold tracking-tight'>{productName}</p>
                         </div>
                         <div className='flex flex-row items-center justify-start gap-x-8 '>

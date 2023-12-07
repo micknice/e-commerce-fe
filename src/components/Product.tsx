@@ -100,7 +100,7 @@ const ProductCategory = ({product}: ProductProps) => {
             </div>
             <div>
             {imgPath &&
-                <img className=' h-full w-full object-cover' src={imgPath} />
+                <img className=' h-full w-full object-cover' src={imgPath} alt={`${name}`}/>
             }    
             </div>
             <div className='px-4 flex flex-col justify-center gap-y-3'>

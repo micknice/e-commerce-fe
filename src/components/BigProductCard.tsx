@@ -41,7 +41,7 @@ const BigProductCard = ({product}: BigProductProps) => {
             {/* img div */}
             <Link href={productLinkPath} className=' h-44  w-full row-span-3 group-hover:scale-105 ' >
               <div className=' h-44  w-full row-span-3 group-hover:scale-105 '>
-                <img className=' h-full w-full object-contain md:object-contain relative' src={imgPath} />
+                <img className=' h-full w-full object-contain md:object-contain relative' src={imgPath} alt={`${product.name}`}/>
                 
               </div>
             </Link>

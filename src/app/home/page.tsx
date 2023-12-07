@@ -13,7 +13,7 @@ export default function Home() {
     <div className='h-full w-full bg-white flex flex-col'>
       {/* top image */}
       <div className=' h-[180px] relative z-10 '>
-        <img className=' h-full w-full object-cover' src='https://images.pexels.com/photos/7534178/pexels-photo-7534178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+        <img className=' h-full w-full object-cover' src='https://images.pexels.com/photos/7534178/pexels-photo-7534178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt='/'/>
       </div>
       <div className=' h-56 w-full px-4 pt-6 pb-3 bg-white'>
         <div className=' h-full w-full flex flex-col gap-2'>
@@ -52,14 +52,14 @@ export default function Home() {
         </div>
         <div className=' grid grid-cols-2 gap-x-2 gap-y-5 pt-6 md:grid-cols-4'>
           {/* big item card */}
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
-          <BigItemCard/>
+          <BigItemCard subCategory={'weight-benches'} coverImgPath={'/mirafit-images/61-Mirafit-M20-Flat-Weight-Bench-Orange.jpg'} coverTitle={"Weight Benches"}/>
+          <BigItemCard subCategory={'weights-and-bars'} coverImgPath={"/mirafit-images/81-black-and-orange-Mirafit-M3-20kg-Olympic-Barbell.jpg"} coverTitle={"Weights & Bars"}/>
+          <BigItemCard subCategory={'power-cages-racks'} coverImgPath={"/mirafit-images/27-Black-Mirafit-M100-Power-Rack-and-Cable-System_1.jpg"} coverTitle={"Power Racks"}/>
+          <BigItemCard subCategory={'kettlebells'} coverImgPath={"/mirafit-images/255-Set-of-Mirafit-Gen-II-Competition-Kettlebells-with-Storage-Rack.jpg"} coverTitle={"Kettlebells"}/>
+          <BigItemCard subCategory={'medicine-balls'} coverImgPath={"/mirafit-images/111-Mirafit-Stitched-Medicine-Wall-Ball-7kg_1.jpg"} coverTitle={"Medicine Balls"}/>
+          <BigItemCard subCategory={'squat-racks-stands'} coverImgPath={"/mirafit-images/54-mirafit-m130-squat-rack-with-adjustable-spotters.jpg"} coverTitle={"Squat Racks"}/>
+          <BigItemCard subCategory={'pilates-yoga'} coverImgPath={"/mirafit-images/194-Mirafit-6mm-Cork-Natural-Yoga-Mat-Rolled-Up.jpg"} coverTitle={"Pilates & Yoga"}/>
+          <BigItemCard subCategory={'boxing-equipment'} coverImgPath={"/mirafit-images/157-Mirafit-PU-Boxing-Gloves-12oz_2.jpg"} coverTitle={"Boxing"}/>
         </div>
 
       </div>
@@ -68,10 +68,10 @@ export default function Home() {
         <div className='h'>
           <p className='text-4xl font-bold'>LATEST UPDATES</p>
         </div>
-        <ArticleCard/>
-        <ArticleCard/>
-        <ArticleCard/>
-        <ArticleCard/>
+        <ArticleCard imgUrl='/blog-images/Muscle-Up-on-Mirafit-M4-Half-Rack-1024x683.jpg' title='25 CRAZY FITNESS WORLD RECORDS'/>
+        <ArticleCard imgUrl='/blog-images/Sled-Push-using-Mirafit-M3-Weight-Sled-1024x683.jpg' title='HOW STRENGTH TRAINING IMPROVES YOUR RUNNING SPEED'/>
+        <ArticleCard imgUrl='/blog-images/Mirafit-Powerlifting-Bench-vs-Flat-Bench-1024x683.jpg' title='POWERLIFTING BENCH VS FLAT WEIGHT BENCH'/>
+        <ArticleCard imgUrl='/blog-images/Mirafit-kettlebell-ballistics-vs-grinds-1024x683.jpg' title='KETTLEBELL BALLISTICS VS KETTLEBELL GRINDS'/>
         <div className='w-full h-20 border-[5px] border-mira-border-grey flex items-center justify-center '>
         <div className='h-11 w-screen flex items-center justify-center gap-x-[2px]'>
                 <div className='h-6 w-6 bg-mira-green flex items-center justify-center'>

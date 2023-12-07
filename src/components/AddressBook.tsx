@@ -67,7 +67,7 @@ const Register = () => {
                                         <p className='text-white text-md font-semibold'>GO TO CHECKOUT</p>
                                     </div>
                                     <div className='h-12 w-full bg-paypal-blue flex justify-center items-center'>
-                                        <img src='/assets/paypal.png' className='h-5'></img>
+                                        <img src='/assets/paypal.png' className='h-5' alt='paypal'></img>
                                     </div>
                                 </div>
                             </div>
