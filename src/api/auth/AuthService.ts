@@ -1,11 +1,13 @@
 import axios, {AxiosInstance} from 'axios';
 import FormData from 'form-data';
 import {UserType} from '../auth/UserType' 
+import { activeUrl } from '../../../url'
 
 
 const eCommerceApi = axios.create({
     // baseURL: process.env.NEXT_PUBLIC_NCNEWS_API_URL,
-    baseURL: 'http://localhost:8080',
+    // baseURL: 'http://localhost:8080',
+    baseURL: `http://${activeUrl}`,
     headers: {
                   'Access-Control-Allow-Origin': '*',
                   'Access-Control-Allow-Headers': '*',
@@ -52,6 +54,6 @@ export class AuthService {
     
 }
 
-const authService = new AuthService('http://localhost:8080')
+const authService = new AuthService('http://63.32.109.36')
 
 export default authService

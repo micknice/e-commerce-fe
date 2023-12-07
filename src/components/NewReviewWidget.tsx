@@ -41,9 +41,10 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
 
 
     const handleSubmit = async() => {
+        console.log('handle!!!')
         if (currentUser) {
             if (review.length > 10 && summary.length > 1 && rating > 0) {
-               const res = await postReview(currentUser.jwt, productId, currentUser.user.id, summary, review, rating) 
+               const res = await postReview(currentUser.jwt, productId, currentUser.user.id, summary, review, rating, nickName) 
             }
 
         }
@@ -106,8 +107,8 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
                                 </div>
                                 <img src='/assets/RecaptchaLogo.svg.png' alt='/'/>
                             </div>
-                            <div className='bg-mira-orange h-11 w-full flex justify-center items-center' onClick={handleSubmit}>
-                                <p className='text-white text-xs font-medium'>SIGN IN</p>
+                            <div className='bg-mira-orange h-11 w-full flex justify-center items-center' onClick={()=> {handleSubmit()}}>
+                                <p className='text-white text-sm font-bold'>SUBMIT REVIEW</p>
                             </div>
                         </div>
 

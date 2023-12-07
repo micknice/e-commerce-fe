@@ -1,7 +1,9 @@
 import axios, {AxiosInstance} from 'axios';
+import { activeUrl } from '../../url'
 
 const eCommerceApi = axios.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: `http://${activeUrl}`,
+    // baseURL: 'http://mikifit-be.onrender.com',
     headers: {
                   
                 }
@@ -40,8 +42,9 @@ export const getReviewsByProductId = async(productId: number) => {
     return data
 }
 
-export const postReview = async (token: string, productId: number, userId: number, title: string, body: string, rating: number) => {
+export const postReview = async (token: string, productId: number, userId: number, title: string, body: string, rating: number, nickname: string) => {
     const reviewObj = {
+        author: nickname,
         title: title,
         rating: rating,
         body: body
@@ -117,6 +120,12 @@ export const clearBasket = async(token: string, userId: number) => {
             Authorization: `Bearer ${token}`
         }
     })
+    return data
+}
+
+export const forgotPassword = async(email: string) => {
+    const reqObj = {email: email}
+    const {data} = await eCommerceApi.post(`/auth/forgot`, reqObj)
     return data
 }
 
