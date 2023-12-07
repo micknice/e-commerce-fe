@@ -3,7 +3,7 @@ import Cart from '../../../components/Cart'
 import CartDesktop from '../../../components/CartDesktop'
 import { useMediaQuery } from '@mui/material'
 
-const register = () => {
+const Register = () => {
     const isMobile = useMediaQuery('(max-width: 768px)');
     return (
         <>
@@ -18,4 +18,4 @@ const register = () => {
     )
 }
 
-export default register
+export default Register
