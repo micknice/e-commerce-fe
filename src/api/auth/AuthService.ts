@@ -5,8 +5,6 @@ import { activeUrl } from '../../../url'
 
 
 const eCommerceApi = axios.create({
-    // baseURL: process.env.NEXT_PUBLIC_NCNEWS_API_URL,
-    // baseURL: 'http://localhost:8080',
     baseURL: `http://${activeUrl}`,
     headers: {
                   'Access-Control-Allow-Origin': '*',

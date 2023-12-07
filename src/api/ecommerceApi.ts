@@ -3,7 +3,6 @@ import { activeUrl } from '../../url'
 
 const eCommerceApi = axios.create({
     baseURL: `http://${activeUrl}`,
-    // baseURL: 'http://mikifit-be.onrender.com',
     headers: {
                   
                 }
