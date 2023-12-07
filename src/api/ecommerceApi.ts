@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from 'axios';
 import { activeUrl } from '../../url'
 
 const eCommerceApi = axios.create({
-    baseURL: `http://${activeUrl}`,
+    baseURL: `https://${activeUrl}`,
     headers: {
                   
                 }
