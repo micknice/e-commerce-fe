@@ -5,13 +5,10 @@ import { getProductByProductId, getReviewsByProductId } from '../api/ecommerceAp
 import { useEffect, useState } from 'react'
 import BigProductCard from './BigProductCard'
 import Link from 'next/link'
-import {ImArrowUp, ImArrowDown} from 'react-icons/im'
 import {AiFillStar} from 'react-icons/ai'
 import {addItemsToBasket} from '../api/ecommerceApi'
 import { useCurrentUser } from "@/api/auth/useCurrentUser"
 import { useCartContext } from "@/context/cartContext"
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import Image from 'next/image'
 import NewReviewWidget from '../components/NewReviewWidget'
 
 
