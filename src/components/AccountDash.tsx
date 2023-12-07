@@ -29,9 +29,9 @@ const AccountDash = () => {
     const [headers, setHeaders] = useState({})
 
     const connect = () => {
-        const socket = new SockJS(`http://${activeUrl}/websocket`); // Adjust the URL as needed
+        const socket = new SockJS(`http://${activeUrl}/websocket`); 
         const headers = {
-          Authorization: `Bearer ${currentUser?.jwt}`, // Add your JWT token logic
+          Authorization: `Bearer ${currentUser?.jwt}`, 
         };
         const stomp = new Client({
           webSocketFactory: () => socket,
