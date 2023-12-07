@@ -53,7 +53,7 @@ const ProductCategory = ({category, subCategory}: ProductCategoryProps) => {
         }
         fetchProducts()
 
-    }, [category, paginationIndex, order, sortByQuery])
+    }, [category, paginationIndex, order, sortByQuery, itemsPerPage, subCategory])
 
 
     const handlePaginationSelect = (index: number) => {

@@ -23,7 +23,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   useEffect(() => {
     updateCartContext();
-  }, [currentUser]);
+  }, [currentUser, updateCartContext]);
 
   return (
     <CartContext.Provider value={{ cartContext: cartContext, updateCartContext: updateCartContext }}>

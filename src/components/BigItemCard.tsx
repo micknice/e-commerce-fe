@@ -35,7 +35,7 @@ const BigItemCard = ({subCategory, coverImgPath, coverTitle}: BigItemProps) => {
       }
       fetchSubCat()
     }
-  }, [])
+  }, [subCategory])
 
   if (checkSubCat(subCategory) && category) {
     // console.log(subCategory, 'subcat')

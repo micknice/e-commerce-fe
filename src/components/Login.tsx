@@ -36,10 +36,7 @@ const Login = () => {
             router.push('/user/account/dashboard')
         }
     }
-    useEffect(()=> {
-        console.log(currentUser, 'currentUser')
-
-    },[])
+    
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">

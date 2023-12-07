@@ -18,10 +18,10 @@ export default function Home() {
       {/* top image */}
       <div className=' h-[180px] w-full md:h-[300px] relative z-10 '>
         {isMobile &&
-          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Mobile-November-2.jpg'/>
+          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Mobile-November-2.jpg' alt='/'/>
         }
         {!isMobile &&
-          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Desktop-November-2.jpg'/>
+          <img className='h-full w-full object-cover absolute ' src='/assets/MF-Website-New-Offers-Banner-Desktop-November-2.jpg' alt='/'/>
         }
       </div>
       {/* product carousel */}
