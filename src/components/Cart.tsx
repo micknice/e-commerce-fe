@@ -46,7 +46,7 @@ const Cart = () => {
             fetchBasket();
         }
     
-    }, [subTotal, updateCartContext]);
+    }, [subTotal]);
     
     useEffect(() => {
         console.log("!!!!!!!!!!")
