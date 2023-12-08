@@ -17,7 +17,6 @@ export const reverseReplacement = (inputString) => {
 }
 
 export const extractTextBetweenSuffixAndLastSlash = (inputString) => {
-  console.log("!!!!", inputString)
   const lastIndex = inputString.lastIndexOf('/');
 
   if (lastIndex !== -1) {
@@ -28,7 +27,6 @@ export const extractTextBetweenSuffixAndLastSlash = (inputString) => {
 }
 
 export const imgUrlToFilePath = (url) => {
-  console.log('img url to filepath')
   const extract = extractTextBetweenSuffixAndLastSlash(url)
   return replaceSpacesAndAmpersands(extract)
 }
