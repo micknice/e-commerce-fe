@@ -2,7 +2,7 @@ import axios, {AxiosInstance} from 'axios';
 import { activeUrl } from '../../url'
 
 const eCommerceApi = axios.create({
-    baseURL: `https://${activeUrl}`,
+    baseURL: `${activeUrl}`,
     headers: {
                   
                 }
@@ -67,7 +67,11 @@ export const registerUser = async(firstName: string, lastName: string, email: st
     }
     const reqObj = JSON.stringify(userObj)
 
-    const response = await eCommerceApi.post(`/auth/register`, reqObj)
+    const response = await eCommerceApi.post(`/auth/register`, reqObj, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
     return response
 }
 

@@ -35,6 +35,7 @@ const Register = () => {
     const handleSubmit = async() => {
         console.log(' submit')
         if (firstName && lastName && email && password) {
+            console.log(firstName, lastName, email, password)
             console.log('condition passed')
             const response = await registerUser(firstName, lastName, email, password)
             if (response.status === 409) {

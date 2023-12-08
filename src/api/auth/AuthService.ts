@@ -5,7 +5,7 @@ import { activeUrl } from '../../../url'
 
 
 const eCommerceApi = axios.create({
-    baseURL: `https://${activeUrl}`,
+    baseURL: `${activeUrl}`,
     headers: {
                   'Access-Control-Allow-Origin': '*',
                   'Access-Control-Allow-Headers': '*',
@@ -52,6 +52,6 @@ export class AuthService {
     
 }
 
-const authService = new AuthService(`https://${activeUrl}`)
+const authService = new AuthService(`${activeUrl}`)
 
 export default authService

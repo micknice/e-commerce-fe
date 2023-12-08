@@ -43,6 +43,7 @@ const Register = () => {
 
     useEffect(() => {
         if(token) {
+            console.log('token confirmed')
             const verifyToken = async() => {
                 console.log('await verify')
                 const response = await verifyUser(token)
@@ -62,7 +63,10 @@ const Register = () => {
 
     }, [token])
 
+    if (!token) {
+        
 
+    }
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">
