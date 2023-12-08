@@ -78,7 +78,7 @@ const Login = () => {
                         <input type="checkbox" className="h-3 w-3"></input>
                         <p className="text-sm">Remember Me.</p>
                     </div>
-                    <div className="h-16 w-3/4 grid grid-cols-4 shadow-lg border-gray-100 border-2">
+                    <div className="h-16 w-3/4 grid grid-cols-4 md:flex  md:w-1/2 shadow-lg border-gray-100 border-2">
                         <div className="bg-blue-500 col-span-3 flex flex-col items-start justify-center px-4 gap-y-1">
                             <p className="text-white text-sm">protected by reCAPTCHA</p>
                             <div className="flex gap-x-2">
@@ -87,7 +87,7 @@ const Login = () => {
                                 <p className="text-white text-xs">Terms</p>
                             </div>
                         </div>
-                        <Image src={RecaptchaImg} alt='/'/>
+                        <Image src={RecaptchaImg} alt='/' className='md:h-16 md:w-16'/>
                     </div>
                     <div className=''/>
                     <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleSubmit}>
@@ -101,7 +101,8 @@ const Login = () => {
                 
                
             </div>
-            <div className='pt-9'>
+            <div className='pt-9 '>
+                <div className='md:h-[60px]'></div>
                 <p className="text-xl text-mira-black font-semibold tracking-widest">New Customers</p>
                 <div className="h-3"/>
                 <div className="h-[1px] bg-gray-200"/>

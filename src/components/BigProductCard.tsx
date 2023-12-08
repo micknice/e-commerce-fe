@@ -35,7 +35,7 @@ const BigProductCard = ({product}: BigProductProps) => {
       const basket = await addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
       updateCartContext()
     } else {
-      router.push('/user/register', { scroll: false })
+      router.push('/user/login', { scroll: false })
 
     }
   }
