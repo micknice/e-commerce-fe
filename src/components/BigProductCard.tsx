@@ -5,11 +5,13 @@ import Link from 'next/link'
 import {addItemsToBasket} from '../api/ecommerceApi'
 import { useCurrentUser } from "@/api/auth/useCurrentUser"
 import { useCartContext } from "@/context/cartContext"
+import { useRouter } from 'next/navigation'
 
 interface BigProductProps {
   product: any
 }
 const BigProductCard = ({product}: BigProductProps) => {
+  const router = useRouter()
   const {cartContext, updateCartContext} = useCartContext()
 
   const currentUser = useCurrentUser()
@@ -32,6 +34,8 @@ const BigProductCard = ({product}: BigProductProps) => {
     if (currentUser) {
       const basket = await addItemsToBasket(currentUser.jwt, currentUser.user.id, product.id)
       updateCartContext()
+    } else {
+      router.push('/user/register', { scroll: false })
 
     }
   }
