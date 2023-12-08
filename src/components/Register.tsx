@@ -119,7 +119,7 @@ const Register = () => {
                         <Image src={RecaptchaImg} alt='/' className='md:h-16 md:w-16'/>
                     </div>
                     <div className=''/>
-                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleSubmit}>
+                    <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center hover:bg-mira-black' onClick={handleSubmit}>
                         <p className='text-white text-xs font-medium'>SIGN UP</p>
                     </div>
                     <div className='h-5'/>                    
