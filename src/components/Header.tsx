@@ -61,6 +61,7 @@ const Header = () => {
     useEffect(() => {
       const fetchBasket = async() => {
         if (currentUser){
+          console.log(currentUser)
           const basket = await getBasket(currentUser.jwt, currentUser.user.id)
           setCart(basket)
         }
