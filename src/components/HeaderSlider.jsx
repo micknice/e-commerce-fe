@@ -1,10 +1,6 @@
 "use client"
-import React, { useEffect, useState } from 'react';
-import { Carousel } from 'flowbite-react';
+// import React, { useEffect, useState } from 'react';
 import {AiFillStar} from 'react-icons/ai'
-import {TbTruckDelivery} from 'react-icons/tb'
-import {FaPaypal} from 'react-icons/fa'
-import {LiaCoinsSolid} from 'react-icons/lia'
    
 const HeaderSlider = () => {
     return (

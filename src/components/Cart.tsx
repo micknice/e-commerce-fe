@@ -1,10 +1,9 @@
 'use client'
-import {useState, useEffect, ChangeEvent} from 'react'
+import {useState, useEffect } from 'react'
 import { getBasket, addItemsToBasket, getProductByProductId,  clearBasket} from '../api/ecommerceApi'
 import {useRouter, useSearchParams} from 'next/navigation'
 import {HiRefresh} from 'react-icons/hi'
-import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
-import {UserType} from '../api/auth/UserType'
+import {getCurrentUser} from '../api/auth/useCurrentUser'
 import CartItem from './CartItem'
 import {countOccurrences} from '../../utils/utils'
 import Link from 'next/link'
@@ -31,7 +30,6 @@ const Cart = () => {
     const [cartItemChange, setCartItemChange] = useState(false)
 
     useEffect(() => {
-        console.log("!!!!!!!!!!")
         const user = getCurrentUser();
     
         const fetchBasket = async () => {
@@ -49,7 +47,6 @@ const Cart = () => {
     }, [subTotal]);
     
     useEffect(() => {
-        console.log("!!!!!!!!!!")
         const user = getCurrentUser();
     
         const fetchProducts = async () => {

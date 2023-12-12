@@ -10,7 +10,7 @@ import { useCurrentUser } from "@/api/auth/useCurrentUser"
 import { useCartContext } from "@/context/cartContext"
 import NewReviewWidget from '../components/NewReviewWidget'
 import NewReviewWidgetLarge from '../components/NewReviewWidgetLarge'
-import { useMediaQuery } from '@mui/material'
+import  useMediaQuery  from '@mui/material/useMediaQuery'
 import RatingsBarsWidget from './RatingsBarsWidget'
 import RatingsStarsWidget from './RatingsStarsWidget'
 import RatingsStarsWidgetLarge from './RatingsStarsWidgetLarge'

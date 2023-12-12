@@ -1,6 +1,4 @@
 import axios, {AxiosInstance} from 'axios';
-import FormData from 'form-data';
-import {UserType} from '../auth/UserType' 
 import { activeUrl } from '../../../url'
 
 
@@ -13,8 +11,6 @@ const eCommerceApi = axios.create({
                   'Content-Type': 'application/json; charset=UTF-8'
                 }
 });
-
-
 
 export class AuthService {
     protected readonly instance: AxiosInstance;

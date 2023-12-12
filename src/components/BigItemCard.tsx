@@ -1,6 +1,3 @@
-import { useEffect, useState } from "react"
-import {getProductsByCategory, getProductsBySubCategoryPaginated,} from '../api/ecommerceApi'
-import {reverseReplacement,  imgUrlToFilePath, checkSubCat, getSubCatShort, getCatShort} from '../../utils/utils'
 import Link from 'next/link'
 import {frontPageUrlLookup} from '../../utils/frontPageUrlLookup'
 

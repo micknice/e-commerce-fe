@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import {useState, useEffect, ChangeEvent} from 'react'
+import {useState, ChangeEvent} from 'react'
 import {registerUser} from '../api/ecommerceApi'
 import {useRouter} from 'next/navigation'
 
@@ -17,26 +17,20 @@ const Register = () => {
     const [password, setPassword] = useState('')
 
     const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setFirstName(e.target.value)
     }
     const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setLastName(e.target.value)
     }
     const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setEmail(e.target.value)
     }
     const handlePasswordNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setPassword(e.target.value)
     }
     const handleSubmit = async() => {
-        console.log(' submit')
         if (firstName && lastName && email && password) {
             console.log(firstName, lastName, email, password)
-            console.log('condition passed')
             const response = await registerUser(firstName, lastName, email, password)
             if (response.status === 409) {
                 console.log('CONFLICT - USER ALREADY EXISTS WITH THIS EMAIL')

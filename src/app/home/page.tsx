@@ -1,8 +1,3 @@
-import Image from 'next/image'
-import {BiSearch, BiCartAlt} from 'react-icons/bi'
-import {RiMenu2Fill, RiUser3Fill} from 'react-icons/ri'
-import SpaceTimeLogo from '../../public/assets/spacetime-logo.png'
-import HeaderSlider from '../../components/HeaderSlider'
 import ProductSliderCard from '../../components/ProductSliderCard'
 import BigItemCard from '../../components/BigItemCard'
 import ArticleCard from '@/components/ArticleCard'

@@ -1,7 +1,4 @@
 'use client'
-import Image from 'next/image'
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import {GiCheckMark} from 'react-icons/gi'
 import {TbTruckDelivery, TbLogout2} from 'react-icons/tb'
 import {AiOutlineHeart} from 'react-icons/ai'
 import {FaRegAddressBook} from 'react-icons/fa'
@@ -11,7 +8,7 @@ import {useRouter} from 'next/navigation'
 import {useCurrentUser} from '../api/auth/useCurrentUser'
 import {useLogout} from '../api/auth/useLogout'
 import {UserType} from '../api/auth/UserType'
-import { Client, IMessage, StompHeaders } from '@stomp/stompjs';
+import { Client } from '@stomp/stompjs';
 import SockJS from 'sockjs-client';
 import { activeUrl } from '../../url'
 

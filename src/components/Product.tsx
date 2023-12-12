@@ -9,7 +9,7 @@ import {AiFillStar} from 'react-icons/ai'
 import {addItemsToBasket} from '../api/ecommerceApi'
 import { useCurrentUser } from "@/api/auth/useCurrentUser"
 import { useCartContext } from "@/context/cartContext"
-import { useMediaQuery } from '@mui/material'
+import  useMediaQuery  from '@mui/material/useMediaQuery'
 import ReviewsStarsBarsWidget from './ReviewsStarsBarsWidget'
 
 
@@ -57,7 +57,6 @@ const ProductCategory = ({product}: ProductProps) => {
         const fetchReviews = async() => {
             const id = parseInt(product.split('-')[0])
             const reviewsArr = await getReviewsByProductId(id)
-            console.log(reviewsArr, '!!!!!!!!!!')
             setReviews(reviewsArr)
             const ratings = reviewsArr.map((x:any) => x = Math.round(x.rating * 5) / 5)
             const ave = ratings.reduce((acc:number, curr:number) =>  { return acc + curr}, 0) / 5

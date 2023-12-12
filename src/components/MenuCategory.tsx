@@ -2,7 +2,7 @@ import {BiPlus, BiMinus} from 'react-icons/bi'
 import {useState} from 'react'
 import MenuSubCategory from './MenuSubCategory'
 import Link from 'next/link'
-import {getCatShort, reverseCatLookup} from '../../utils/utils'
+import {reverseCatLookup} from '../../utils/utils'
 
 interface MenuCategoryProps {
     category: string

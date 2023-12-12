@@ -1,7 +1,7 @@
 "use client"
 import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { useCurrentUser } from '@/api/auth/useCurrentUser';
-import { getBasket, getProductByProductId } from '../api/ecommerceApi';
+import { getBasket} from '../api/ecommerceApi';
 
 interface CartContextProps {
   cartContext: any[]; // Adjust the type based on your actual cart item structure
@@ -12,7 +12,6 @@ const CartContext = createContext<CartContextProps | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartContext, setCartContext] = useState([]);
-  const [cartTotalContext, setCartTotalContext] = useState(0)
   const currentUser = useCurrentUser();
 
   const updateCartContext = async () => {

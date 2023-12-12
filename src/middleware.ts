@@ -2,7 +2,6 @@ import { NextResponse } from "next/server"
 import { NextRequest } from "next/server"
 import {protectedRoutes, authRoutes} from './routes/routes'
 // const authRoutes = ["/login"]
-import {useCurrentUser, getCurrentUser} from './api/auth/useCurrentUser'
 
 
 export default function middleware(request: NextRequest) {

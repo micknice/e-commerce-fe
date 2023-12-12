@@ -1,10 +1,6 @@
 'use client'
-import Image from 'next/image'
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import {useState, useEffect, ChangeEvent} from 'react'
-import {registerUser, verifyUser} from '../api/ecommerceApi'
-import {useRouter, useSearchParams} from 'next/navigation'
-import {HiRefresh} from 'react-icons/hi'
+import { useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 
 const Register = () => {
