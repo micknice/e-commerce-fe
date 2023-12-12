@@ -134,12 +134,12 @@ const ReviewsStarsBarsWidget = ({aveRating, reviews, star5, star4, star3, star2,
                     </div>
                     {reviews.map((review, index) => {
                         return (
-                            <div className='w-full'>
+                            <div className='w-full' key={`rev${index}`}>
                                 {isMobile &&
-                                    <ReviewCard review={review} index={index} key={`rev${index}`}/>
+                                    <ReviewCard review={review} index={index} />
                                 }
                                 {!isMobile &&
-                                    <ReviewCardLarge review={review} index={index} key={`rev${index}`}/>
+                                    <ReviewCardLarge review={review} index={index} />
                                 }
                             </div>
                         )})
