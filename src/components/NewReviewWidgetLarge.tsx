@@ -39,24 +39,22 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
 
     }
 
-
     const handleSubmit = async() => {
         console.log('handle!!!')
         if (currentUser) {
             if (review.length > 10 && summary.length > 1 && rating > 0) {
                const res = await postReview(currentUser.jwt, productId, currentUser.user.id, summary, review, rating, nickName) 
             }
-
         }
-
     }
+    
     return (
-        <div className='w-full md:w-1/3 bg-gray-200 flex flex-col p-4 gap-y-8'>
+        <div className='w-full md:w-1/3 bg-gray-200 flex flex-col p-4 gap-y-8 '>
             <div className='flex flex-col'>
                 <p className='text-sm font-lighttracking-wide'>{`YOU'RE REVIEWING:`}</p>
                 <p className='text-xl font-semibold tracking-tight'>{productName}</p>
             </div>
-            <div className='flex flex-row items-center justify-start gap-x-8 '>
+            <div className='flex flex-row items-center justify-start gap-x-8 outlin'>
                 <p className='font-semibold'>Review</p>
                 <div className='h-auto w-auto flex items-center justify-start gap-x-[6px] '>
                     {stars.map((star, index) => {
@@ -91,7 +89,7 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
                 <p>Review</p>
                 <input className='border border-grey-400 h-20' type="text" onChange={(e) => {handleReviewChange(e)}}></input>
             </div>
-            <div className='flex flex-col gap-y-3 '>
+            <div className='flex flex-col gap-y-3'>
                 <div className="h-16 w-3/4 grid grid-cols-4 shadow-lg border-gray-300 border-2">
                     <div className="bg-blue-500 col-span-3 flex flex-col items-start justify-center px-4 gap-y-1">
                         <p className="text-white text-sm">protected by reCAPTCHA</p>

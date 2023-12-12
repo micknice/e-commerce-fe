@@ -53,24 +53,24 @@ const BigProductCard = ({product}: BigProductProps) => {
             <div className="row-span-2 grid grid-rows-5">
               <Link href={productLinkPath} className="flex flex-col row-span-2 ">
                 <div className="flex flex-col row-span-2 ">
-                    <p className='text-mira-headtext text-sm  tracking-tighter text-center group-hover:scale-105 group-hover:tracking-tight group-hover:font-semibold hover:text-mira-orange'>{product.name}</p>
+                    <p className='text-mira-headtext text-sm md:text-lg  tracking-tighter text-center group-hover:scale-105 group-hover:tracking-tight group-hover:font-semibold hover:text-mira-orange'>{product.name}</p>
                 </div>
               </Link>
               <Link href={productLinkPath} className="flex flex-col row-span-1 justify-end ">
                 <div className="flex flex-col row-span-1 justify-end ">
-                    <p className='text-sm  tracking-tighter text-center text-mira-orange group-hover:scale-105 group-hover:font-semibold'>{`£${product.price}`}</p>
+                    <p className='text-sm md:text-lg  tracking-tighter text-center text-mira-orange group-hover:scale-105 group-hover:font-semibold'>{`£${product.price}`}</p>
                 </div>
               </Link>
 
               <div className="flex items-end justify-center w-full row-span-2">
                 {product.inventory.quantity > 0 &&
                   <div className="flex items-center justify-center bg-mira-orange hover:bg-mira-black h-10 w-2/3 group-hover:scale-105" onClick={handleAddToCart}>
-                      <p className="text-white text-sm font-bold ">ADD TO CART</p>
+                      <p className="text-white text-sm md:text-md font-bold pointer-events-none">ADD TO CART</p>
                   </div>
                 }
                 {product.inventory.quantity === 0 &&
                   <div className="flex items-center justify-center h-10 w-2/3 ">
-                      <p className="text-mira-grey text-sm font-medium group-hover:scale-105 group-hover:font-semibold">Out of stock</p>
+                      <p className="text-mira-grey text-sm md:text-lg font-medium group-hover:scale-105 group-hover:font-semibold ">Out of stock</p>
                   </div>
                 }
               </div>

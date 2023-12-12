@@ -45,16 +45,15 @@ const Header = () => {
   const pathname = usePathname()
   const isMobile = useMediaQuery('(max-width: 1280px)') 
 
-    // const modPaths = '/checkout/cart' 
     const modPaths = '/checkout/cart' 
     const {cartContext, updateCartContext} = useCartContext()
 
     const currentUser = useCurrentUser()
     const [mainMenuOpen, setMainMenuOpen] = useState(false)
     const [cart, setCart] = useState([])
+    console.log(cart, 'cart')
 
     const handleMainMenuClick = () => {
-      console.log('!!!!!!PPPP')
       setMainMenuOpen(!mainMenuOpen);
     }
 
@@ -111,18 +110,26 @@ const Header = () => {
             <div className='col-span-2'></div>
             }
             <div className=' col-span-2 flex items-center justify-center relative pt-4'>
-              <div className='flex flex-row gap-x-2 items-end'>
+              <div className='flex flex-row gap-x-2 md:gap-x-6 items-center'>
                 <Link href={'/user/login'}>
                   <RiUser3Fill color='white' size='22px' />
                 </Link>
-                {modPaths !== pathname &&
+                {modPaths !== pathname && isMobile &&
 
                   <Link href={'/checkout/cart'}>
                     <BiCartAlt color='white' size='20px'/>
                   </Link>
                 }
+                {modPaths !== pathname && !isMobile &&
+
+                  <div className='bg-mira-orange h-12 w-36 flex items-center justify-start p-2'>
+                    <Link href={'/checkout/cart'}>
+                      <BiCartAlt color='black' size='24px'/>
+                    </Link>
+                  </div>
+                }
               </div>
-              {modPaths !== pathname &&
+              {modPaths !== pathname && isMobile &&
 
                 <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
                   <p className='text-white text-sm'>{cart.length}</p>

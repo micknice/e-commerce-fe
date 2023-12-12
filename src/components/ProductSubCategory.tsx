@@ -8,16 +8,13 @@ interface ProductSubCategoryProps {
 
 
 const ProductSubCategory = ({subCategory}: ProductSubCategoryProps) => {
-
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 px-4">
             <div className="flex flex-col">
                 <div className="h-20 flex justify-center items-center">
                     {subCategory &&
                         <p className="text-2xl text-mira-black font-bold tracking-tighter">{getSubCatShort(subCategory)}</p>
-
                     }
-
                 </div>
                 
                 <div className='h-4'/>
