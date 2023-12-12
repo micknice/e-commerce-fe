@@ -1,8 +1,7 @@
 'use client'
 import Image from 'next/image'
 import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import {GiCheckMark} from 'react-icons/gi'
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, ChangeEvent } from 'react'
 import {useRouter} from 'next/navigation'
 import {useLogin} from '../api/auth/useLogin'
 import {useCurrentUser} from '../api/auth/useCurrentUser'
@@ -19,11 +18,9 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setEmail(e.target.value)
     }
     const handlePasswordChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setPassword(e.target.value)
     }
     const handleGoToRegister = async() => {
@@ -47,7 +44,7 @@ const Login = () => {
                 {/* <div className='bg-mira-sage h-16 w-full flex p-3 gap-x-3 '>
                     <GiCheckMark size='20px'/>
                     <div className='flex items-start'>
-                        <p className='text-xs tracking-wide'>If there is an account associated with airforce2high@hotmail.co.uk you will receive an email with a link to reset your password.</p>
+                        <p className='text-xs tracking-wide'>If there is an account associated with  you will receive an email with a link to reset your password.</p>
                     </div>
                 </div> */}
                 <div className='h-4'/>

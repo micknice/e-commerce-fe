@@ -10,7 +10,7 @@ import { useCurrentUser } from '@/api/auth/useCurrentUser'
 import {getBasket, getProductByProductId} from "../api/ecommerceApi"
 import { useCartContext } from '@/context/cartContext'
 import { usePathname } from 'next/navigation'
-import { useMediaQuery } from '@mui/material'
+import useMediaQuery  from '@mui/material/useMediaQuery'
 
 
 

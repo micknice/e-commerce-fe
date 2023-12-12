@@ -1,8 +1,8 @@
 "use client"
 import {useState, useEffect} from 'react'
 import {imgUrlToFilePath} from '../../utils/utils'
-import {registerUser, verifyUser, getBasket, addItemsToBasket, getProductByProductId, removeItemFromBasket} from '../api/ecommerceApi'
-import {useCurrentUser, getCurrentUser} from '../api/auth/useCurrentUser'
+import {removeItemFromBasket} from '../api/ecommerceApi'
+import {useCurrentUser} from '../api/auth/useCurrentUser'
 import { useCartContext } from '@/context/cartContext'
 
 interface CartItemProps {

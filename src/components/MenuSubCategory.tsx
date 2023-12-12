@@ -1,6 +1,6 @@
 import {BiPlus, BiMinus} from 'react-icons/bi'
-import {useState, useEffect} from 'react'
-import {getCatShort, reverseCatLookup, reverseSubCatLookup} from '../../utils/utils'
+import {useState} from 'react'
+import {reverseCatLookup, reverseSubCatLookup} from '../../utils/utils'
 import Link from 'next/link'
 
 interface MenuSubCategoryProps {
@@ -17,9 +17,6 @@ const MenuSubCategory = ({subCategory, subCategoriesArray, category, handleMenuC
     const openMenuHandler = () => {
         setMenuOpen(!menuOpen)
     }
-
-    
-
 
         return  (
             <div className='h-auto w-full '>

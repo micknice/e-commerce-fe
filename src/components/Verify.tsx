@@ -22,19 +22,15 @@ const Register = () => {
     const [verified, setVerified] = useState(false)
 
     const handleFirstNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setFirstName(e.target.value)
     }
     const handleLastNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setLastName(e.target.value)
     }
     const handleEmailNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setEmail(e.target.value)
     }
     const handlePasswordNameChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log(e.target.value, '!!!')
         setPassword(e.target.value)
     }
     const handleGoToLogin = async() => {
@@ -43,11 +39,8 @@ const Register = () => {
 
     useEffect(() => {
         if(token) {
-            console.log('token confirmed')
             const verifyToken = async() => {
-                console.log('await verify')
                 const response = await verifyUser(token)
-                console.log('response', response.status)
                 if(response.status === 200) {
                     console.log('OK - email verified')
                     setVerified(true)

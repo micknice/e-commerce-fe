@@ -8,7 +8,7 @@ import ProductSliderCard from '../components/ProductSliderCard'
 import BigItemCard from '../components/BigItemCard'
 import ArticleCard from '@/components/ArticleCard'
 import {AiFillStar} from 'react-icons/ai'
-import { useMediaQuery } from '@mui/material'
+import  useMediaQuery  from '@mui/material/useMediaQuery'
 
 
 export default function Home() {

@@ -1,7 +1,6 @@
 'use client'
 import {AiFillStar} from 'react-icons/ai'
-import RecaptchaImg from '../../public/assets/RecaptchaLogo.svg.png'
-import { useState, useEffect, ChangeEvent } from 'react'
+import { useState, ChangeEvent } from 'react'
 import {postReview} from '../api/ecommerceApi'
 import {useCurrentUser} from '../api/auth/useCurrentUser'
 
@@ -20,17 +19,14 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
     const [rating, setRating] = useState(0)
 
     const handleNickChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('!!!!')
         setNickname(e.target.value)
         console.log(e.target.value)
     }
     const handleSummaryChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('!!!!')
         setSummary(e.target.value)
         console.log(e.target.value)
     }
     const handleReviewChange = (e: ChangeEvent<HTMLInputElement>) => {
-        console.log('!!!!')
         setReview(e.target.value)
         console.log(e.target.value)
     }
@@ -40,7 +36,6 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
     }
 
     const handleSubmit = async() => {
-        console.log('handle!!!')
         if (currentUser) {
             if (review.length > 10 && summary.length > 1 && rating > 0) {
                const res = await postReview(currentUser.jwt, productId, currentUser.user.id, summary, review, rating, nickName) 

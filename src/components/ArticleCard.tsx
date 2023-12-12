@@ -1,5 +1,3 @@
-import Image from "next/image";
-import OfficeImg from '../../public/assets/office1.jpg'
 import {BiChevronRight} from 'react-icons/bi'
 
 interface ArticleProps {
