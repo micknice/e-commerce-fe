@@ -14,7 +14,7 @@ import { useMediaQuery } from '@mui/material'
 export default function Home() {
   const isMobile = useMediaQuery('(max-width: 1028px)');
   return (
-    <div className=' w-full bg-white flex flex-col '>
+    <div className=' max-w-full bg-white flex flex-col md:mx-24 '>
       {/* top image */}
       <div className=' h-[180px] w-full md:h-[300px] relative z-10 '>
         {isMobile &&

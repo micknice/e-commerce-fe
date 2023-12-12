@@ -166,9 +166,9 @@ const ProductCategory = ({product}: ProductProps) => {
                         </div>
                     </div>
             </div>
-                <div className='h-[1px] w-full bg-gray-100'/>
-                <p className='text-lg font-bold tracking-wide'>DESCRIPTION</p>
-                <div className='h-[1px] w-full bg-gray-100'/>
+                <div className='h-[1px] max-w-full bg-gray-100 xl:mx-4'/>
+                <p className='text-lg font-bold tracking-wide xl:mx-4'>DESCRIPTION</p>
+                <div className='h-[1px] max-w-full bg-gray-100 xl:mx-4'/>
                 <div className='text-sm flex flex-col  px-8 gap-y-2'>
                     {description.length > 0 &&
                         description.map((line, lineIndex) => {
