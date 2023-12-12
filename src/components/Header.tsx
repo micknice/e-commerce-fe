@@ -7,7 +7,7 @@ import HeaderSlider from '@/components/HeaderSlider'
 import {useState, useEffect, useContext} from 'react'
 import Link from 'next/link'
 import { useCurrentUser } from '@/api/auth/useCurrentUser'
-import {getBasket} from "../api/ecommerceApi"
+import {getBasket, getProductByProductId} from "../api/ecommerceApi"
 import { useCartContext } from '@/context/cartContext'
 import { usePathname } from 'next/navigation'
 import { useMediaQuery } from '@mui/material'
@@ -45,16 +45,16 @@ const Header = () => {
   const pathname = usePathname()
   const isMobile = useMediaQuery('(max-width: 1280px)') 
 
-    // const modPaths = '/checkout/cart' 
     const modPaths = '/checkout/cart' 
     const {cartContext, updateCartContext} = useCartContext()
 
     const currentUser = useCurrentUser()
     const [mainMenuOpen, setMainMenuOpen] = useState(false)
     const [cart, setCart] = useState([])
+    const [cartTotal, setCartTotal] = useState(0.00)
+    console.log(cart, 'cart')
 
     const handleMainMenuClick = () => {
-      console.log('!!!!!!PPPP')
       setMainMenuOpen(!mainMenuOpen);
     }
 
@@ -64,6 +64,13 @@ const Header = () => {
           console.log(currentUser)
           const basket = await getBasket(currentUser.jwt, currentUser.user.id)
           setCart(basket)
+          let total = 0
+          for (const item of basket) {
+            const product = await getProductByProductId(item)
+
+            total+= product.price
+          }
+          setCartTotal(total)
         }
       }
       fetchBasket()
@@ -76,8 +83,8 @@ const Header = () => {
         <div className='h-full  bg-mira-black'>
         {/* header */}
         {modPaths !== pathname &&
-        <div className='h-[180px] xl:h-[100px] w-full grid grid-rows-2 xl:py-4 '>
-          <div className='row-span-1 grid grid-cols-7'>
+        <div className='h-[180px] xl:h-[100px] w-full grid grid-rows-2 xl:px-20 items-'>
+          <div className='row-span-1 grid grid-cols-7 items-center'>
             {modPaths !== pathname && isMobile &&
               <div onClick={handleMainMenuClick} className=' col-span-2 flex items-center justify-center gap-x-2 pt-4'>
                 <RiMenu2Fill color='white' size='24px'/>
@@ -85,17 +92,17 @@ const Header = () => {
             </div>
             }
 
-              <div className=' col-span-3 flex items-end justify-center ' >
+              <div className=' col-span-3 xl:col-span-2 flex items-end justify-center xl:justify-start xl:items-center xl:pt-4' >
                 <Link href={"/"}>
                     <Image className='h-5/6 object-scale-down' alt='/spacetime' src={MikiFitLogo} width={135} height={25}/>
         
                 </Link>
               </div>
               {modPaths !== pathname && !isMobile &&
-              <div className='flex flex-col justify-center'>
-                <div className=' bg-mira-offwhite rounded-full h-10 w-74 grid grid-cols-8 px-4'>
+              <div className='flex flex-col justify-center xl:items-center xl:col-span-3'>
+                <div className=' bg-mira-offwhite h-10 w-[500px] grid grid-cols-8 px-4 '>
                   <div className='col-span-2 flex items-center justify-center px-2'>
-                    <p className='text-center text-[16px] text-mira-black tracking-tighter leading-loose pl-1'>SEARCH</p>
+                    <p className='text-center text-[16px] text-mira-black tracking-tighter leading-loose pl-1 xl:font-bold xl:tracking-wide'>SEARCH</p>
       
                   </div>
                   <div className='col-span-5'>
@@ -110,19 +117,28 @@ const Header = () => {
 
             <div className='col-span-2'></div>
             }
-            <div className=' col-span-2 flex items-center justify-center relative pt-4'>
-              <div className='flex flex-row gap-x-2 items-end'>
+            <div className=' col-span-2 xl:col-span-2 flex items-center justify-center xl:justify-end relative pt-4 '>
+              <div className='flex flex-row gap-x-2 md:gap-x-6 items-center'>
                 <Link href={'/user/login'}>
                   <RiUser3Fill color='white' size='22px' />
                 </Link>
-                {modPaths !== pathname &&
+                {modPaths !== pathname && isMobile &&
 
                   <Link href={'/checkout/cart'}>
                     <BiCartAlt color='white' size='20px'/>
                   </Link>
                 }
+                {modPaths !== pathname && !isMobile &&
+
+                  <div className='bg-mira-orange h-12 w-36 flex flex-row items-center justify-start p-2'>
+                    <Link href={'/checkout/cart'} className='flex flex-row gap-x-4 items-center '>
+                      <BiCartAlt color='black' size='24px'/>
+                      <p className='text-white tracking-wide text-md'>{`£ ${cartTotal}`}</p>
+                    </Link>
+                  </div>
+                }
               </div>
-              {modPaths !== pathname &&
+              {modPaths !== pathname && isMobile &&
 
                 <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
                   <p className='text-white text-sm'>{cart.length}</p>
