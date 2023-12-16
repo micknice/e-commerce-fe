@@ -21,6 +21,7 @@ import {imgUrlToFilePath, replaceSpacesAndAmpersands} from '../../utils/utils'
 
 
 import MenuCategory from './MenuCategory'
+import MenuCategoryLarge from './MenuCategoryLarge'
 
 
 const categories = ['Strength Equipment', 'Weights & Bars', 'Conditioning', 'Gym Storage', 'Accessories']
@@ -102,7 +103,6 @@ const Header = () => {
     const formatResult = (item:any) => {
       return (
         <>
-        
           <span style={{ display: 'block', textAlign: 'left' }}>id: {item.id}</span>
           <span style={{ display: 'block', textAlign: 'left' }}>name: {item.name}</span>
         </>
@@ -113,11 +113,11 @@ const Header = () => {
 
 
     
-        <div className='h-full'>
-          <div className='h-full  bg-mira-black relative z-10'>
+        <div className='h-full '>
+          <div className='h-full bg-mira-black relative z-10 '>
           {/* header */}
           {modPaths !== pathname &&
-          <div className='h-[180px] xl:h-[100px] w-full grid grid-rows-2 xl:px-20 items-'>
+          <div className='h-[180px] xl:h-[100px] w-full grid grid-rows-2 xl:px-24 items-'>
             <div className='row-span-1 grid grid-cols-7 items-center'>
               {modPaths !== pathname && isMobile &&
                 <div onClick={handleMainMenuClick} className=' col-span-2 flex items-center justify-center gap-x-2 pt-4'>
@@ -169,13 +169,11 @@ const Header = () => {
                     <RiUser3Fill color='white' size='22px' />
                   </Link>
                   {modPaths !== pathname && isMobile &&
-  
                     <Link href={'/checkout/cart'}>
                       <BiCartAlt color='white' size='20px'/>
                     </Link>
                   }
                   {modPaths !== pathname && !isMobile &&
-  
                     <div className='bg-mira-orange h-12 w-36 flex flex-row items-center justify-start p-2'>
                       <Link href={'/checkout/cart'} className='flex flex-row gap-x-4 items-center '>
                         <BiCartAlt color='black' size='24px'/>
@@ -185,7 +183,6 @@ const Header = () => {
                   }
                 </div>
                 {modPaths !== pathname && isMobile &&
-  
                   <div className='h-5 w-5 rounded-full bg-mira-cart-red relative -top-3 -left-2 flex items-center justify-center'>
                     <p className='text-white text-sm'>{cart.length}</p>
                   </div>
@@ -318,9 +315,28 @@ const Header = () => {
                 </div>
               )}
             </Transition>)
-  })}
+          })}
         </div>
-          {/* } */}
+        {modPaths !== pathname && !isMobile &&
+          <div className='w-full h-12  px-20'>
+            <div className='w-5/6 h-full '>
+              <div className='absolute h-full w-full flex flex-row px-3 z-40'>
+                {categories.map((category, index) => {
+                  return (
+                    <div className='w-70 h-full z-40' key={`mcl${index}`}>
+                      <MenuCategoryLarge
+                        category={category}
+                        subCategoriesArray={subCategoriesArray[index]}
+                        handleMenuClickCallback={handleMainMenuClick}
+                        mainMenuOpen={mainMenuOpen}
+                      />
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        }
           {/* info slider */}
           <HeaderSlider/>
         </div>

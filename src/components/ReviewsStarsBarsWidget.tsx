@@ -37,7 +37,7 @@ const ReviewsStarsBarsWidget = ({aveRating, reviews, star5, star4, star3, star2,
     
     return (
         <div className='flex flex-col items-start justify-center w-full gap-y-8'>
-            <p className='text-2xl font-semibold tracking-wide'>Customer Reviews</p>
+            <p className='text-2xl font-semibold tracking-wide px-4'>Customer Reviews</p>
                 {isMobile &&
                     <RatingsStarsWidget aveRating={aveRating} reviews={reviews}/>
                 }
@@ -56,7 +56,7 @@ const ReviewsStarsBarsWidget = ({aveRating, reviews, star5, star4, star3, star2,
                 }
                      {/* <RatingsBarsWidgetLarge star5={star5} star4={star4} star3={star3} star2={star2} star1={star1} reviews={reviews}/> */}
                 
-                <p className='text-2xl font-bold tracking-wide'>Top customer reviews</p>
+                <p className='text-2xl font-bold tracking-wide px-4'>Top customer reviews</p>
                 <div className='w-full'>
                     <div className='flex flex-row justify-center items-center bg-gray-100 h-20 w-full gap-x-1'>
                         <p className='text-xs tracking-wide'>Sort By:</p>

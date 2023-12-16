@@ -84,9 +84,9 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
                 <p>Review</p>
                 <input className='border border-grey-400 h-20' type="text" onChange={(e) => {handleReviewChange(e)}}></input>
             </div>
-            <div className='flex flex-col gap-y-3'>
-                <div className="h-16 w-3/4 grid grid-cols-4 shadow-lg border-gray-300 border-2">
-                    <div className="bg-blue-500 col-span-3 flex flex-col items-start justify-center px-4 gap-y-1">
+            <div className='flex flex-col gap-y-3 '>
+                <div className="h-17 w-2/3 grid grid-cols-4 shadow-lg  border-gray-300 border-2">
+                    <div className="bg-blue-500 col-span-3 h- flex flex-col items-start justify-center px-3 gap-y-1">
                         <p className="text-white text-sm">protected by reCAPTCHA</p>
                         <div className="flex gap-x-2">
                             <p className="text-white text-xs">Privacy</p>
@@ -94,9 +94,11 @@ const NewReviewWidget = ({productName, productId}: NewReviewWidgetProps) => {
                             <p className="text-white text-xs">Terms</p>
                         </div>
                     </div>
-                    <img src='/assets/RecaptchaLogo.svg.png' alt='/'/>
+                    <div className='w-full h-16 flex items-center justify-center'>
+                        <img src='/assets/RecaptchaLogo.svg.png' alt='/' className='h-16'/>
+                    </div>
                 </div>
-                <div className='bg-mira-orange h-11 w-full flex justify-center items-center' onClick={()=> {handleSubmit()}}>
+                <div className='bg-mira-orange h-11 w-full flex justify-center items-center shadow-lg' onClick={()=> {handleSubmit()}}>
                     <p className='text-white text-sm font-bold'>SUBMIT REVIEW</p>
                 </div>
             </div>

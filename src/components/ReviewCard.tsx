@@ -10,7 +10,7 @@ const starArrayForMap = [0.1, 0.3, 0.5, 0.7, 0.9]
 
 const ReviewCard = ({index, review}: ReviewCardProps) => {
     return (
-        <div className='flex flex-col justify-start items-start w-full gap-y-1'>
+        <div className='flex flex-col justify-start items-start w-full gap-y-1 px-4'>
             <div className='h-[1px] w-full bg-mira-grey'/>
             <div className='flex flex-col gap-y-4 w-full'>
                 <div className='w-full grid grid-cols-3 justify-start items-center'>

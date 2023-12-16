@@ -33,7 +33,7 @@ const MenuCategory = ({category, subCategoriesArray, handleMenuClickCallback, ma
                 leaveFrom="transform translate-y-0 opacity-100"
                 leaveTo="transform -translate-y-2 opacity-0">
 
-        <div className='h-auto w-full transition ease-in-out duration-300'>
+        <div className='h-auto w-full transition ease-in-out duration-300 '>
             <div className=' h-11 items-center pl-2 grid grid-cols-3 border-t-2 transition '>
                 <Link href={`/category/${reverseCatLookup(category)}`} className='col-span-2 flex flex-row items-center' onClick={() => {handleMenuClickCallback()}} >
                     <p className='text-mira-offwhite col-span-2'>{category}</p>
