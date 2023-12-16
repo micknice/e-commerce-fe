@@ -86,12 +86,7 @@ const Register = () => {
                 <div className='bg-mira-orange h-11 w-1/2 flex justify-center items-center' onClick={handleGoToLogin}>
                     <p className='text-white text-xs font-medium'>GO TO LOGIN</p>
                 </div>
-                
-                
-               
             </div>
-            
-
         </div>
     )
 
