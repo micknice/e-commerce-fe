@@ -11,7 +11,7 @@ const RatingsStarsWidget = ({aveRating, reviews}: RatingsStarsWidgetProps) => {
     return (
         <div className='grid grid-cols-5 items-center justify-center  w-full'>
                         
-            <div className='col-span-2 items-center justify-start'>
+            <div className='col-span-2 items-center justify-start px-4'>
                 <p className='text-6xl  h-full'>{(aveRating * 5).toFixed(1)}</p>
             </div>
             <div className='col-span-3 grid grid-rows-3  items-center h-full'>

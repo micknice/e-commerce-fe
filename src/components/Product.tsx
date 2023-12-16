@@ -83,7 +83,7 @@ const ProductCategory = ({product}: ProductProps) => {
     }
     
     return (
-        <div className='flex flex-col md:mx-24 '>
+        <div className='flex flex-col md:mx-24 pb-8 '>
             {/* nav tab */}
             <div className='flex flex-col'>
                 <div className='flex flex-row items-center px-4 py-4 '>
@@ -149,7 +149,7 @@ const ProductCategory = ({product}: ProductProps) => {
                         }
                     </div>
                     <div className='h-[1px] w-full bg-gray-100'/>
-                    <div className='grid grid-cols-5 items-center'>
+                    <div className='grid grid-cols-5 items-center pb-2'>
                         <div className='col-span-2 md:col-span-1 flex items-center gap-x-2'>
                             <p className='tracking-wider text-sm font-medium'>QTY</p>
                             <div className='border-[1px] border-gray-200 h-10 w-12 flex items-center justify-center'>
@@ -165,10 +165,10 @@ const ProductCategory = ({product}: ProductProps) => {
                         </div>
                     </div>
             </div>
-                <div className='h-[1px] max-w-full bg-gray-100 xl:mx-4'/>
-                <p className='text-lg font-bold tracking-wide xl:mx-4'>DESCRIPTION</p>
-                <div className='h-[1px] max-w-full bg-gray-100 xl:mx-4'/>
-                <div className='text-sm flex flex-col  px-8 gap-y-2'>
+                <div className='h-[1px] max-w-full bg-gray-100 mx-4 '/>
+                <p className='text-lg font-bold tracking-wide mx-4 py-2'>DESCRIPTION</p>
+                <div className='h-[1px] max-w-full bg-gray-100 mx-4'/>
+                <div className='text-sm flex flex-col  px-8 gap-y-2 py-4'>
                     {description.length > 0 &&
                         description.map((line, lineIndex) => {
                             if (Array.isArray(line)) {
