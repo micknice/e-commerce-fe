@@ -377,7 +377,7 @@ const Header = () => {
   
                     />
                   </div>
-                  <div className='col-span-1 flex items-center justify-center gap-x-2' onClick={null}>
+                  <div className='col-span-1 flex items-center justify-center gap-x-2' onClick={handleOnSelect}>
                     <BiSearch className='text-gray-900 text-[26px]'/>
                   </div>
                 </div>
