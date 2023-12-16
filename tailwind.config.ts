@@ -20,6 +20,15 @@ const config: Config = {
       '8': '8px',
     },
     extend: {
+      spacing: {
+        '10': '2.5rem',
+        '20': '5rem',
+        '30': '7.5rem',
+        '40': '10rem',
+        '50': '12.5rem',
+        '60': '15rem',
+        '70': '17.5rem',
+      },
       fontFamily: {
         roboto: ['roboto', 'sans-serif'],
       },

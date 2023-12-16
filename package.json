@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@headlessui/react": "^1.7.17",
     "@mui/material": "^5.14.20",
     "@react-spring/web": "^9.7.3",
     "@stomp/stompjs": "^7.0.0",
@@ -24,6 +25,7 @@
     "next": "13.5.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-search-autocomplete": "^8.5.2",
     "react-spring": "^9.7.3",
     "sockjs": "^0.3.24",
     "sockjs-client": "^1.6.1",
